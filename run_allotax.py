@@ -6,9 +6,19 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 VENV_PYTHON = PROJECT_ROOT / ".venv" / "Scripts" / "python.exe"
-DATA_PATH_1 = PROJECT_ROOT / "1-gram" / "frequency-alpha-alldicts.json"
-DATA_PATH_2 = PROJECT_ROOT / "1-gram" / "frequency-alpha-alldicts.json"
-OUTPUT_PATH = PROJECT_ROOT / "test.html"
+DATA_PATH_1 = (
+    PROJECT_ROOT
+    / "1-gram"
+    / "data_structured"
+    / "humans.from_csv.json"
+)
+DATA_PATH_2 = (
+    PROJECT_ROOT
+    / "1-gram"
+    / "data_structured"
+    / "wikipedia.uncased.unigrams.filtered.top_300000_plus_humans.json"
+)
+OUTPUT_PATH = PROJECT_ROOT / "humans-v-wikipedia-top-300000-plus-humans.html"
 
 
 def ensure_utf8_runtime() -> None:
@@ -57,8 +67,8 @@ def main() -> None:
         str(DATA_PATH_2),
         str(OUTPUT_PATH),
         "0.17",
-        "Boys 1968",
-        "Boys 1968",
+        "humans",
+        "wikipedia top 300000 plus humans",
         "html",
     )
 
