@@ -16,9 +16,9 @@ DATA_PATH_2 = (
     PROJECT_ROOT
     / "1-gram"
     / "data_structured"
-    / "wikipedia.uncased.unigrams.filtered.top_300000_plus_humans.json"
+    / "wikipedia.uncased.unigrams.wrangled.json"
 )
-OUTPUT_PATH = PROJECT_ROOT / "humans-v-wikipedia-top-300000-plus-humans.html"
+OUTPUT_PATH = PROJECT_ROOT / "humans-v-wikipedia-wrangled.html"
 
 
 def ensure_utf8_runtime() -> None:
@@ -68,7 +68,7 @@ def main() -> None:
         str(OUTPUT_PATH),
         "0.17",
         "humans",
-        "wikipedia top 300000 plus humans",
+        "wikipedia wrangled",
         "html",
     )
 
