@@ -30,12 +30,13 @@ def token_is_word(token: str) -> bool:
     return any(char.isalpha() for char in token)
 
 
-def analyze_file(path: Path, vocab: set[str]) -> tuple[int, int, Counter[str]]:
+def analyze_file(path: Path, vocab: set[str]) -> tuple[int, int, int, Counter[str], set[str]]:
     text = path.read_text(encoding="utf-8", errors="replace")
     tokens = [match.group(0) for match in TOKEN_RE.finditer(text)]
     words = [token for token in tokens if token_is_word(token)]
+    unique_words = {token.casefold() for token in words}
     oov = Counter(token for token in words if not reconcile_token(token, vocab).is_known)
-    return len(words), sum(oov.values()), oov
+    return len(words), len(unique_words), sum(oov.values()), oov, unique_words
 
 
 def format_percent(part: int, whole: int) -> str:
@@ -44,22 +45,29 @@ def format_percent(part: int, whole: int) -> str:
     return f"{(part / whole) * 100:.2f}%"
 
 
-def write_report(output_path: Path, vocab_path: Path, file_reports: list[tuple[Path, int, int, Counter[str]]]) -> None:
+def write_report(
+    output_path: Path, vocab_path: Path, file_reports: list[tuple[Path, int, int, int, Counter[str], set[str]]]
+) -> None:
     lines: list[str] = []
-    overall_total_words = sum(total_words for _, total_words, _, _ in file_reports)
-    overall_oov_total = sum(oov_total for _, _, oov_total, _ in file_reports)
+    overall_total_words = sum(total_words for _, total_words, _, _, _, _ in file_reports)
+    overall_oov_total = sum(oov_total for _, _, _, oov_total, _, _ in file_reports)
+    overall_unique_words: set[str] = set()
+    for _, _, _, _, _, unique_words in file_reports:
+        overall_unique_words.update(unique_words)
 
     lines.append("# Zlib Stories Wrangled But OOV")
     lines.append("")
     lines.append(f"Reference vocabulary: `{vocab_path}`")
+    lines.append(f"Overall unique words: `{len(overall_unique_words)}`")
     lines.append(f"Overall OOV: `{overall_oov_total}` / `{overall_total_words}` = `{format_percent(overall_oov_total, overall_total_words)}`")
     lines.append("")
 
-    for path, total_words, oov_total, oov_counter in file_reports:
+    for path, total_words, unique_word_count, oov_total, oov_counter, _ in file_reports:
         lines.append(f"## {path.name}")
         lines.append("")
         lines.append(f"- OOV percent: `{format_percent(oov_total, total_words)}`")
         lines.append(f"- total word tokens: `{total_words}`")
+        lines.append(f"- unique words: `{unique_word_count}`")
         lines.append(f"- OOV word tokens: `{oov_total}`")
         lines.append(f"- unique OOV words: `{len(oov_counter)}`")
         lines.append("")

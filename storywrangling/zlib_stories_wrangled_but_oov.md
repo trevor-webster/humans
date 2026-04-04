@@ -1,12 +1,14 @@
 # Zlib Stories Wrangled But OOV
 
-Reference vocabulary: `1-gram\data_structured\wikipedia.uncased.unigrams.wrangled.csv`
+Reference vocabulary: `c:\Users\twebster\Desktop\PoCS\humans\1-gram\wikipedia.uncased.unigrams.wrangled.csv`
+Overall unique words: `32711`
 Overall OOV: `4332` / `664117` = `0.65%`
 
 ## How Compassion Made Us Human The Evolutionary Origins of Tenderness, Trust and Moralit.cleaned.txt
 
 - OOV percent: `0.73%`
 - total word tokens: `97713`
+- unique words: `9106`
 - OOV word tokens: `711`
 - unique OOV words: `484`
 
@@ -117,6 +119,7 @@ Top OOV words:
 
 - OOV percent: `0.28%`
 - total word tokens: `141108`
+- unique words: `13842`
 - OOV word tokens: `392`
 - unique OOV words: `290`
 
@@ -227,6 +230,7 @@ Top OOV words:
 
 - OOV percent: `0.65%`
 - total word tokens: `94389`
+- unique words: `10013`
 - OOV word tokens: `616`
 - unique OOV words: `401`
 
@@ -337,6 +341,7 @@ Top OOV words:
 
 - OOV percent: `0.89%`
 - total word tokens: `246620`
+- unique words: `18614`
 - OOV word tokens: `2184`
 - unique OOV words: `1195`
 
@@ -447,6 +452,7 @@ Top OOV words:
 
 - OOV percent: `0.51%`
 - total word tokens: `84287`
+- unique words: `9997`
 - OOV word tokens: `429`
 - unique OOV words: `247`
 

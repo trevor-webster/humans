@@ -1,9 +1,61 @@
- - used nomenclature "Humans" :) Prof. advise
- - Google books
-  - non trivial work to clean it up to use
-  - numerous issues so deferred in favor of wikipedia unigrams and bigrams
+# humans decisions
+
+## Datasets
+  - because the story we're attempting to extract depends on accurately getting the raw story, decisions were made to 
   
+    - clean rhe story corpora so that information loss would be minimal, 
+    - reduce the size of the reference standard corpus (e.g. wikipedia) to a volume that could be processed into allotaxonometric representation within a tractable time without substantial loss of information.
+
+  
+#### Books
+
+Downloaded the TXT format from z-library.im. 
+
+  - Sapiens 
+  - ...
+
+Story wrangling
+
+#### Wikipedia
+
+  Intended to be the opinionless reference standard which to compare the humans stories against, was sourced from an originally nearly 8M 1-gram corpus that was reduced to a size of 400K, about the maximum the author judged was computable by allotax within reasonable time.
+
+  Rules used summary ...
+
+
+
+
+#### Google books
+  - non trivial work to clean it up to use
+  - numerous issues so deferred for future exploration in favor of time towards wikipedia unigrams and bigrams
+
+
+
+## problems on dataset
+For 1-grams, 2-grams
+- BERT wikipedia dataset contains many words not comparable to english book corpora
+- the dilution in ranks by injecting non-english words means that many words found in english literature are downranked
+- not sure the validity of the dataset, credibility
+
+### desire to do 2-grams
+- feasibility of bigrams depends on -aggressive filter
+    
+- the 2-grams english list is small, 
+https://github.com/orgtre/google-books-ngram-frequency/blob/main/ngrams/2grams_english.csv
+
+find a 2-gram list larger than that, but smaller than BERT's many non-english words dataset
+  - or aggressively filter 
+
+
+## Code
+
+Code and datasets can be found at the github repo ...
+
+
+## alpha
+
  - alpha 
+  - plan to explore lower \alpha for character names
  - bigram
 
 
