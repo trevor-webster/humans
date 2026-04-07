@@ -9,6 +9,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent
 VENV_PYTHON = PROJECT_ROOT / ".venv" / "Scripts" / "python.exe"
 ONE_GRAM_DIR = PROJECT_ROOT / "1-gram"
+TWO_GRAM_DIR = PROJECT_ROOT / "2-gram"
 FIGURES_DIR = PROJECT_ROOT / "figures"
 ALPHA = "0.17"
 
@@ -18,7 +19,7 @@ def ensure_utf8_runtime() -> None:
         return
 
     result = subprocess.run(
-        [str(VENV_PYTHON), "-X", "utf8", str(Path(__file__).resolve())],
+        [str(VENV_PYTHON), "-X", "utf8", str(Path(__file__).resolve()), *sys.argv[1:]],
         cwd=str(PROJECT_ROOT),
     )
     raise SystemExit(result.returncode)
@@ -150,6 +151,12 @@ def build_parser() -> argparse.ArgumentParser:
         nargs="*",
         help="Optional story slugs to render. Defaults to all stories.",
     )
+    parser.add_argument(
+        "--gram-size",
+        choices=["1", "2"],
+        default="1",
+        help="Which n-gram dataset to render. Default: 1.",
+    )
     return parser
 
 
@@ -159,32 +166,53 @@ def main() -> int:
     args = build_parser().parse_args()
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
-    humans = ensure_json(ONE_GRAM_DIR / "humans.csv")
-    wiki1grams = ensure_json(
-        ONE_GRAM_DIR / "wikipedia.uncased.unigrams.wrangled.csv",
-        ONE_GRAM_DIR / "wikipedia.uncased.unigrams.wrangled.json",
-    )
-    sapiens = ensure_json(ONE_GRAM_DIR / "Sapiens.csv")
-
-    stories = {
-        "sapiens": ("Sapiens", sapiens),
-        "how-compassion-made-us-human": (
-            "How Compassion Made Us Human",
-            ONE_GRAM_DIR / "How Compassion Made Us Human The Evolutionary Origins of Tenderness, Trust and Moralit-1grams.json",
-        ),
-        "code-economy": (
-            "The Code Economy",
-            ONE_GRAM_DIR / "The Code Economy A Forty-Thousand Year History-1grams.json",
-        ),
-        "dawn-of-everything": (
-            "The Dawn of Everything",
-            ONE_GRAM_DIR / "The Dawn of Everything A New History of Humanity-1grams.json",
-        ),
-        "ultrasociety": (
-            "Ultrasociety",
-            ONE_GRAM_DIR / "Ultrasociety How 10,000 Years of War Made Humans the Greatest Cooperators on Earth-1grams.json",
-        ),
-    }
+    if args.gram_size == "1":
+        humans = ensure_json(ONE_GRAM_DIR / "humans.csv")
+        wiki1grams = ensure_json(
+            ONE_GRAM_DIR / "wikipedia.uncased.unigrams.wrangled.csv",
+            ONE_GRAM_DIR / "wikipedia.uncased.unigrams.wrangled.json",
+        )
+        stories = {
+            "sapiens": ("Sapiens", ensure_json(ONE_GRAM_DIR / "Sapiens.csv")),
+            "how-compassion-made-us-human": (
+                "How Compassion Made Us Human",
+                ONE_GRAM_DIR / "How Compassion Made Us Human The Evolutionary Origins of Tenderness, Trust and Moralit-1grams.json",
+            ),
+            "code-economy": (
+                "The Code Economy",
+                ONE_GRAM_DIR / "The Code Economy A Forty-Thousand Year History-1grams.json",
+            ),
+            "dawn-of-everything": (
+                "The Dawn of Everything",
+                ONE_GRAM_DIR / "The Dawn of Everything A New History of Humanity-1grams.json",
+            ),
+            "ultrasociety": (
+                "Ultrasociety",
+                ONE_GRAM_DIR / "Ultrasociety How 10,000 Years of War Made Humans the Greatest Cooperators on Earth-1grams.json",
+            ),
+        }
+    else:
+        humans = ensure_json(TWO_GRAM_DIR / "humans-2grams.csv")
+        wiki1grams = None
+        stories = {
+            "sapiens": ("Sapiens", TWO_GRAM_DIR / "Sapiens-2grams.json"),
+            "how-compassion-made-us-human": (
+                "How Compassion Made Us Human",
+                TWO_GRAM_DIR / "How Compassion Made Us Human The Evolutionary Origins of Tenderness, Trust and Moralit-2grams.json",
+            ),
+            "code-economy": (
+                "The Code Economy",
+                TWO_GRAM_DIR / "The Code Economy A Forty-Thousand Year History-2grams.json",
+            ),
+            "dawn-of-everything": (
+                "The Dawn of Everything",
+                TWO_GRAM_DIR / "The Dawn of Everything A New History of Humanity-2grams.json",
+            ),
+            "ultrasociety": (
+                "Ultrasociety",
+                TWO_GRAM_DIR / "Ultrasociety How 10,000 Years of War Made Humans the Greatest Cooperators on Earth-2grams.json",
+            ),
+        }
 
     selected_story_slugs = args.stories or list(stories.keys())
     unknown_story_slugs = [slug for slug in selected_story_slugs if slug not in stories]
@@ -196,7 +224,10 @@ def main() -> int:
         for slug in selected_story_slugs
     ]
 
-    if args.compare_to in {"all", "wiki"} and not args.stories:
+    if args.gram_size == "2" and args.compare_to in {"all", "wiki"}:
+        raise ValueError("2-gram rendering currently supports only --compare-to humans.")
+
+    if args.gram_size == "1" and args.compare_to in {"all", "wiki"} and not args.stories:
         render_pair(
             humans,
             wiki1grams,
@@ -207,15 +238,16 @@ def main() -> int:
 
     if args.compare_to in {"all", "humans"}:
         for slug, label, story_path in selected_stories:
+            human_label = "humans2grams" if args.gram_size == "2" else "humans"
             render_pair(
                 story_path,
                 humans,
-                FIGURES_DIR / f"{slug}-v-humans.html",
+                FIGURES_DIR / f"{slug}-v-{human_label}.html",
                 label,
-                "humans",
+                human_label,
             )
 
-    if args.compare_to in {"all", "wiki"}:
+    if args.gram_size == "1" and args.compare_to in {"all", "wiki"}:
         for slug, label, story_path in selected_stories:
             render_pair(
                 story_path,

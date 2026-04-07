@@ -16,6 +16,11 @@ Downloaded the TXT format from z-library.im.
 
 Story wrangling
 
+#### Google books
+  - non trivial work to clean it up to use
+  - numerous issues so deferred for future exploration in favor of time towards wikipedia unigrams and bigrams
+
+
 #### Wikipedia
 
   Intended to be the opinionless reference standard which to compare the humans stories against, was sourced from an originally nearly 8M 1-gram corpus that was reduced to a size of 400K, about the maximum the author judged was computable by allotax within reasonable time.
@@ -25,18 +30,25 @@ Story wrangling
 
 
 
-#### Google books
-  - non trivial work to clean it up to use
-  - numerous issues so deferred for future exploration in favor of time towards wikipedia unigrams and bigrams
-
-
-
 ## problems on dataset
 For 1-grams, 2-grams
 - BERT wikipedia dataset contains many words not comparable to english book corpora
 - the dilution in ranks by injecting non-english words means that many words found in english literature are downranked
 - not sure the validity of the dataset, credibility
 
+## Wikipedia Decisions
+
+- Start from wikitext-103 dataset
+- Remove rows whose token is pure punctuation.
+  - Examples: `(`, `)`, `,`, `.`, `"`, `````, `''`, `?`
+- Remove standalone apostrophe-fragment tokens.
+  - Examples: `'s`, `n't`, `'d`, `'m`, `'re`, `'ll`, `'ve`, `'em`
+  - Rule intent: drop apostrophe-led or apostrophe-trailed shards and the standalone `n't` clitic, while keeping normal lexical tokens such as `don't`, `one's`, and `rock'n'roll`.
+
+
+### wikitext
+ - use 103-raw-v1 as input to storywrangler
+ - used raw so that all decisions to clean are transparent and can be equal for all corpora
 ### desire to do 2-grams
 - feasibility of bigrams depends on -aggressive filter
     
@@ -46,17 +58,17 @@ https://github.com/orgtre/google-books-ngram-frequency/blob/main/ngrams/2grams_e
 find a 2-gram list larger than that, but smaller than BERT's many non-english words dataset
   - or aggressively filter 
 
+  - considered NRC VAD as a rule but the 20K word set was less than humans' set of types
+
+  - n-grams are not simply all possible permutations, but empirically found
+
+
 
 ## Code
 
 Code and datasets can be found at the github repo ...
 
 
-## alpha
-
- - alpha 
-  - plan to explore lower \alpha for character names
- - bigram
 
 
 ## Downloaded Book Cleaning
@@ -84,63 +96,42 @@ Source files in `books/` are downloaded `.txt` extractions and may contain layou
   - isolated page-marker lines like roman numerals
   - isolated `Q` lines seen in extracted front matter
 - Normalize whitespace after punctuation cleanup:
-  - collapse repeated spaces
-  - trim line edges
-  - collapse 3+ blank lines to 2
+
 
 - remaining treated in [OOV reconciliation](#oov)
   
 ### OOV
 - the txt auto conversion downloaded from z-lib was mostly accurate, but some high-volume OOV tokens were leftover as line-break artifacts, lexical possessives, and similar token-shape issues
 - examples from `zlib_stories_wrangled_but_oov.md` before reconciliation included: `produc-tion`, `algo-rithms`, `spe-cific`, `evolu-tion`, `im-provement`, `ad-vances`, `chap-ter`, `cre-ation`, `dig-ital`, `arti-ficial`, `ma-chines`, `learn-ing`, `de-pends`, `educa-tion`, `prog-ress`, `inno-vation`, `pub-lished`, `econ-omy`
-- OOV reconciliation is allowed only for safe, lexicon-backed cases:
+- OOV reconciliation rules check that the OOV word, or its modified form, falls in wikipedia-lexicon:
+
   - if removing internal hyphenation yields a Wikipedia token, rewrite the cleaned story text to the joined form
   - if a dotted token is a word plus non-alphabetic note marker fragments such as `genes.6`, rewrite the cleaned story text to the lexical word
   - if a hyphenated compound is made of recognized lexical parts such as `non-egalitarian`, do not count it as OOV, but keep the text unchanged
   - if an apostrophe suffix such as `'s`, `n't`, `'d`, `'re`, `'ve`, `'ll`, or `'m` can be stripped to a recognized base token, do not count it as OOV, but keep the text unchanged
   
-### Explicit non-decisions
-- Pause further OOV reconciliation after obvious artifact classes are identified.
-  - Example: `Kandiaronk` appearing in text while Wikipedia uses `Kondiaronk` is treated as a legitimate naming/spelling variant to note, not as a cleaner bug to auto-correct.
 
-### Files cleaned with this rule set
 
-- `books/The Code Economy A Forty-Thousand Year History.txt`
-- `books/The Dawn of Everything A New History of Humanity.txt`
+## Cleaned stories
 
-## Wikipedia
- - was too large for py-allotax, so scripts cleaned the dataset from BERT
 
-### Reference files
+### Cleaning counted
+  - until there's a principle to clean counted tokens from stories and wiki, leave
 
-- Source reference unigram file:
-  - `1-gram/data_structured/wikipedia.uncased.unigrams.csv`
-- Wrangled reference unigram file:
-  - `1-gram/data_structured/wikipedia.uncased.unigrams.wrangled.csv`
+## 2-gram use for allotax
 
-### Decisions
-
-- Start from `1-gram/data_structured/wikipedia.uncased.unigrams.csv`.
-- Remove rows whose token is pure punctuation.
-  - Examples: `(`, `)`, `,`, `.`, `"`, `````, `''`, `?`
-- Remove standalone apostrophe-fragment tokens.
-  - Examples: `'s`, `n't`, `'d`, `'m`, `'re`, `'ll`, `'ve`, `'em`
-  - Rule intent: drop apostrophe-led or apostrophe-trailed shards and the standalone `n't` clitic, while keeping normal lexical tokens such as `don't`, `one's`, and `rock'n'roll`.
-- Apply a frequency cutoff of `count >= 40`.
-- Write the wrangled file with Unix LF line endings.
-
-### Current wrangled output
-
-- Output file:
-  - `1-gram/data_structured/wikipedia.uncased.unigrams.wrangled.csv`
-- Output rows:
-  - `420,148`
-- Output size:
-  - `5,090,474` bytes
-
-### Non-decisions
-
-- No additional lexical cleaning or language filtering is applied beyond:
-  - dropping pure punctuation rows
-  - dropping standalone apostrophe fragments
-  - applying the `count >= 40` cutoff
+- For now, use the story 2-gram datasets in `2-gram/` as built, without an additional junk-bigram filter.
+- Construction rule:
+  - clean each book text first
+  - tokenize the cleaned text
+  - for each position `i`, count adjacent bigrams `(w[i], w[i+1])`
+  - keep a bigram only when both tokens contain at least one alphabetic character
+- Outputs:
+  - one 2-gram CSV/JSON per cleaned book
+  - one combined `humans-2grams` CSV/JSON built by summing bigram counts across all cleaned books
+- Current decision:
+  - use each story 2-gram dataset as input to py-allotax
+  - compare each story against combined `humans-2grams`
+- Deferred:
+  - do not add URL / citation / note-fragment filtering yet
+  - revisit junk-bigram filtering only after inspecting initial story-v-humans 2-gram allotax outputs

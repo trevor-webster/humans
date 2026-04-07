@@ -147,13 +147,31 @@ def clean_text(text: str, titles: list[str] | None = None) -> str:
     return cleaned.strip() + "\n"
 
 
+def tokenize_text(text: str) -> list[str]:
+    return re.findall(r"\S+", text.casefold())
+
+
+def is_countable_token(token: str) -> bool:
+    return any(char.isalpha() for char in token)
+
+
 def lowercase_and_count_words(text: str) -> Counter[str]:
-    lowered = text.casefold()
     counts: Counter[str] = Counter()
 
-    for token in re.findall(r"\S+", lowered):
+    for token in tokenize_text(text):
         if any(char.isalpha() for char in token):
             counts[token] += 1
+
+    return counts
+
+
+def lowercase_and_count_bigrams(text: str) -> Counter[str]:
+    counts: Counter[str] = Counter()
+    tokens = tokenize_text(text)
+
+    for left, right in zip(tokens, tokens[1:]):
+        if is_countable_token(left) and is_countable_token(right):
+            counts[f"{left} {right}"] += 1
 
     return counts
 
@@ -165,17 +183,30 @@ def reconcile_token(token: str, vocab: set[str]) -> TokenReconciliation:
 
     apostrophe_result = reconcile_apostrophe_token(token, vocab)
     if apostrophe_result.is_known:
-        return apostrophe_result
+        return finalize_reconciliation(token, apostrophe_result, vocab)
 
     dot_result = reconcile_dot_token(token, vocab)
     if dot_result.is_known:
-        return dot_result
+        return finalize_reconciliation(token, dot_result, vocab)
 
     hyphen_result = reconcile_hyphen_token(token, vocab)
     if hyphen_result.is_known:
-        return hyphen_result
+        return finalize_reconciliation(token, hyphen_result, vocab)
 
     return TokenReconciliation(is_known=False)
+
+
+def finalize_reconciliation(token: str, result: TokenReconciliation, vocab: set[str]) -> TokenReconciliation:
+    replacement = result.replacement
+    if not replacement or replacement == token:
+        return result
+
+    next_result = reconcile_token(replacement, vocab)
+    if not next_result.is_known:
+        return result
+    if next_result.replacement and next_result.replacement != replacement:
+        return TokenReconciliation(is_known=True, replacement=next_result.replacement)
+    return TokenReconciliation(is_known=True, replacement=replacement)
 
 
 def reconcile_apostrophe_token(token: str, vocab: set[str]) -> TokenReconciliation:
@@ -216,28 +247,41 @@ def reconcile_dot_token(token: str, vocab: set[str]) -> TokenReconciliation:
         return TokenReconciliation(is_known=False)
 
     pieces = token.split(".")
-    vocab_matches = [
-        piece for piece in pieces if piece and any(char.isalpha() for char in piece) and piece.casefold() in vocab
-    ]
-    if len(vocab_matches) != 1:
+    alpha_pieces = [piece for piece in pieces if piece and any(char.isalpha() for char in piece)]
+    if len(alpha_pieces) != 1:
         return TokenReconciliation(is_known=False)
+    replacement = alpha_pieces[0]
 
     for piece in pieces:
-        if not piece or piece in vocab_matches:
+        if not piece or piece == replacement:
             continue
         if any(char.isalpha() for char in piece):
             return TokenReconciliation(is_known=False)
 
-    replacement = vocab_matches[0]
-    return TokenReconciliation(is_known=True, replacement=replacement)
+    replacement_result = reconcile_token(replacement, vocab)
+    if replacement_result.is_known and replacement_result.replacement and replacement_result.replacement != replacement:
+        return TokenReconciliation(is_known=True, replacement=replacement_result.replacement)
+    if replacement_result.is_known or replacement.casefold() in vocab:
+        return TokenReconciliation(is_known=True, replacement=replacement)
+    return TokenReconciliation(is_known=False)
 
 
 def load_unigram_vocab(path: Path) -> set[str]:
     vocab: set[str] = set()
     with path.open("r", encoding="utf-8", errors="replace", newline="") as src:
-        reader = csv.DictReader(src, dialect="excel-tab")
+        sample = src.read(4096)
+        src.seek(0)
+        try:
+            dialect = csv.Sniffer().sniff(sample, delimiters=",\t")
+        except csv.Error:
+            dialect = csv.get_dialect("excel")
+        reader = csv.DictReader(src, dialect=dialect)
+        fieldnames = {name.strip().lower(): name for name in (reader.fieldnames or [])}
+        token_field = fieldnames.get("unigram") or fieldnames.get("types")
+        if not token_field:
+            raise ValueError(f"Could not find a unigram token column in {path}")
         for row in reader:
-            token = (row.get("unigram") or "").strip()
+            token = (row.get(token_field) or "").strip()
             if token:
                 vocab.add(token.casefold())
     return vocab
@@ -288,7 +332,7 @@ def build_structured_rows(counts: Counter[str]) -> list[dict[str, float | int | 
     return rows
 
 
-def write_word_counts_csv(counts: Counter[str], output_path: Path) -> None:
+def write_counts_csv(counts: Counter[str], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     rows = build_structured_rows(counts)
     with output_path.open("w", encoding="utf-8", newline="") as dst:
@@ -298,7 +342,7 @@ def write_word_counts_csv(counts: Counter[str], output_path: Path) -> None:
             writer.writerow([row["types"], row["counts"], row["probs"], row["total_unique"]])
 
 
-def write_word_counts_json(counts: Counter[str], output_path: Path) -> None:
+def write_counts_json(counts: Counter[str], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     rows = build_structured_rows(counts)
     json_rows = [
@@ -316,6 +360,12 @@ def write_word_counts_json(counts: Counter[str], output_path: Path) -> None:
         dst.write("\n")
 
 
+def default_ngram_output_path(input_path: Path, output_dir: Path, ngram_size: int) -> Path:
+    story_name = input_path.stem.removesuffix(".cleaned")
+    story_name = re.sub(r"(?: \([^()]+\))+$", "", story_name).strip()
+    return output_dir / f"{story_name}-{ngram_size}grams.csv"
+
+
 def concat_story_counts(input_dir: Path, csv_output_path: Path, json_output_path: Path) -> Counter[str]:
     aggregate: Counter[str] = Counter()
 
@@ -329,14 +379,41 @@ def concat_story_counts(input_dir: Path, csv_output_path: Path, json_output_path
                     continue
                 aggregate[token] += int(count_text)
 
-    write_word_counts_csv(aggregate, csv_output_path)
-    write_word_counts_json(aggregate, json_output_path)
+    write_counts_csv(aggregate, csv_output_path)
+    write_counts_json(aggregate, json_output_path)
     return aggregate
 
 
 def default_output_path(input_path: Path) -> Path:
     story_name = re.sub(r"(?: \([^()]+\))+$", "", input_path.stem).strip()
     return input_path.with_name(f"{story_name}.cleaned{input_path.suffix}")
+
+
+def build_bigram_counts_for_books(input_dir: Path, output_dir: Path) -> tuple[list[tuple[Path, Path, int]], Counter[str]]:
+    aggregate: Counter[str] = Counter()
+    outputs: list[tuple[Path, Path, int]] = []
+    cleaned_paths = sorted(input_dir.glob("*.cleaned.txt"))
+
+    if not cleaned_paths:
+        raise ValueError(f"No cleaned book files matched {input_dir / '*.cleaned.txt'}")
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    for input_path in cleaned_paths:
+        text = input_path.read_text(encoding="utf-8", errors="replace")
+        counts = lowercase_and_count_bigrams(text)
+        csv_output_path = default_ngram_output_path(input_path, output_dir, 2)
+        json_output_path = default_json_output_path(csv_output_path)
+        write_counts_csv(counts, csv_output_path)
+        write_counts_json(counts, json_output_path)
+        aggregate.update(counts)
+        outputs.append((input_path, csv_output_path, sum(counts.values())))
+
+    humans_csv_path = output_dir / "humans-2grams.csv"
+    humans_json_path = default_json_output_path(humans_csv_path)
+    write_counts_csv(aggregate, humans_csv_path)
+    write_counts_json(aggregate, humans_json_path)
+    return outputs, aggregate
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -346,7 +423,7 @@ def build_parser() -> argparse.ArgumentParser:
             "layout artifact removal, and punctuation retention only inside words/numbers."
         )
     )
-    parser.add_argument("input", type=Path, help="Path to the source text corpus.")
+    parser.add_argument("input", nargs="?", type=Path, help="Path to the source text corpus.")
     parser.add_argument(
         "-o",
         "--output",
@@ -364,12 +441,44 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help="Optional Wikipedia unigram vocabulary used to reconcile safe OOV artifacts in cleaned text.",
     )
+    parser.add_argument(
+        "--build-bigrams-from-dir",
+        type=Path,
+        help="Build per-book and combined 2-gram counts from cleaned .txt files in this directory.",
+    )
+    parser.add_argument(
+        "--bigram-output-dir",
+        type=Path,
+        default=Path("2-gram"),
+        help="Output directory for bigram CSV/JSON files. Default: 2-gram",
+    )
     return parser
 
 
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
+
+    if args.build_bigrams_from_dir:
+        input_dir = args.build_bigrams_from_dir
+        if not input_dir.is_dir():
+            parser.error(f"bigram input directory does not exist: {input_dir}")
+
+        outputs, aggregate = build_bigram_counts_for_books(input_dir, args.bigram_output_dir)
+        print(f"input dir:   {input_dir}")
+        print(f"output dir:  {args.bigram_output_dir}")
+        print(f"books:       {len(outputs)}")
+        for input_path, csv_output_path, total_bigrams in outputs:
+            print(f"book:        {input_path.name}")
+            print(f"csv:         {csv_output_path}")
+            print(f"bigrams:     {total_bigrams}")
+        print(f"combined:    {args.bigram_output_dir / 'humans-2grams.csv'}")
+        print(f"total bigrams: {sum(aggregate.values())}")
+        print(f"total unique:  {len(aggregate)}")
+        return 0
+
+    if not args.input:
+        parser.error("input is required unless --build-bigrams-from-dir is used")
 
     input_path = args.input
     output_path = args.output or default_output_path(input_path)

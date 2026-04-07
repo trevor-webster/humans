@@ -186,7 +186,7 @@ The first recipes code at work literally made humans what we are today
 
 Fast forward to the present where much of the latest research seems to suggest that the advance of code is no longer a boon to human well being but rather a threat
 
-In the past two decades in particular a proliferation of published works has warned of the deeply adverse social impact we can expect from the continued advance of code Futurist Jeremy Rifkin's 1995 book The End of Work The Decline of the Global Labor Force and the Dawn of the Post Market Era set forth one position in what might be termed The Great Man vs Machine Debate Rifkin argues that we should be deeply concerned about the prospect of a world without jobs as machines empowered by code continue their advance We are entering into a new period in history one in which machines increasingly replace human beings in the process of making and moving goods and providing services he cau-tions.5 A near workerless world is fast approaching 6 Others who have advanced more nuanced forms of the same basic argument include Erik Brynjolfsson and Andrew McAfee Tyler Cowen and Martin Ford From an economic standpoint their argument is straightforward
+In the past two decades in particular a proliferation of published works has warned of the deeply adverse social impact we can expect from the continued advance of code Futurist Jeremy Rifkin's 1995 book The End of Work The Decline of the Global Labor Force and the Dawn of the Post Market Era set forth one position in what might be termed The Great Man vs Machine Debate Rifkin argues that we should be deeply concerned about the prospect of a world without jobs as machines empowered by code continue their advance We are entering into a new period in history one in which machines increasingly replace human beings in the process of making and moving goods and providing services he cautions A near workerless world is fast approaching 6 Others who have advanced more nuanced forms of the same basic argument include Erik Brynjolfsson and Andrew McAfee Tyler Cowen and Martin Ford From an economic standpoint their argument is straightforward
 
 1 The power of code is growing at an exponential rate 2 Code nearly perfectly substitutes for human capabilities 3 Therefore the relative power of human capabilities is shrinking
 
@@ -244,7 +244,7 @@ code Understanding this advance is therefore fundamental to economics and to muc
 
 toys we produce new forms of meaning new experiences and new ways of making our way in the world
 
-In advancing these three ideas I am seeking to address an imbalance in the way economics is broadly understood and taught Economics as conveyed in undergraduate courses and popular accounts tends to focus on choice and consumption to the neglect of code and produc-tion.10 Choice and consumption are of course important dimensions of economic experience but so are code and production After all we humans are producers at least as much as we are consumers
+In advancing these three ideas I am seeking to address an imbalance in the way economics is broadly understood and taught Economics as conveyed in undergraduate courses and popular accounts tends to focus on choice and consumption to the neglect of code and production Choice and consumption are of course important dimensions of economic experience but so are code and production After all we humans are producers at least as much as we are consumers
 
 The book is organized as follows In Part One The Advance of Code I describe the origin of code beginning with the production of obsidian axes and continuing through the development of writing the emergence of culinary recipes and the evolution of cities I then set up the discussion relating to the Great Man vs Machine Debate that appears later in the book by describing how the job as it is currently understood is a recent historical creation one that rests on layers of institutions that have taken millennia to accumulate I conclude Part One by describing the history of digital computing as the latest chapter in the evolution of code emphasizing the profound impact it has had and is having on the structure of institutions and thus on the definition of jobs
 
@@ -728,7 +728,7 @@ practices relationships and capabilities that defined its wisdom and dexterity
 
 Although events in London ultimately belied the apocalyptic claims of Thomas Vincent and his Puritan brethren 1666 did turn out to be a portentous year for humanity for reasons that could not have been anticipated
 
-That same year a German natural philosopher by the name of Gottfried Leibniz published an essay titled De arte combinatoria On the Art of Combination Leibniz based the essay on his doctoral dissertation which he wrote at the age of 20 In De arte combinato-ria Leibniz set forth a method for reducing all logic to exact statements using binary expressions which he dubbed the Characteristica Universalis or Universal Character 2
+That same year a German natural philosopher by the name of Gottfried Leibniz published an essay titled De arte combinatoria On the Art of Combination Leibniz based the essay on his doctoral dissertation which he wrote at the age of 20 In De arte combinatoria Leibniz set forth a method for reducing all logic to exact statements using binary expressions which he dubbed the Characteristica Universalis or Universal Character 2
 
 De arte combinatoria aims to create a general method in which all
 
@@ -1616,7 +1616,7 @@ Substitution 69
 
 family business where his responsibilities grew steadily However shortly after the family moved from London to the nearby town of Bow David's connection to his family was severed suddenly when he announced his engagement to a neighbor Priscilla Ann Wilkinson one of three daughters of an eminent Quaker surgeon Now on his own at the age of 21 Ricardo continued to work as a stockbroker and market speculator
 
-Ricardo was so successful in finance that he was semi-retired within a decade and free to dedicate much of his time to various intellectual pursuits including the study of geology and mathematics When Priscilla Ricardo fell ill in March 1799 the Ricardos traveled to Bath so Priscilla could recuperate in one of the town's famed spas There he happened to spot a book by Adam Smith in a library and after glancing through it briefly requested that it be brought to his home Priscilla Ricardo recovered but the trajectory of her husband's life was altered from the moment he encountered The Wealth of Nations the study of what we now call economics became David Ricardo's primary preoccupation
+Ricardo was so successful in finance that he was semiretired within a decade and free to dedicate much of his time to various intellectual pursuits including the study of geology and mathematics When Priscilla Ricardo fell ill in March 1799 the Ricardos traveled to Bath so Priscilla could recuperate in one of the town's famed spas There he happened to spot a book by Adam Smith in a library and after glancing through it briefly requested that it be brought to his home Priscilla Ricardo recovered but the trajectory of her husband's life was altered from the moment he encountered The Wealth of Nations the study of what we now call economics became David Ricardo's primary preoccupation
 
 Ricardo's first analytical effort in the field of economics was an anonymous essay entitled The Price of Gold which was published in The Morning Chronicle in 1809 In the essay Ricardo argued that directors of the Bank of England of which he was one5 had been systematically devaluing the English pound for their own gain In 1813 when Parliament began to restrict trade in corn Ricardo turned his attention from the debasement of the currency to the deleterious effects of trade restrictions Here again he had the benefit of direct experience he had after all been raised in two countries and spent a brief but lucrative career in the financial markets The outcome of this effort was On the Principles of Political Economy and Taxation published in 1817 a work of scope and significance comparable to Smith's The Wealth of Nations In Principles Ricardo introduced the concept of comparative advantage which remains the primary framework through which economists understand gains from trade
 
@@ -1840,7 +1840,7 @@ Responding to these contemporary realities John Barton a Quaker political econom
 
 Substitution 75
 
-wages His argument is as straightforward as it was prescient He began by noting that there was no a priori reason to believe that labor and capital were perfect complements as classical economists implicitly assumed The more sensible assumption was that as wages increased manufacturers and farmers alike would tend to substitute animals or machines for human labor Rather than increasing the birth rate the higher wages brought on by the introduction of new machinery would increase intergenerational differences in income and thus delay child-bearing Contrary to the Malthusian line of argument this is exactly what happened
+wages His argument is as straightforward as it was prescient He began by noting that there was no a priori reason to believe that labor and capital were perfect complements as classical economists implicitly assumed The more sensible assumption was that as wages increased manufacturers and farmers alike would tend to substitute animals or machines for human labor Rather than increasing the birth rate the higher wages brought on by the introduction of new machinery would increase intergenerational differences in income and thus delay childbearing Contrary to the Malthusian line of argument this is exactly what happened
 
 Ricardo read and was persuaded by Barton's book He considered the question of mechanization of such great importance that he added a new chapter titled On Machinery to the third edition of On the Principles of Political Economy In an astonishing reversal he wrote in 1821 I now however see reason to be satisfied that the one fund from which landlords and capitalists derive their revenue may increase while the other that upon which the labouring class mainly depend may diminish and therefore it follows if I am right that the same cause which may increase the net revenue of the country may at the same time render the population redundant and deteriorate the condition of the labourer 16
 
@@ -2198,7 +2198,7 @@ That said if we consider the discipline of economics in the context of broader t
 
 The economics taught in undergraduate courses is a great example of history being written by the victors Because the methodologies of neoclassical economics experienced numerous triumphs in the middle of the twentieth century the study of the distribution of resources within the economy choice rather than code and to a lesser extent consumption rather than production came to be taught as the totality of economics However the reality is that choice and code have always coexisted not only in the economy itself but in the history of economic thought
 
-The tendency toward selective memory among economists is no-where better illustrated than in the story of William Jevons widely recognized as one of three original architects of neoclassical choice theory a father of modern economics
+The tendency toward selective memory among economists is nowhere better illustrated than in the story of William Jevons widely recognized as one of three original architects of neoclassical choice theory a father of modern economics
 
 Like David Ricardo Jevons was first motivated to take up the study of economics by reading Adam Smith's Wealth of Nations Also like Ricardo Jevons devoted his twenties to business pursuits Those experiences left him with a first hand appreciation of the complex working of markets and in turn of the singular power of mathematics to simplify and organize a complex world Such is the infinite complexity of causes and of effect that we cannot treat them in detail Economy indeed being concerned with quantities has always of necessity been mathematical in its subject but the strict and general statement and the easy comprehension of its quantitative laws has been prevented by
 
@@ -3016,7 +3016,7 @@ problem solved by evolution and that of complex combinatorial problems in comput
 
 Kauffman and Levin introduced their model by making reference to the essay by Francois Jacob that I cited at the end of the last chapter which advanced the idea that evolution as a process was much more like tinkering than optimization Natural selection does not work as an engineer works It works like a tinkerer a tinkerer who does not know exactly what he is going to produce but uses everything at his disposal to produce some kind of workable object 20 This process is progressive moving from simpler to more complex forms Evolution does not produce novelties from scratch It works on what already exists either transforming a system to give it new functions or combining several systems to produce a more elaborate one as during the passage from unicellular to multicellular forms 21 The very fact of progressive evolution means that the living systems that are the result of evolutionary processes face an increasing number of constraints as their complexity increases The constraints to which systems are subjected vary with the level of complexity There are always some constraints imposed by stability and thermodynamics But as complexity increases additional constraints appear such as reproduction for living systems or economic requirements for social systems 22 To be viable in the world a new molecule originating in the primordial swamp need only conform with fundamental physical laws To be similarly viable a new genetic combination however must not only conform to physical laws but also increase the fitness of its carrier within its given environment A new technological combination must improve upon existing technologies and provide sufficient value to people that it is recorded shared and copied
 
-The Kauffman and Levin model was as simple as it was powerful Imagine a genetic code of length N where each gene might occupy one of two possible states for example 0 and 1 in a binary com-puter.23 The difficulty of the evolutionary problem was tunable with the parameter K which represented the average number of interactions among genes The NK model as it came to be called was able to reproduce a number of measurable features of evolution in biological systems Evolution could be represented as a genetic walk on a fitness landscape in which increasing complexity was now a central parameter
+The Kauffman and Levin model was as simple as it was powerful Imagine a genetic code of length N where each gene might occupy one of two possible states for example 0 and 1 in a binary computer The difficulty of the evolutionary problem was tunable with the parameter K which represented the average number of interactions among genes The NK model as it came to be called was able to reproduce a number of measurable features of evolution in biological systems Evolution could be represented as a genetic walk on a fitness landscape in which increasing complexity was now a central parameter
 
 128
 
@@ -3084,7 +3084,7 @@ All of that changed in the early twentieth century with the advent of large scal
 
 132 Code Economics
 
-What do we mean by complexity in this context It may be measured most simply in terms of the number of parts in a technological arti-fact.4 The John Deere tractor sold today is clearly more complex than McCormick's reaper which in turn was more complex than a plow The social arrangements required to produce each of these products have also correspondingly increased in complexity over time
+What do we mean by complexity in this context It may be measured most simply in terms of the number of parts in a technological artifact The John Deere tractor sold today is clearly more complex than McCormick's reaper which in turn was more complex than a plow The social arrangements required to produce each of these products have also correspondingly increased in complexity over time
 
 Understood in this way complexity emphasizes the difficulty of the problem that is solved by a particular production recipe A more complex problem is simply one for which finding a good solution is more difficult Think again of Julia Child's search for the perfect mayonnaise recipe more difficult than it might seem at first The concept of solving hard problems can be defined quite formally as applied to production recipes it represents a special case of algorithmic complexity that is at the heart of information theory
 
@@ -3354,7 +3354,7 @@ Mathematical reasoning may be regarded rather schematically as the exercise of a
 
 Alan Turing Systems of Logic Based on Ordinals 1938
 
-On November 16 2014 before a crowd of 60,000 people gathered at Sardar Vallabhbhai Patel Stadium in Mumbai India the Jain monk Munishri Ajitchandrasagarji accomplished a rare feat he perfectly recalled five hundred unrelated facts in succession From early morning to midday spectators approached the stadium stage one at a time Each showed the young monk a random object posed a math problem or spoke a word or phrase in one of at least six languages After the last of these five hundred participants had conveyed their random fact the 24 year old prodigy opened his eyes and began to recite them back Detouring only once to fill in a blank he had left aside he recalled every fact without error According to his guru the young monk had matched a feat last accomplished six centuries earlier by a Jain monk in the Mughal court of the Subahdar of Khambhat
+On November 16 2014 before a crowd of 60,000 people gathered at Sardar Vallabhbhai Patel Stadium in Mumbai India the Jain monk Munishri Ajitchandrasagarji accomplished a rare feat he perfectly recalled five hundred unrelated facts in succession From early morning to midday spectators approached the stadium stage one at a time Each showed the young monk a random object posed a math problem or spoke a word or phrase in one of at least six languages After the last of these five hundred participants had conveyed their random fact the 24 year old prodigy opened his eyes and began to recite them back Detouring only once to fill in a blank he had left aside he recalled every fact without error According to his guru the young monk had matched a feat last accomplished six centuries earlier by a Jain monk in the Mughal court of the Subahdar of Khambhat.1
 
 Munishri's mind is like a computer during the download process said his mentor P P Acharya Nayachandrasagarji Many processes can happen in his mind at one time
 
@@ -3408,7 +3408,7 @@ Platform
 
 Measurable
 
-Well-being
+Wellbeing
 
 Simplicity
 
@@ -3512,7 +3512,7 @@ Complementarity 161
 
 healthcare delivery away from the highly centralized models that came to dominate in the twentieth century
 
-In considering how code and work will coevolve in the next two to three decades the case of healthcare provision is a particularly important one for the United States As is well known the growth of health-care and education costs has outpaced inflation for decades healthcare now comprises 17 percent of U.S GDP compared with 7 percent in 1970.9 Healthcare and education are the only two sectors in the economy in which job growth has remained consistently strong following the Great Recession As a result as is much discussed technological trends affecting these sectors are those likely to have a significant macroeconomic impact
+In considering how code and work will coevolve in the next two to three decades the case of healthcare provision is a particularly important one for the United States As is well known the growth of healthcare and education costs has outpaced inflation for decades healthcare now comprises 17 percent of U.S GDP compared with 7 percent in 1970.9 Healthcare and education are the only two sectors in the economy in which job growth has remained consistently strong following the Great Recession As a result as is much discussed technological trends affecting these sectors are those likely to have a significant macroeconomic impact
 
 However the changes underway in the healthcare system also illustrate broader trends in the coevolution of code and work that are relevant across sectors The entire network of services I have described as representing the future of healthcare delivery is built on platforms of earlier code based innovations that have become sufficiently ubiquitous and reliable that they now constitute a shared infrastructure for future innovation Foremost among these is the complex set of standards contracts hardware and conventions that we refer to as the Internet and the separate set of institutional and technological innovations that have enabled mobile telephony Layered on these platforms are operating systems that allow specific devices to run programs on which are layered the programs and data access protocols that allow the device to serve alternately as a health monitor a coach an alarm or simply a watch
 
@@ -3854,7 +3854,7 @@ A significant share of government spending in the United States and in other adv
 
 Changes in the world of work are undermining the premises on which these decades old policy notions are based Formal education does not ensure economic security in the way that it did in recent generations Increasingly life expectancy is challenging the norm of retirement at age sixty five And large asset owning corporations that previously earned persistent profits and offered steady employment are increasingly being challenged by peer to peer platforms like Airbnb and market enabling platforms like Uber transforming labor markets in the process
 
-Of course these companies represent just the beginning of the disruption in the world of work that will occur as a consequence of the latest phase in the advance of code The peer to peer business models in local transportation hospitality food service and the rental of consumer goods were the first to emerge not because they are the most important for the economy but because these are industries with relatively low regulatory complexity In contrast there has been relatively little peer to peer business innovation in health-care energy and education three industries that together comprise
+Of course these companies represent just the beginning of the disruption in the world of work that will occur as a consequence of the latest phase in the advance of code The peer to peer business models in local transportation hospitality food service and the rental of consumer goods were the first to emerge not because they are the most important for the economy but because these are industries with relatively low regulatory complexity In contrast there has been relatively little peer to peer business innovation in healthcare energy and education three industries that together comprise
 
 179
 
@@ -4458,7 +4458,7 @@ IBM calls its food truck project Cognitive Cooking The point of the experiment i
 
 Authenticity 203
 
-do novel things but there was no way to know if they were any good observes Florian Pinel the chef and IBM data scientist who leads the Cognitive Cooking project We chose cooking because this is some-thing that everyone can refer to The difference is that we have access to a lot of data and using Big Data we can predict the quality of the recipes The computer can create something that tastes good and it knows why it tastes good 2
+do novel things but there was no way to know if they were any good observes Florian Pinel the chef and IBM data scientist who leads the Cognitive Cooking project We chose cooking because this is something that everyone can refer to The difference is that we have access to a lot of data and using Big Data we can predict the quality of the recipes The computer can create something that tastes good and it knows why it tastes good 2
 
 How does Watson manage this Employing machine learning algorithms of the type I described in chapter six it identifies ingredients that will combine well by mining large datasets The system doesn't look at ingredients the same way that chefs do Pinel explains When a chef looks at an ingredient he thinks of the history of the ingredient and recipes where it's been used The system does a little bit of the same of course but it also looks at the chemical composition of that ingredient To understand why they go together you have to look further at the compounds that are found in these ingredients 3
 
@@ -4822,7 +4822,7 @@ Human culture as distinct from social institutions that surround it is a pure ph
 
 To the denizens of Black Rock City all that lies outside the city walls actually the trash fence that defines the perimeter of the space where Burning Man takes place is known as default world In default world's getaway destinations hotels and motels the two items one can count on getting for free are ice and coffee At Black Rock City the exact opposite holds the only two items available for purchase are ice and coffee The irony is instructive as the economy of Black Rock City is more or less the exact inverse of the default world economy
 
-We allow no vending no advertising no buying or selling of any-thing says Harvey We discourage bartering because even bartering is a commodity transaction Instead we've originated both an ethos and an economic system that is devoted to the giving of gifts This is a radical departure from the marketplace that we're accustomed to because of course the marketplace invades every crack and corner of our lives today A gift economy is founded on principles that are diametrically different from those that dominate our consumer culture 6
+We allow no vending no advertising no buying or selling of anything says Harvey We discourage bartering because even bartering is a commodity transaction Instead we've originated both an ethos and an economic system that is devoted to the giving of gifts This is a radical departure from the marketplace that we're accustomed to because of course the marketplace invades every crack and corner of our lives today A gift economy is founded on principles that are diametrically different from those that dominate our consumer culture 6
 
 Yet Harvey draws an important distinction between what occurs within the container that is Black Rock City and the manner in which the city interacts with the environment outside There's this notion
 
@@ -5580,7 +5580,7 @@ which is employed in production and consists of food clothing tools raw material
 
 is necessary to enable the labourers one with another to subsist and to perpetuate their race without either increase or diminution Accessible
 
-at http www.econlib.org library Ricardo ricP2.html Ch 20Of 20
+at http www.econlib.org library Ricardo ricP2.html Ch.5 20Of 20
 
 Wages
 
