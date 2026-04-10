@@ -165,15 +165,26 @@ def lowercase_and_count_words(text: str) -> Counter[str]:
     return counts
 
 
-def lowercase_and_count_bigrams(text: str) -> Counter[str]:
+def lowercase_and_count_ngrams(text: str, ngram_size: int) -> Counter[str]:
+    if ngram_size < 1:
+        raise ValueError("ngram_size must be at least 1")
+
+    if ngram_size == 1:
+        return lowercase_and_count_words(text)
+
     counts: Counter[str] = Counter()
     tokens = tokenize_text(text)
 
-    for left, right in zip(tokens, tokens[1:]):
-        if is_countable_token(left) and is_countable_token(right):
-            counts[f"{left} {right}"] += 1
+    for start in range(len(tokens) - ngram_size + 1):
+        window = tokens[start : start + ngram_size]
+        if all(is_countable_token(token) for token in window):
+            counts[" ".join(window)] += 1
 
     return counts
+
+
+def lowercase_and_count_bigrams(text: str) -> Counter[str]:
+    return lowercase_and_count_ngrams(text, 2)
 
 
 def reconcile_token(token: str, vocab: set[str]) -> TokenReconciliation:
@@ -389,7 +400,11 @@ def default_output_path(input_path: Path) -> Path:
     return input_path.with_name(f"{story_name}.cleaned{input_path.suffix}")
 
 
-def build_bigram_counts_for_books(input_dir: Path, output_dir: Path) -> tuple[list[tuple[Path, Path, int]], Counter[str]]:
+def build_ngram_counts_for_books(
+    input_dir: Path,
+    output_dir: Path,
+    ngram_size: int,
+) -> tuple[list[tuple[Path, Path, int]], Counter[str]]:
     aggregate: Counter[str] = Counter()
     outputs: list[tuple[Path, Path, int]] = []
     cleaned_paths = sorted(input_dir.glob("*.cleaned.txt"))
@@ -397,23 +412,30 @@ def build_bigram_counts_for_books(input_dir: Path, output_dir: Path) -> tuple[li
     if not cleaned_paths:
         raise ValueError(f"No cleaned book files matched {input_dir / '*.cleaned.txt'}")
 
+    if ngram_size < 2:
+        raise ValueError("book ngram builds currently support ngram_size >= 2")
+
     output_dir.mkdir(parents=True, exist_ok=True)
 
     for input_path in cleaned_paths:
         text = input_path.read_text(encoding="utf-8", errors="replace")
-        counts = lowercase_and_count_bigrams(text)
-        csv_output_path = default_ngram_output_path(input_path, output_dir, 2)
+        counts = lowercase_and_count_ngrams(text, ngram_size)
+        csv_output_path = default_ngram_output_path(input_path, output_dir, ngram_size)
         json_output_path = default_json_output_path(csv_output_path)
         write_counts_csv(counts, csv_output_path)
         write_counts_json(counts, json_output_path)
         aggregate.update(counts)
         outputs.append((input_path, csv_output_path, sum(counts.values())))
 
-    humans_csv_path = output_dir / "humans-2grams.csv"
+    humans_csv_path = output_dir / f"humans-{ngram_size}grams.csv"
     humans_json_path = default_json_output_path(humans_csv_path)
     write_counts_csv(aggregate, humans_csv_path)
     write_counts_json(aggregate, humans_json_path)
     return outputs, aggregate
+
+
+def build_bigram_counts_for_books(input_dir: Path, output_dir: Path) -> tuple[list[tuple[Path, Path, int]], Counter[str]]:
+    return build_ngram_counts_for_books(input_dir=input_dir, output_dir=output_dir, ngram_size=2)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -452,6 +474,22 @@ def build_parser() -> argparse.ArgumentParser:
         default=Path("2-gram"),
         help="Output directory for bigram CSV/JSON files. Default: 2-gram",
     )
+    parser.add_argument(
+        "--build-ngrams-from-dir",
+        type=Path,
+        help="Build per-book and combined n-gram counts from cleaned .txt files in this directory.",
+    )
+    parser.add_argument(
+        "--ngram-size",
+        type=int,
+        default=2,
+        help="N-gram size for --build-ngrams-from-dir. Default: 2",
+    )
+    parser.add_argument(
+        "--ngram-output-dir",
+        type=Path,
+        help="Output directory for generic n-gram CSV/JSON files. Defaults to <n>-gram",
+    )
     return parser
 
 
@@ -459,21 +497,27 @@ def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
 
-    if args.build_bigrams_from_dir:
-        input_dir = args.build_bigrams_from_dir
+    if args.build_ngrams_from_dir or args.build_bigrams_from_dir:
+        use_generic_builder = args.build_ngrams_from_dir is not None
+        input_dir = args.build_ngrams_from_dir or args.build_bigrams_from_dir
         if not input_dir.is_dir():
-            parser.error(f"bigram input directory does not exist: {input_dir}")
+            parser.error(f"ngram input directory does not exist: {input_dir}")
 
-        outputs, aggregate = build_bigram_counts_for_books(input_dir, args.bigram_output_dir)
+        ngram_size = args.ngram_size if use_generic_builder else 2
+        output_dir = args.ngram_output_dir or (
+            Path(f"{ngram_size}-gram") if use_generic_builder else args.bigram_output_dir
+        )
+        outputs, aggregate = build_ngram_counts_for_books(input_dir, output_dir, ngram_size)
         print(f"input dir:   {input_dir}")
-        print(f"output dir:  {args.bigram_output_dir}")
+        print(f"output dir:  {output_dir}")
+        print(f"ngram size:  {ngram_size}")
         print(f"books:       {len(outputs)}")
-        for input_path, csv_output_path, total_bigrams in outputs:
+        for input_path, csv_output_path, total_ngrams in outputs:
             print(f"book:        {input_path.name}")
             print(f"csv:         {csv_output_path}")
-            print(f"bigrams:     {total_bigrams}")
-        print(f"combined:    {args.bigram_output_dir / 'humans-2grams.csv'}")
-        print(f"total bigrams: {sum(aggregate.values())}")
+            print(f"ngrams:      {total_ngrams}")
+        print(f"combined:    {output_dir / f'humans-{ngram_size}grams.csv'}")
+        print(f"total ngrams:  {sum(aggregate.values())}")
         print(f"total unique:  {len(aggregate)}")
         return 0
 
