@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter
 from pathlib import Path
+import re
 import sys
 
 import pandas as pd
@@ -16,36 +17,12 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from storywrangling.storywrangler import (
-    is_countable_token,
-    tokenize_text,
+    lowercase_and_count_ngrams,
     write_counts_csv,
 )
 
 
 DEFAULT_INPUT = Path(r"c:\Users\twebster\Desktop\PoCS\wikitext\wikitext-103-raw-v1")
-COMMON_WEB_SUFFIXES = (
-    ".com",
-    ".org",
-    ".net",
-    ".edu",
-    ".gov",
-    ".mil",
-    ".int",
-    ".info",
-    ".biz",
-    ".io",
-    ".co",
-    ".tv",
-    ".fm",
-    ".us",
-    ".uk",
-    ".ca",
-    ".au",
-    ".de",
-    ".fr",
-    ".jp",
-    ".ru",
-)
 
 
 def is_lfs_pointer(path: Path) -> bool:
@@ -80,63 +57,21 @@ def iter_parquet_paths(input_path: Path) -> list[Path]:
     return paths
 
 
-def is_pure_punctuation(token: str) -> bool:
-    return bool(token) and all(not char.isalnum() for char in token)
-
-
-def is_apostrophe_fragment(token: str) -> bool:
-    if "'" not in token:
-        return False
-
-    if token == "n't":
-        return True
-
-    if token.startswith("'") or token.endswith("'"):
-        return any(char.isalpha() for char in token.replace("'", ""))
-
-    return False
-
-
-def is_obvious_junk_token(token: str) -> bool:
-    lowered = token.casefold()
-    if not lowered:
-        return False
-
-    if lowered.startswith(("http://", "https://", "www.")):
-        return True
-
-    if "@" in lowered:
-        return True
-
-    if any(suffix in lowered for suffix in COMMON_WEB_SUFFIXES):
-        return True
-
-    return False
-
-
-def should_count_token(token: str, filter_junk_tokens: bool) -> bool:
-    if not is_countable_token(token):
-        return False
-    if filter_junk_tokens and is_obvious_junk_token(token):
-        return False
-    return True
+def normalize_wikitext_text(text: str) -> str:
+    cleaned = "" if text is None else str(text)
+    cleaned = re.sub(r"(?<=\S)\s*@-@\s*(?=\S)", "-", cleaned)
+    cleaned = re.sub(r"(?<=\S)\s*@,@\s*(?=\S)", ",", cleaned)
+    cleaned = re.sub(r"(?<=\S)\s*@\.@\s*(?=\S)", ".", cleaned)
+    return cleaned
 
 
 def count_text_ngrams(text: str, gram_size: int, filter_junk_tokens: bool) -> Counter[str]:
-    tokens = tokenize_text(text if isinstance(text, str) else str(text))
-    counts: Counter[str] = Counter()
-
-    if gram_size == 1:
-        for token in tokens:
-            if should_count_token(token, filter_junk_tokens):
-                counts[token] += 1
-        return counts
-
-    for left, right in zip(tokens, tokens[1:]):
-        if should_count_token(left, filter_junk_tokens) and should_count_token(right, filter_junk_tokens):
-            counts[f"{left} {right}"] += 1
-
-    return counts
+    normalized_text = normalize_wikitext_text(text)
+    return lowercase_and_count_ngrams(
+        normalized_text,
+        ngram_size=gram_size,
+        filter_junk_tokens=filter_junk_tokens,
+    )
 
 
 def iter_text_values(input_path: Path, batch_size: int) -> tuple[object, ...]:
@@ -151,41 +86,14 @@ def iter_text_values(input_path: Path, batch_size: int) -> tuple[object, ...]:
         yield from frame["text"].tolist()
 
 
-def apply_wiki_decisions_to_unigrams(counts: Counter[str]) -> Counter[str]:
-    filtered: Counter[str] = Counter()
-    for token, count in counts.items():
-        if is_pure_punctuation(token):
-            continue
-        if is_apostrophe_fragment(token):
-            continue
-        filtered[token] = count
-    return filtered
-
-
-def apply_wiki_decisions_to_bigrams(counts: Counter[str]) -> Counter[str]:
-    filtered: Counter[str] = Counter()
-    for token, count in counts.items():
-        left, right = token.split(" ", 1)
-        if not is_countable_token(left) or not is_countable_token(right):
-            continue
-        if is_pure_punctuation(left) or is_pure_punctuation(right):
-            continue
-        if is_apostrophe_fragment(left) or is_apostrophe_fragment(right):
-            continue
-        filtered[token] = count
-    return filtered
-
-
 def default_output_path(
     input_path: Path,
     gram_size: int,
-    apply_decisions_rules: bool,
     output_format: str,
 ) -> Path:
     stem = input_path.stem if input_path.is_file() else input_path.name
     output_dir = PROJECT_ROOT / f"{gram_size}-gram"
-    suffix = ".decisions" if apply_decisions_rules else ""
-    return output_dir / f"{stem}-{gram_size}grams{suffix}.{output_format}"
+    return output_dir / f"{stem}-{gram_size}grams.{output_format}"
 
 
 def write_counts_parquet(counts: Counter[str], output_path: Path) -> None:
@@ -208,7 +116,6 @@ def write_counts_output(counts: Counter[str], output_path: Path) -> None:
 def build_counts(
     input_path: Path,
     gram_size: int,
-    apply_decisions_rules: bool,
     filter_junk_tokens: bool,
     min_count: int,
     batch_size: int,
@@ -220,12 +127,6 @@ def build_counts(
         processed_rows += 1
         source_text = "" if text is None else str(text)
         counts.update(count_text_ngrams(source_text, gram_size=gram_size, filter_junk_tokens=filter_junk_tokens))
-
-    if apply_decisions_rules:
-        if gram_size == 1:
-            counts = apply_wiki_decisions_to_unigrams(counts)
-        else:
-            counts = apply_wiki_decisions_to_bigrams(counts)
 
     if min_count > 0:
         counts = Counter({token: count for token, count in counts.items() if count >= min_count})
@@ -271,8 +172,8 @@ def build_parser() -> argparse.ArgumentParser:
         action=argparse.BooleanOptionalAction,
         default=True,
         help=(
-            "Filter obvious junk tokens before counting to reduce memory use. "
-            "Current rules drop URL/domain/email-style tokens such as http, www, and *.com. Default: true"
+            "Apply shared pre-count token filtering before counting to reduce memory use and keep "
+            "book/wiki token rules aligned. Default: true"
         ),
     )
     parser.add_argument(
@@ -280,15 +181,6 @@ def build_parser() -> argparse.ArgumentParser:
         type=int,
         default=0,
         help="Minimum count required to keep a token. Default: 0",
-    )
-    parser.add_argument(
-        "--apply-decisions-rules",
-        action="store_true",
-        help=(
-            "Apply post-count token filters after counting. For 1-grams, drop pure "
-            "punctuation and standalone apostrophe fragments. For 2-grams, drop any "
-            "bigram whose left or right token matches those classes. Default: false"
-        ),
     )
     parser.add_argument(
         "--batch-size",
@@ -307,7 +199,6 @@ def main() -> int:
     output_path = args.output or default_output_path(
         input_path=input_path,
         gram_size=args.gram_size,
-        apply_decisions_rules=args.apply_decisions_rules,
         output_format=args.output_format,
     )
 
@@ -317,7 +208,6 @@ def main() -> int:
     counts, processed_rows = build_counts(
         input_path=input_path,
         gram_size=args.gram_size,
-        apply_decisions_rules=args.apply_decisions_rules,
         filter_junk_tokens=args.filter_junk_tokens,
         min_count=args.min_count,
         batch_size=args.batch_size,
@@ -329,7 +219,6 @@ def main() -> int:
     print(f"gram size:              {args.gram_size}")
     print(f"processed rows:         {processed_rows}")
     print(f"filter junk tokens:     {args.filter_junk_tokens}")
-    print(f"apply decisions rules:  {args.apply_decisions_rules}")
     print(f"min_count:              {args.min_count}")
     print(f"batch size:             {args.batch_size}")
     print(f"totalunique:            {len(counts)}")

@@ -13,6 +13,25 @@
 
 Source files in `books/` are downloaded `.txt` extractions and may contain layout junk, repeated headers, and mojibake.
 
+## one-time raw book trimming
+
+- On `2026-04-11`, a one-time manual pass trimmed the **raw** `books/*.txt` files to remove obvious frontmatter and backmatter before regeneration of `.cleaned.txt`, `1-gram`, and `2-gram` outputs.
+- Principle:
+  - keep the main argument / narrative text
+  - keep core book introductions or prologues when they are part of the authored text
+  - remove obvious publishing and navigation matter such as title pages, copyright pages, contents pages, acknowledgements, notes, references, bibliography, index, and publisher promo pages
+- This pass was done on the raw `.txt` books, not on `.cleaned.txt`, so that regenerated cleaned texts continue to reflect source-level trimming rather than ad hoc edits to derived artifacts.
+- `.cleaned.txt` remains useful as the canonical post-download, post-mojibake, pre-count artifact.
+- Specific cut strategy used:
+  - `How Compassion Made Us Human...txt`: start at `Prologue`, stop before `Notes`
+  - `Sapiens.txt`: start at Chapter `1`, stop before `Notes`
+  - `The Code Economy...txt`: start at `Introduction`, stop before `Acknowledgments`
+  - `The Dawn of Everything...txt`: start at Chapter `1` / introductory opening, stop before `Notes`
+  - `Ultrasociety...txt`: start at Chapter `1`, stop before `Acknowledgments`
+- Deferred:
+  - this is a one-time corpus cleanup, not yet a generalized scripted backmatter-removal rule
+  - if more books are added later, revisit whether to formalize these cut rules in preprocessing
+
 ## Storywrangler rules
 
 ### pre-count
@@ -86,30 +105,32 @@ Source files in `books/` are downloaded `.txt` extractions and may contain layou
 - Input:
   - start from the `text` field in `wikitext-103-raw-v1` parquet shards
   - use the raw subset rather than the non-raw subset so no `<unk>` replacement is introduced by the dataset
-- Meaning of `.decisions` in current output names:
-  - `wikitext-103-raw-v1-1grams.decisions.csv` does **not** mean "all junk and citation residue removed"
-  - in the current code, `.decisions` means:
-    - build counts from raw WikiText text with a small pre-count junk-token filter
-    - then apply a narrow post-count filter for punctuation/apostrophe-fragment cleanup
-  - therefore the current `.decisions` file can still contain tokens such as `j`, `pp`, `s70`, and even bare `http`
 - Pre-count processing:
   - no additional `clean_text()` pass is applied before counting
   - parquet rows are streamed in batches rather than loading the entire dataset into memory at once
+  - a small WikiText-specific raw normalization pass is applied before token counting:
+    - rejoin `@-@` as `-`
+    - rejoin `@,@` as `,`
+    - rejoin `@.@` as `.`
   - rows are coerced to strings and tokenized on whitespace only
   - tokens are casefolded before counting
 - Consistency with existing `storywrangler` rules:
   - reuse the shared `storywrangler` token counting functions for 1-grams and 2-grams
-  - count a unigram only when the token contains at least one alphabetic character
-  - count a bigram only when both adjacent tokens contain at least one alphabetic character
+  - books and wiki now share the same pre-count token filter
+  - count a unigram only when the token survives the shared token rules
+  - count a bigram only when both adjacent tokens survive the same token rules
 - Token-shape decisions:
   - a hyphenated word counts as one token only when WikiText already presents it as one whitespace token
-  - no attempt is made to rejoin split WikiText artifacts such as `role @-@ playing`
-  - standalone punctuation tokens are not counted because they fail the alphabetic-character check
-  - standalone apostrophe fragments such as `'s` are left in the raw counts unless decision filters are explicitly requested
-  - obvious web / domain / email-style tokens are filtered before counting to save memory and avoid keeping clear junk
-    - current code catches tokens that start with `http://`, `https://`, or `www.`
-    - current code also catches tokens containing `@` or common web-domain suffixes such as `.com`, `.org`, `.net`
-    - note: bare tokens such as `http`, `https`, or `www` are **not** currently removed by this pre-count filter, which is why they can still appear in output
+  - standalone punctuation tokens are not counted because they fail the shared token rules
+  - standalone apostrophe fragments such as `'s` are dropped before counting by the shared token rules
+  - obvious web / domain / email-style tokens are filtered before counting
+    - this includes bare `http`, `https`, and `www`
+    - this also includes `http://...`, `https://...`, `www.*`, tokens with `@`, and common web-domain suffixes such as `.com`, `.org`, `.net`
+  - isolated single-letter junk is filtered before counting
+    - keep lexical `a` and `i`
+    - drop citation-style residue such as `j`
+  - obvious note / citation marker tokens are filtered before counting
+    - examples include `s70`, `p355`, and note-like shapes such as `546n55`
   - historical numeric lexical tokens such as `19th`, `20th`, or `1960s` are not treated as junk by this filter
 - Bigram boundary decision:
   - bigrams are counted only within each parquet row
@@ -117,14 +138,10 @@ Source files in `books/` are downloaded `.txt` extractions and may contain layou
   - junk tokens act as hard boundaries for bigram counting
     - if either side of an adjacent pair is junk, that pair is skipped and no bigram is bridged across the junk token
 - Post-count filtering:
-  - optional `--apply-decisions-rules` filtering is available after counting
-  - for 1-grams, this drops pure punctuation tokens and standalone apostrophe fragments
-  - for 2-grams, this drops any bigram whose left or right token is a pure punctuation token or standalone apostrophe fragment
-  - optional `--min-count` is applied after counting and after the optional decisions filter
+  - optional `--min-count` is applied after counting
 - Output:
   - default 1-gram output path is `1-gram/wikitext-103-raw-v1-1grams.csv`
   - default 2-gram output path is `2-gram/wikitext-103-raw-v1-2grams.csv`
-  - if decision filters are applied and no explicit output path is given, `.decisions` is inserted before `.csv`
   - parquet output is supported when requested
   - parquet output stores only `types` and `counts` to keep the file smaller; `probs` and `total_unique` can be derived later if needed
   - exploratory laptop-friendly build choice:
@@ -132,8 +149,8 @@ Source files in `books/` are downloaded `.txt` extractions and may contain layou
     - store the result as parquet rather than csv
     - current artifact: `2-gram/wikitext-2-raw-v1-2grams.parquet`
 - Deferred:
-  - no special cleanup yet for WikiText-specific markup artifacts such as `@-@`, `@,@`, or heading markers
-  - no post-count junk filter beyond the pre-count junk-token filter, the optional apostrophe-fragment / punctuation rules, and `min-count`
+  - no special cleanup yet for WikiText-specific heading markers beyond the `@-@` / `@,@` / `@.@` join pass
+  - no post-count junk filter beyond `min-count`
   - no attempt yet to force WikiText tokenization to match the downloaded-book cleaner exactly
 
 ### preferred unification direction
@@ -176,8 +193,6 @@ Source files in `books/` are downloaded `.txt` extractions and may contain layou
 
 ## allotax todo
   - remove "cambridge university", http, j, pp, s70
-  - -decisions
-    - why is the name, what decisions
 
 # Results
 

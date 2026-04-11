@@ -22,7 +22,7 @@ from storywrangling.storywrangler import (
 
 DEFAULT_BOOKS_DIR = PROJECT_ROOT / "books"
 DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "1-gram"
-DEFAULT_RECONCILE_VOCAB = DEFAULT_OUTPUT_DIR / "wikitext-103-raw-v1-1grams.decisions.csv"
+DEFAULT_RECONCILE_VOCAB = DEFAULT_OUTPUT_DIR / "wikitext-103-raw-v1-1grams.csv"
 
 
 def iter_source_books(books_dir: Path) -> list[Path]:

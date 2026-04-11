@@ -64,6 +64,39 @@ ALLOWED_HYPHEN_PREFIXES = {
 }
 
 APOSTROPHE_SUFFIXES = ("'s", "s'", "n't", "'d", "'ll", "'m", "'re", "'ve")
+COMMON_WEB_SUFFIXES = (
+    ".com",
+    ".org",
+    ".net",
+    ".edu",
+    ".gov",
+    ".mil",
+    ".int",
+    ".info",
+    ".biz",
+    ".io",
+    ".co",
+    ".tv",
+    ".fm",
+    ".us",
+    ".uk",
+    ".ca",
+    ".au",
+    ".de",
+    ".fr",
+    ".jp",
+    ".ru",
+)
+EXACT_JUNK_TOKENS = {
+    "http",
+    "https",
+    "www",
+    "pp",
+}
+KEPT_SINGLE_LETTER_TOKENS = {
+    "a",
+    "i",
+}
 
 
 @dataclass(frozen=True)
@@ -155,29 +188,113 @@ def is_countable_token(token: str) -> bool:
     return any(char.isalpha() for char in token)
 
 
-def lowercase_and_count_words(text: str) -> Counter[str]:
+def is_pure_punctuation(token: str) -> bool:
+    return bool(token) and all(not char.isalnum() for char in token)
+
+
+def is_apostrophe_fragment(token: str) -> bool:
+    if "'" not in token:
+        return False
+
+    if token == "n't":
+        return True
+
+    if token.startswith("'") or token.endswith("'"):
+        return any(char.isalpha() for char in token.replace("'", ""))
+
+    return False
+
+
+def is_web_like_token(token: str) -> bool:
+    lowered = token.casefold()
+    if not lowered:
+        return False
+
+    if lowered in EXACT_JUNK_TOKENS:
+        return True
+
+    if lowered.startswith(("http://", "https://", "www.")):
+        return True
+
+    if "@" in lowered:
+        return True
+
+    return any(suffix in lowered for suffix in COMMON_WEB_SUFFIXES)
+
+
+def is_reference_note_token(token: str) -> bool:
+    lowered = token.casefold()
+    if not lowered:
+        return False
+
+    if re.fullmatch(r"[sp]\d{1,4}[a-z]?", lowered):
+        return True
+
+    if re.fullmatch(r"\d{1,4}[a-z]\d{1,4}", lowered):
+        return True
+
+    if re.fullmatch(r"\d{1,4}[a-z]{1,2}", lowered):
+        if lowered.endswith(("st", "nd", "rd", "th")):
+            return False
+        return True
+
+    return False
+
+
+def is_shared_junk_token(token: str) -> bool:
+    lowered = token.casefold()
+    if not lowered:
+        return False
+
+    if is_pure_punctuation(lowered):
+        return True
+
+    if is_apostrophe_fragment(lowered):
+        return True
+
+    if len(lowered) == 1 and lowered.isalpha() and lowered not in KEPT_SINGLE_LETTER_TOKENS:
+        return True
+
+    if is_web_like_token(lowered):
+        return True
+
+    if is_reference_note_token(lowered):
+        return True
+
+    return False
+
+
+def should_count_token(token: str, filter_junk_tokens: bool = True) -> bool:
+    if not is_countable_token(token):
+        return False
+    if filter_junk_tokens and is_shared_junk_token(token):
+        return False
+    return True
+
+
+def lowercase_and_count_words(text: str, filter_junk_tokens: bool = True) -> Counter[str]:
     counts: Counter[str] = Counter()
 
     for token in tokenize_text(text):
-        if any(char.isalpha() for char in token):
+        if should_count_token(token, filter_junk_tokens=filter_junk_tokens):
             counts[token] += 1
 
     return counts
 
 
-def lowercase_and_count_ngrams(text: str, ngram_size: int) -> Counter[str]:
+def lowercase_and_count_ngrams(text: str, ngram_size: int, filter_junk_tokens: bool = True) -> Counter[str]:
     if ngram_size < 1:
         raise ValueError("ngram_size must be at least 1")
 
     if ngram_size == 1:
-        return lowercase_and_count_words(text)
+        return lowercase_and_count_words(text, filter_junk_tokens=filter_junk_tokens)
 
     counts: Counter[str] = Counter()
     tokens = tokenize_text(text)
 
     for start in range(len(tokens) - ngram_size + 1):
         window = tokens[start : start + ngram_size]
-        if all(is_countable_token(token) for token in window):
+        if all(should_count_token(token, filter_junk_tokens=filter_junk_tokens) for token in window):
             counts[" ".join(window)] += 1
 
     return counts
@@ -369,6 +486,14 @@ def write_counts_json(counts: Counter[str], output_path: Path) -> None:
     with output_path.open("w", encoding="utf-8", newline="") as dst:
         json.dump(json_rows, dst, indent=4)
         dst.write("\n")
+
+
+def write_word_counts_csv(counts: Counter[str], output_path: Path) -> None:
+    write_counts_csv(counts, output_path)
+
+
+def write_word_counts_json(counts: Counter[str], output_path: Path) -> None:
+    write_counts_json(counts, output_path)
 
 
 def default_ngram_output_path(input_path: Path, output_dir: Path, ngram_size: int) -> Path:
