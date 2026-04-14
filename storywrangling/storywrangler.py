@@ -64,6 +64,7 @@ ALLOWED_HYPHEN_PREFIXES = {
 }
 
 APOSTROPHE_SUFFIXES = ("'s", "s'", "n't", "'d", "'ll", "'m", "'re", "'ve")
+COUNT_SPLIT_APOSTROPHE_SUFFIXES = ("n't", "'ll", "'re", "'ve", "'d", "'m", "'s")
 COMMON_WEB_SUFFIXES = (
     ".com",
     ".org",
@@ -180,8 +181,25 @@ def clean_text(text: str, titles: list[str] | None = None) -> str:
     return cleaned.strip() + "\n"
 
 
+def split_count_token(token: str) -> list[str]:
+    lowered = token.casefold()
+
+    for suffix in COUNT_SPLIT_APOSTROPHE_SUFFIXES:
+        if not lowered.endswith(suffix):
+            continue
+
+        base = lowered[: -len(suffix)]
+        if any(char.isalpha() for char in base):
+            return [base, suffix]
+
+    return [lowered]
+
+
 def tokenize_text(text: str) -> list[str]:
-    return re.findall(r"\S+", text.casefold())
+    tokens: list[str] = []
+    for raw_token in re.findall(r"\S+", text):
+        tokens.extend(split_count_token(raw_token))
+    return tokens
 
 
 def is_countable_token(token: str) -> bool:

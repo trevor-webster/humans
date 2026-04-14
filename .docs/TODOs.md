@@ -1,9 +1,4 @@
 
-Sat
-- Jonathan PR
-   - 2-grams fix - can pull in
-   - stack fix let remain in fork
-
 ## Methods
 - alpha = 0, 1/12, 1/6, 1/3, 1
    let alpha = 0, 1/12, 1/6, 1/3, 1
@@ -13,17 +8,14 @@ Sat
    - wiki v book 
 ## Results'
 
-- 1-gram
-- 2-gram
-- get cleaned up for githu 
-
+## Books
+ - best seller list
+ - amazon | z-lib
+ - if you don't want a bias against culture it would follow to remove inundation of scientific/medical lit. ; if you're interested in stories then
 ### Flipbooks
-- get all figures into results
-   - flipbook or a link to all
+
 - best viewed in html
 
-### backlog
-   - further wrangling rules
 
 ## Posters
    - almost impossible to get all of: entire Allotax, side by side, large enough to see all words, on a screen

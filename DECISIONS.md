@@ -122,6 +122,11 @@ Source files in `books/` are downloaded `.txt` extractions and may contain layou
 - Token-shape decisions:
   - a hyphenated word counts as one token only when WikiText already presents it as one whitespace token
   - standalone punctuation tokens are not counted because they fail the shared token rules
+  - contraction-style apostrophe suffixes such as `'s`, `n't`, `'d`, `'re`, `'ve`, `'ll`, and `'m` are split off during counting
+    - the lexical base token is kept
+    - the apostrophe fragment is then dropped by the shared junk-token rules
+    - bigrams are not bridged across the dropped apostrophe fragment
+    - this intentionally equalizes books and wiki on contractions such as `it's -> it` and `we've -> we`
   - standalone apostrophe fragments such as `'s` are dropped before counting by the shared token rules
   - obvious web / domain / email-style tokens are filtered before counting
     - this includes bare `http`, `https`, and `www`
