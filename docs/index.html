@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Humans Allotax Figures</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f1e8;
+      --ink: #1d1d1b;
+      --muted: #5e5a54;
+      --card: #fffdf8;
+      --line: #d8d0c4;
+      --accent: #8d3d15;
+    }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #efe7d7 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+    h1, h2 {
+      margin: 0 0 16px;
+      line-height: 1.1;
+    }
+    p {
+      margin: 0 0 16px;
+      line-height: 1.6;
+    }
+    .hero {
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.85);
+      box-shadow: 0 18px 40px rgba(29, 29, 27, 0.08);
+    }
+    .links {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .card {
+      display: block;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: inherit;
+      text-decoration: none;
+    }
+    .card:hover {
+      border-color: var(--accent);
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    code {
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">CompStoryLab / Humans</div>
+      <h1>Allotax Figure Site</h1>
+      <p>
+        This Pages site hosts the HTML result figures for the humans corpus
+        comparisons. The public figure pages are organized under
+        <code>/figures/</code> and preserve the same broad family split used in
+        the repository.
+      </p>
+      <p class="muted">
+        The current published set focuses on the alpha sweep HTML outputs.
+        Canonical no-suffix HTML snapshots have been removed from the published
+        set.
+      </p>
+    </section>
+
+    <section class="links" aria-label="Main navigation">
+      <a class="card" href="./figures/">
+        <div class="eyebrow">Browse</div>
+        <h2>Figures Landing Page</h2>
+        <p class="muted">
+          Start here for hosted alpha sweep figures and family indexes.
+        </p>
+      </a>
+      <a class="card" href="./figures/1grams/">
+        <div class="eyebrow">Family</div>
+        <h2>1-gram Sweeps</h2>
+        <p class="muted">
+          Wiki-versus-book and book-pair alpha sweep outputs for 1-grams.
+        </p>
+      </a>
+      <a class="card" href="./figures/2grams/">
+        <div class="eyebrow">Family</div>
+        <h2>2-gram Sweeps</h2>
+        <p class="muted">
+          Wiki-versus-book and book-pair alpha sweep outputs for 2-grams.
+        </p>
+      </a>
+    </section>
+  </main>
+</body>
+</html>

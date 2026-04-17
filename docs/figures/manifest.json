@@ -1,0 +1,914 @@
+[
+    {
+        "path":  "1grams/book-pairs/code-economy-v-dawn-of-everything.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/code-economy-v-dawn-of-everything.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/code-economy-v-dawn-of-everything.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/code-economy-v-dawn-of-everything.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/code-economy-v-dawn-of-everything.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-1-6"
+    },
+    {
+        "path":  "1grams/book-pairs/code-economy-v-ultrasociety.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/code-economy-v-ultrasociety.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/code-economy-v-ultrasociety.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/code-economy-v-ultrasociety.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/code-economy-v-ultrasociety.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "1grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-1-6"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-1-6"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-1-6"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-code-economy.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-code-economy.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-code-economy.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-code-economy.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-code-economy.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-1-6"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-dawn-of-everything.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-dawn-of-everything.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-dawn-of-everything.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-dawn-of-everything.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-dawn-of-everything.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-1-6"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-ultrasociety.alpha-0.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-ultrasociety.alpha-1.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-ultrasociety.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-ultrasociety.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "1grams/book-pairs/sapiens-v-ultrasociety.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "1grams/wikitext103-v-code-economy.alpha-0.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-code-economy.alpha-0"
+    },
+    {
+        "path":  "1grams/wikitext103-v-code-economy.alpha-1.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-code-economy.alpha-1"
+    },
+    {
+        "path":  "1grams/wikitext103-v-code-economy.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-code-economy.alpha-1-12"
+    },
+    {
+        "path":  "1grams/wikitext103-v-code-economy.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-code-economy.alpha-1-3"
+    },
+    {
+        "path":  "1grams/wikitext103-v-code-economy.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-code-economy.alpha-1-6"
+    },
+    {
+        "path":  "1grams/wikitext103-v-dawn-of-everything.alpha-0.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-dawn-of-everything.alpha-0"
+    },
+    {
+        "path":  "1grams/wikitext103-v-dawn-of-everything.alpha-1.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-dawn-of-everything.alpha-1"
+    },
+    {
+        "path":  "1grams/wikitext103-v-dawn-of-everything.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-dawn-of-everything.alpha-1-12"
+    },
+    {
+        "path":  "1grams/wikitext103-v-dawn-of-everything.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-dawn-of-everything.alpha-1-3"
+    },
+    {
+        "path":  "1grams/wikitext103-v-dawn-of-everything.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-dawn-of-everything.alpha-1-6"
+    },
+    {
+        "path":  "1grams/wikitext103-v-how-compassion-made-us-human.alpha-0.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-how-compassion-made-us-human.alpha-0"
+    },
+    {
+        "path":  "1grams/wikitext103-v-how-compassion-made-us-human.alpha-1.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-how-compassion-made-us-human.alpha-1"
+    },
+    {
+        "path":  "1grams/wikitext103-v-how-compassion-made-us-human.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-how-compassion-made-us-human.alpha-1-12"
+    },
+    {
+        "path":  "1grams/wikitext103-v-how-compassion-made-us-human.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-how-compassion-made-us-human.alpha-1-3"
+    },
+    {
+        "path":  "1grams/wikitext103-v-how-compassion-made-us-human.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-how-compassion-made-us-human.alpha-1-6"
+    },
+    {
+        "path":  "1grams/wikitext103-v-sapiens.alpha-0.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-sapiens.alpha-0"
+    },
+    {
+        "path":  "1grams/wikitext103-v-sapiens.alpha-1.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-sapiens.alpha-1"
+    },
+    {
+        "path":  "1grams/wikitext103-v-sapiens.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-sapiens.alpha-1-12"
+    },
+    {
+        "path":  "1grams/wikitext103-v-sapiens.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-sapiens.alpha-1-3"
+    },
+    {
+        "path":  "1grams/wikitext103-v-sapiens.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-sapiens.alpha-1-6"
+    },
+    {
+        "path":  "1grams/wikitext103-v-ultrasociety.alpha-0.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "1grams/wikitext103-v-ultrasociety.alpha-1.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "1grams/wikitext103-v-ultrasociety.alpha-1-12.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "1grams/wikitext103-v-ultrasociety.alpha-1-3.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "1grams/wikitext103-v-ultrasociety.alpha-1-6.html",
+        "family":  "1grams",
+        "section":  "comparisons",
+        "name":  "wikitext103-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-dawn-of-everything.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-dawn-of-everything.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-dawn-of-everything.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-dawn-of-everything.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-dawn-of-everything.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-dawn-of-everything.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-ultrasociety.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-ultrasociety.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-ultrasociety.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-ultrasociety.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/code-economy-v-ultrasociety.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "code-economy-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/dawn-of-everything-v-ultrasociety.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "dawn-of-everything-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-code-economy.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-code-economy.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-dawn-of-everything.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-dawn-of-everything.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-sapiens.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-sapiens.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/how-compassion-made-us-human-v-ultrasociety.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "how-compassion-made-us-human-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-code-economy.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-code-economy.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-code-economy.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-code-economy.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-code-economy.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-code-economy.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-dawn-of-everything.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-dawn-of-everything.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-dawn-of-everything.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-dawn-of-everything.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-dawn-of-everything.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-dawn-of-everything.alpha-1-6"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-ultrasociety.alpha-0.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-ultrasociety.alpha-1.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-ultrasociety.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-ultrasociety.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "2grams/book-pairs/sapiens-v-ultrasociety.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "book-pairs",
+        "name":  "sapiens-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-code-economy.alpha-0.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-code-economy.alpha-0"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-code-economy.alpha-1.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-code-economy.alpha-1"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-code-economy.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-code-economy.alpha-1-12"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-code-economy.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-code-economy.alpha-1-3"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-code-economy.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-code-economy.alpha-1-6"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-dawn-of-everything.alpha-0.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-dawn-of-everything.alpha-0"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-dawn-of-everything.alpha-1.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-dawn-of-everything.alpha-1"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-dawn-of-everything.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-dawn-of-everything.alpha-1-12"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-dawn-of-everything.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-dawn-of-everything.alpha-1-3"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-dawn-of-everything.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-dawn-of-everything.alpha-1-6"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-how-compassion-made-us-human.alpha-0.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-how-compassion-made-us-human.alpha-0"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-how-compassion-made-us-human.alpha-1.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-how-compassion-made-us-human.alpha-1"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-how-compassion-made-us-human.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-how-compassion-made-us-human.alpha-1-12"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-how-compassion-made-us-human.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-how-compassion-made-us-human.alpha-1-3"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-how-compassion-made-us-human.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-how-compassion-made-us-human.alpha-1-6"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-sapiens.alpha-0.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-sapiens.alpha-0"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-sapiens.alpha-1.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-sapiens.alpha-1"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-sapiens.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-sapiens.alpha-1-12"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-sapiens.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-sapiens.alpha-1-3"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-sapiens.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-sapiens.alpha-1-6"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-ultrasociety.alpha-0.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-ultrasociety.alpha-0"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-ultrasociety.alpha-1.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-ultrasociety.alpha-1"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-ultrasociety.alpha-1-12.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-ultrasociety.alpha-1-12"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-ultrasociety.alpha-1-3.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-ultrasociety.alpha-1-3"
+    },
+    {
+        "path":  "2grams/wikitext2-2grams-v-ultrasociety.alpha-1-6.html",
+        "family":  "2grams",
+        "section":  "comparisons",
+        "name":  "wikitext2-2grams-v-ultrasociety.alpha-1-6"
+    },
+    {
+        "path":  "tmp-allotax-debug/how-compassion-made-us-human-the-evolutionary-origins-of-tenderness-trust-and-moralit-v-sapiens.alpha-1-12.html",
+        "family":  "other",
+        "section":  "other",
+        "name":  "how-compassion-made-us-human-the-evolutionary-origins-of-tenderness-trust-and-moralit-v-sapiens.alpha-1-12"
+    },
+    {
+        "path":  "tmp-allotax-debug-fixed/how-compassion-made-us-human-the-evolutionary-origins-of-tenderness-trust-and-moralit-v-sapiens.alpha-0.html",
+        "family":  "other",
+        "section":  "other",
+        "name":  "how-compassion-made-us-human-the-evolutionary-origins-of-tenderness-trust-and-moralit-v-sapiens.alpha-0"
+    }
+]

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1-gram Figures</title>
+  <style>
+    :root {
+      --bg: #fcfaf5;
+      --ink: #1a1a18;
+      --muted: #58544c;
+      --line: #ddd5c7;
+      --accent: #8b4513;
+      --card: #fff;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 24px 60px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 12px;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .group {
+      margin-top: 28px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+    .comparison {
+      margin: 18px 0 0;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    a {
+      color: var(--accent);
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      background: #fffdf8;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p><a href="../">Back to figures</a></p>
+    <h1>1-gram Alpha Sweeps</h1>
+    <p class="meta">
+      This page is generated from the mirrored alpha HTML set in
+      <code>docs/figures/1grams/</code>.
+    </p>
+    <div id="app">Loading figure list...</div>
+  </main>
+  <script>
+    const alphaOrder = ["alpha-0", "alpha-1-12", "alpha-1-6", "alpha-1-3", "alpha-1"];
+
+    function alphaRank(path) {
+      const match = path.match(/alpha-[^.]+/);
+      const value = match ? match[0] : "";
+      const idx = alphaOrder.indexOf(value);
+      return idx === -1 ? alphaOrder.length : idx;
+    }
+
+    function labelFromPath(path) {
+      return path.replace(/^1grams\//, "").replace(/\.html$/, "");
+    }
+
+    function baseKey(path) {
+      return path.replace(/^1grams\//, "").replace(/\.alpha-[^.]+\.html$/, "");
+    }
+
+    function sectionName(path) {
+      return path.startsWith("1grams/book-pairs/") ? "Book pairs" : "Wiki / corpus comparisons";
+    }
+
+    fetch("../manifest.json")
+      .then((response) => response.json())
+      .then((entries) => {
+        const filtered = entries.filter((entry) => entry.family === "1grams");
+        const grouped = new Map();
+
+        for (const entry of filtered) {
+          const section = sectionName(entry.path);
+          if (!grouped.has(section)) grouped.set(section, new Map());
+          const bySection = grouped.get(section);
+          const key = baseKey(entry.path);
+          if (!bySection.has(key)) bySection.set(key, []);
+          bySection.get(key).push(entry);
+        }
+
+        const app = document.getElementById("app");
+        app.innerHTML = "";
+
+        for (const [section, comparisons] of grouped.entries()) {
+          const sectionEl = document.createElement("section");
+          sectionEl.className = "group";
+          sectionEl.innerHTML = `<h2>${section}</h2>`;
+
+          const keys = Array.from(comparisons.keys()).sort();
+          for (const key of keys) {
+            const card = document.createElement("article");
+            card.className = "comparison";
+            const links = comparisons.get(key).sort((a, b) => alphaRank(a.path) - alphaRank(b.path));
+            card.innerHTML = `<h3>${key}</h3>`;
+            const linkWrap = document.createElement("div");
+            linkWrap.className = "links";
+            for (const entry of links) {
+              const a = document.createElement("a");
+              a.className = "pill";
+              a.href = `./${entry.path.replace(/^1grams\//, "")}`;
+              a.textContent = labelFromPath(entry.path).split(".").pop();
+              linkWrap.appendChild(a);
+            }
+            card.appendChild(linkWrap);
+            sectionEl.appendChild(card);
+          }
+
+          app.appendChild(sectionEl);
+        }
+      })
+      .catch(() => {
+        document.getElementById("app").textContent = "Could not load the figure manifest.";
+      });
+  </script>
+</body>
+</html>

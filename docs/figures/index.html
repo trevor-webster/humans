@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Figures</title>
+  <style>
+    :root {
+      --bg: #f7f4ec;
+      --ink: #191919;
+      --muted: #5a574f;
+      --line: #ddd3c2;
+      --accent: #7b2f1a;
+      --card: #fffdf9;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 36px 24px 60px;
+    }
+    h1, h2 {
+      margin: 0 0 12px;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card:hover {
+      border-color: var(--accent);
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Figures</h1>
+    <p>
+      Hosted HTML outputs for the humans allotax comparisons. Use the family
+      pages below to browse alpha sweeps grouped by comparison set.
+    </p>
+    <div class="grid">
+      <a class="card" href="./1grams/">
+        <h2>1-grams</h2>
+        <p class="meta">Alpha sweep pages for 1-gram comparisons and book pairs.</p>
+      </a>
+      <a class="card" href="./2grams/">
+        <h2>2-grams</h2>
+        <p class="meta">Alpha sweep pages for 2-gram comparisons and book pairs.</p>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

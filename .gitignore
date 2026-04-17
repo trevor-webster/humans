@@ -12,5 +12,11 @@ logs/
 tmp/
 tmp*/
 temp/
+figures/tmp-*/
 
 test-*/
+
+public-books/raw/
+public-books/txt/
+.*
+.docs/
