@@ -20,3 +20,7 @@ public-books/raw/
 public-books/txt/
 .*
 .docs/
+storygetter/*.html
+storygetter/cookies
+storygetter/headers
+storygetter/__pycache__/
