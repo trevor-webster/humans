@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dawn of Everything Slice at Alpha 0</title>
+  <style>
+    :root {
+      --bg: #f7f4ec;
+      --ink: #1b1a18;
+      --muted: #6d675d;
+      --line: #ddd4c5;
+      --card: #fffdf8;
+      --page-width: 36in;
+      --page-height: 24in;
+      --outer-margin: 0.35in;
+      --gap: 0.18in;
+      --columns: 6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .shell {
+      max-width: var(--page-width);
+      margin: 0 auto;
+      padding: 16px 18px 20px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+
+    .controls h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .controls p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .print-button {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      cursor: pointer;
+      font: inherit;
+      padding: 7px 11px;
+    }
+
+    .poster {
+      width: calc(var(--page-width) - (2 * var(--outer-margin)));
+      min-height: calc(var(--page-height) - (2 * var(--outer-margin)));
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .row-block + .row-block {
+      margin-top: 0.3in;
+    }
+
+    .row-title {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(var(--columns), 1fr);
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    .panel {
+      min-width: 0;
+    }
+
+    .panel-label {
+      margin: 0 0 6px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+    }
+
+    .panel-note {
+      margin: 6px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.25;
+    }
+
+    .viewport {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .viewport iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 0;
+      background: transparent;
+      transform-origin: top left;
+    }
+
+    @page {
+      size: 36in 24in landscape;
+      margin: 0.35in;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .shell {
+        max-width: none;
+        padding: 0;
+      }
+
+      .controls {
+        display: none;
+      }
+
+      .poster {
+        width: calc(36in - 0.7in);
+        min-height: calc(24in - 0.7in);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="controls">
+      <div>
+        <h1>Dawn of Everything Slice</h1>
+        <p>Existing HTML comparisons involving <em>Dawn of Everything</em>, fixed at alpha = 0.</p>
+      </div>
+      <button class="print-button" type="button" id="print-button">Print / Save PDF</button>
+    </section>
+
+    <section class="poster">
+      <div class="row-block">
+        <p class="row-title">1-gram</p>
+        <div class="grid" id="grid-1gram"></div>
+      </div>
+      <div class="row-block">
+        <p class="row-title">2-gram</p>
+        <div class="grid" id="grid-2gram"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const rows = [
+      {
+        gridId: "grid-1gram",
+        title: "1-gram",
+        comparisons: [
+          { path: "./1grams/wiki-v/v-book/wikitext103-v-dawn-of-everything.alpha-0.html", label: "wiki" },
+          { path: "./1grams/v-book/code-economy-v-dawn-of-everything.alpha-0.html", label: "Code Economy" },
+          { path: "./1grams/v-book/how-compassion-made-us-human-v-dawn-of-everything.alpha-0.html", label: "How Compassion Made Us Human" },
+          { path: "./1grams/v-book/sapiens-v-dawn-of-everything.alpha-0.html", label: "Sapiens" },
+          { path: "./1grams/v-book/storytelling-animal-v-dawn-of-everything.alpha-0.html", label: "Storytelling Animal" },
+          { path: "./1grams/v-book/ultrasociety-v-dawn-of-everything.alpha-0.html", label: "Ultrasociety" }
+        ]
+      },
+      {
+        gridId: "grid-2gram",
+        title: "2-gram",
+        comparisons: [
+          { path: "./2grams/wiki-v/v-book/wikitext2-2grams-v-dawn-of-everything.alpha-0.html", label: "wiki" },
+          { path: "./2grams/v-book/code-economy-v-dawn-of-everything.alpha-0.html", label: "Code Economy" },
+          { path: "./2grams/v-book/how-compassion-made-us-human-v-dawn-of-everything.alpha-0.html", label: "How Compassion Made Us Human" },
+          { path: "./2grams/v-book/sapiens-v-dawn-of-everything.alpha-0.html", label: "Sapiens" },
+          { path: "./2grams/v-book/storytelling-animal-v-dawn-of-everything.alpha-0.html", label: "Storytelling Animal" },
+          { path: "./2grams/v-book/ultrasociety-v-dawn-of-everything.alpha-0.html", label: "Ultrasociety" }
+        ]
+      }
+    ];
+
+    const fallbackWidth = 760;
+    const fallbackHeight = 1500;
+
+    function fitPanels() {
+      document.querySelectorAll(".viewport").forEach((viewport) => {
+        const iframe = viewport.querySelector("iframe");
+        if (!iframe) return;
+        const intrinsicWidth = Number(iframe.dataset.intrinsicWidth || fallbackWidth);
+        const intrinsicHeight = Number(iframe.dataset.intrinsicHeight || fallbackHeight);
+        const scale = viewport.clientWidth / intrinsicWidth;
+        iframe.style.width = `${intrinsicWidth}px`;
+        iframe.style.height = `${intrinsicHeight}px`;
+        iframe.style.transform = `scale(${scale})`;
+        viewport.style.height = `${intrinsicHeight * scale}px`;
+      });
+    }
+
+    function prepareFrame(iframe) {
+      try {
+        const doc = iframe.contentDocument;
+        if (!doc) return;
+
+        const body = doc.body;
+        const dashboard = doc.getElementById("allotaxonometer-dashboard");
+        if (!body || !dashboard) return;
+
+        body.style.margin = "0";
+        body.style.padding = "0";
+        body.style.background = "transparent";
+        body.style.overflow = "hidden";
+
+        doc.documentElement.style.background = "transparent";
+        doc.documentElement.style.overflow = "hidden";
+
+        const style = doc.createElement("style");
+        style.textContent = `
+          body, html { background: transparent !important; overflow: hidden !important; }
+          #allotaxonometer-dashboard { background: transparent !important; margin: 0 !important; padding: 0 !important; }
+        `;
+        doc.head.appendChild(style);
+
+        iframe.dataset.intrinsicWidth = String(
+          Math.max(
+            doc.documentElement.scrollWidth || 0,
+            body.scrollWidth || 0,
+            dashboard.scrollWidth || 0,
+            fallbackWidth
+          )
+        );
+        iframe.dataset.intrinsicHeight = String(
+          Math.max(
+            doc.documentElement.scrollHeight || 0,
+            body.scrollHeight || 0,
+            dashboard.scrollHeight || 0,
+            fallbackHeight
+          )
+        );
+      } catch (error) {
+        console.warn("Could not prepare iframe", error);
+      }
+
+      fitPanels();
+    }
+
+    function render() {
+      for (const row of rows) {
+        const grid = document.getElementById(row.gridId);
+        grid.innerHTML = "";
+        document.documentElement.style.setProperty("--columns", String(row.comparisons.length));
+
+        for (const entry of row.comparisons) {
+          const panel = document.createElement("article");
+          panel.className = "panel";
+
+          const label = document.createElement("p");
+          label.className = "panel-label";
+          label.textContent = entry.label;
+
+          const viewport = document.createElement("div");
+          viewport.className = "viewport";
+
+          const note = document.createElement("p");
+          note.className = "panel-note";
+
+          const iframe = document.createElement("iframe");
+          iframe.loading = "lazy";
+          iframe.setAttribute("scrolling", "no");
+          iframe.src = entry.path;
+          iframe.title = `${row.title} Dawn of Everything slice versus ${entry.label}`;
+          iframe.addEventListener("load", () => {
+            prepareFrame(iframe);
+            note.textContent = "";
+          });
+          iframe.addEventListener("error", () => {
+            viewport.remove();
+            note.textContent = "Missing HTML for alpha = 0";
+          });
+
+          panel.appendChild(label);
+          panel.appendChild(viewport);
+          panel.appendChild(note);
+          viewport.appendChild(iframe);
+          grid.appendChild(panel);
+        }
+      }
+
+      window.requestAnimationFrame(fitPanels);
+      window.setTimeout(fitPanels, 250);
+      window.setTimeout(fitPanels, 800);
+    }
+
+    document.getElementById("print-button").addEventListener("click", () => {
+      window.print();
+    });
+
+    window.addEventListener("resize", fitPanels);
+    render();
+  </script>
+</body>
+</html>
