@@ -75,11 +75,15 @@
     }
 
     .card.wide {
-      grid-column: span 2;
+      grid-column: 1 / -1;
+      justify-self: start;
+      width: 50%;
     }
 
     .card.full {
       grid-column: 1 / -1;
+      justify-self: start;
+      width: 50%;
     }
 
     .card.narrow {
@@ -238,7 +242,7 @@
 
       <article class="card">
         <span class="tag">Weaknesses</span>
-        <h2>Limitations to name.</h2>
+        <h2>Limitations.</h2>
         <ul>
           <li>No narrative or temporal instrument.</li>
           <li>No causality.</li>
