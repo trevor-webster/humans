@@ -82,6 +82,11 @@
       grid-column: 1 / -1;
     }
 
+    .card.narrow {
+      justify-self: start;
+      width: 70%;
+    }
+
     h2 {
       margin: 0 0 0.08in;
       font-size: 0.2in;
@@ -242,16 +247,17 @@
         <ul>
           <li>Use an existing mostly sanitized dataset for WikiText.</li>
           <li>WikiText-2 is about 2M training tokens and roughly 600 articles; WikiText-103 is roughly 50x larger in training data.</li>
-          <li>Given limitations of Google Books, such as missing popularity, use Wikipedia without pageviews.</li>
+          <li>Google Books has scale, but scale is not a cultural baseline by itself.</li>
+          <li>A usable baseline would need to distinguish popular-cultural language from scientific/reference components.</li>
           <li>The featured-list filter keeps closer to cultural popularity, while obscure science/literature pages are partly filtered out.</li>
           <li>Books were selected for human history or anthropology, cultural visibility, and chronology.</li>
         </ul>
       </article>
 
-      <article class="card">
+      <article class="card narrow">
         <span class="tag">Data note</span>
         <h2>Why not Google Books?</h2>
-        <p class="note">Google Books is attractive because of scale, but the poster needs a clean baseline and interpretable comparison. WikiText is imperfect, but tractable.</p>
+        <p class="note">Google Books is attractive because of scale, but it mixes popular books with scientific and reference language. Before it can serve as a cultural baseline, those components need to be separated. WikiText is imperfect, but more tractable for this pass.</p>
       </article>
 
       <article class="card wide">
