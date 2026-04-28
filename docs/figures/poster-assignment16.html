@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poster Draft - Allotaxonomic Slices</title>
+  <style>
+    :root {
+      --paper: #faf8f2;
+      --ink: #171512;
+      --muted: #655f55;
+      --line: #d7cbb6;
+      --line-strong: #9b8166;
+      --blue: #d7eef2;
+      --red: #a63d2f;
+      --gold: #d8a342;
+      --green: #8fa47a;
+      --card: rgba(250, 248, 242, 0.78);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+
+    body {
+      padding: 18px;
+    }
+
+    .poster {
+      width: 36in;
+      height: 24in;
+      margin: 0 auto;
+      padding: 0.45in 0.5in 0.42in;
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: none;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 0.35in;
+      align-items: end;
+      height: 2.25in;
+      border-bottom: 3px solid var(--ink);
+      padding-bottom: 0.18in;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 20in;
+      font-size: 0.76in;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 0.18in 0 0;
+      max-width: 20in;
+      color: var(--muted);
+      font-size: 0.24in;
+      line-height: 1.25;
+    }
+
+    .metadata {
+      justify-self: end;
+      display: grid;
+      gap: 0.08in;
+      width: 9.2in;
+      font-size: 0.16in;
+      line-height: 1.25;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.08in;
+    }
+
+    .pill {
+      padding: 0.055in 0.12in;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.58);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 7.5in 10.8in 16.2in;
+      gap: 0.38in;
+      height: calc(100% - 2.25in);
+      padding-top: 0.34in;
+    }
+
+    section {
+      min-width: 0;
+    }
+
+    h2 {
+      margin: 0 0 0.13in;
+      font-size: 0.33in;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 0 0 0.07in;
+      font-size: 0.19in;
+      color: var(--ink);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 0.04in;
+      padding: 0.18in;
+      margin-bottom: 0.18in;
+      box-shadow: 0 0.08in 0.24in rgba(73, 55, 31, 0.07);
+    }
+
+    .question {
+      font-size: 0.27in;
+      line-height: 1.18;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.145in;
+      line-height: 1.28;
+    }
+
+    .paths {
+      display: grid;
+      gap: 0.1in;
+    }
+
+    .path {
+      display: grid;
+      grid-template-columns: 0.33in 1fr;
+      gap: 0.1in;
+      align-items: start;
+      font-size: 0.18in;
+      line-height: 1.2;
+    }
+
+    .path span:first-child {
+      display: grid;
+      place-items: center;
+      width: 0.28in;
+      height: 0.28in;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      font-size: 0.13in;
+      font-weight: 700;
+    }
+
+    .book-stack {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.09in;
+    }
+
+    .book {
+      min-height: 0.68in;
+      padding: 0.09in 0.1in;
+      border-left: 0.08in solid var(--gold);
+      background: rgba(255, 255, 255, 0.68);
+      font-size: 0.135in;
+      line-height: 1.15;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr 0.42in 1fr;
+      gap: 0.12in;
+      align-items: center;
+      margin-bottom: 0.16in;
+    }
+
+    .diamond {
+      width: 1.25in;
+      height: 1.25in;
+      margin: 0 auto 0.08in;
+      border: 0.08in solid var(--ink);
+      transform: rotate(45deg);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0 49%, rgba(196, 231, 238, 0.94) 50% 100%);
+    }
+
+    .arrow {
+      font-size: 0.42in;
+      text-align: center;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .method-label {
+      text-align: center;
+      font-size: 0.18in;
+      line-height: 1.15;
+    }
+
+    .figure-panel {
+      height: 4.6in;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 0.12in;
+      background: rgba(255, 255, 255, 0.56);
+      position: relative;
+    }
+
+    .figure-panel iframe {
+      width: 16in;
+      height: 10in;
+      border: 0;
+      transform: scale(0.66);
+      transform-origin: 0 0;
+      pointer-events: none;
+      background: transparent;
+    }
+
+    .figure-panel.tall {
+      height: 5.6in;
+    }
+
+    .figure-panel.tall iframe {
+      width: 19in;
+      height: 13in;
+      transform: scale(0.56);
+    }
+
+    .caption {
+      margin-top: 0.07in;
+      color: var(--muted);
+      font-size: 0.12in;
+      line-height: 1.25;
+    }
+
+    .callout {
+      padding: 0.14in 0.16in;
+      border: 2px dashed rgba(166, 61, 47, 0.55);
+      border-radius: 0.12in;
+      background: rgba(255, 255, 255, 0.35);
+      font-size: 0.18in;
+      line-height: 1.22;
+    }
+
+    .table-card {
+      background: rgba(250, 248, 242, 0.96);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 0.04in;
+      padding: 0.16in;
+      margin-bottom: 0.17in;
+      box-shadow: none;
+    }
+
+    .table-card h3 {
+      color: var(--ink);
+      font-size: 0.18in;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-family: "Aptos", "Segoe UI", sans-serif;
+      font-size: 0.105in;
+      line-height: 1.16;
+    }
+
+    th {
+      color: var(--ink);
+      font-weight: 700;
+      text-align: left;
+      border-bottom: 1px solid rgba(23, 21, 18, 0.42);
+      padding: 0.045in 0.05in;
+    }
+
+    td {
+      vertical-align: top;
+      padding: 0.045in 0.05in;
+      border-bottom: 1px solid rgba(23, 21, 18, 0.12);
+    }
+
+    td:first-child,
+    th:first-child {
+      width: 0.45in;
+      color: var(--muted);
+    }
+
+    .matrix {
+      font-size: 0.078in;
+      line-height: 1.12;
+    }
+
+    .matrix th,
+    .matrix td {
+      padding: 0.032in 0.035in;
+    }
+
+    .matrix td:first-child,
+    .matrix th:first-child {
+      width: 0.74in;
+    }
+
+    .note-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.12in;
+      margin-top: 0.14in;
+    }
+
+    .note {
+      min-height: 0.85in;
+      padding: 0.1in 0.12in;
+      border-radius: 0.1in;
+      background: rgba(255, 255, 255, 0.68);
+      border-top: 0.05in solid var(--green);
+      font-size: 0.145in;
+      line-height: 1.2;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    @media print {
+      @page {
+        size: 36in 24in landscape;
+        margin: 0;
+      }
+
+      body {
+        padding: 0;
+        background: var(--paper);
+      }
+
+      .poster {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <article class="poster">
+    <header>
+      <div>
+        <h1>What do human-history books make newly visible?</h1>
+        <p class="subtitle">
+          Allotaxonomic slices comparing books, WikiText, and a human corpus at alpha = 0.
+          Draft poster underlay for hand annotations, arrows, and paper-result triage.
+        </p>
+      </div>
+      <div class="metadata">
+        <div class="pill-row">
+          <span class="pill">rank-turbulence divergence</span>
+          <span class="pill">1g / 2g / 3g</span>
+          <span class="pill">10 books</span>
+          <span class="pill">36 x 24 in</span>
+        </div>
+        <p>
+          Public slices: <a href="./wiki-v-alpha-0.html">wiki-v-alpha-0</a>,
+          <a href="./dawn-of-everything-slice.alpha-0.html">Dawn slice</a>,
+          <a href="./code-economy-slice.alpha-0.html">Code Economy slice</a>,
+          <a href="./poster-diamond-candidates.alpha-0.html">diamond candidates</a>,
+          <a href="./poster-cut-sheet.html">cut sheet</a>.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>Question</h2>
+        <div class="card question">
+          When a book says "human", does it mean species, cooperation, violence,
+          equality, story, cooking, technology, or something else?
+        </div>
+
+        <div class="card">
+          <h3>Paths Tried</h3>
+          <div class="paths">
+            <div class="path"><span>1</span><p>Wiki background against each book: which book-side phrases rise above general language?</p></div>
+            <div class="path"><span>2</span><p>Book against book: when the reference is another human-history book, which markers remain distinctive?</p></div>
+            <div class="path"><span>3</span><p>Human corpus against books: do general human-centered words collapse into clearer phrases?</p></div>
+            <div class="path"><span>4</span><p>Alpha sweeps: use alpha = 0 for contour-heavy poster readings; keep 1/3 as a stability check.</p></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Book Set</h3>
+          <div class="book-stack">
+            <div class="book">Code Economy</div>
+            <div class="book">Sapiens</div>
+            <div class="book">Ultrasociety</div>
+            <div class="book">Dawn</div>
+            <div class="book">Guns, Germs, and Steel</div>
+            <div class="book">Hierarchy in the Forest</div>
+            <div class="book">Better Angels</div>
+            <div class="book">Case for God</div>
+            <div class="book">Compassion Made Us Human</div>
+            <div class="book">Catching Fire</div>
+          </div>
+        </div>
+
+        <div class="callout">
+          Hand layer: draw the abandoned-path arrows here. Keep the narrative honest:
+          not all slices became paper figures, but the failed routes helped find the compact matrices.
+        </div>
+      </section>
+
+      <section>
+        <h2>Method</h2>
+        <div class="card">
+          <div class="flow">
+            <div>
+              <div class="diamond"></div>
+              <p class="method-label">Book v Book<br><span class="small">pairwise specificity</span></p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="small">RHS phrases that stay book-specific even when another book is the reference.</div>
+          </div>
+          <div class="flow">
+            <div>
+              <div class="diamond"></div>
+              <p class="method-label">Wiki v Book<br><span class="small">background subtraction</span></p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="small">Book-side terms that differ from a broad Wikipedia-like language background.</div>
+          </div>
+          <div class="flow">
+            <div>
+              <div class="diamond"></div>
+              <p class="method-label">Wiki v Humans<br><span class="small">human-language baseline</span></p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="small">Unigrams surface broad human language; bigrams and trigrams individuate the claims.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Book v Book Diamond, Top Candidate Band</h3>
+          <div class="figure-panel tall">
+            <iframe src="./poster-diamond-candidates.alpha-0.html" title="Poster diamond candidates"></iframe>
+          </div>
+          <p class="caption">
+            Choose one alpha-0 3-gram book-v-book diamond for the top method
+            example before exporting to GoodNotes.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Wiki v Book, Middle Band</h3>
+          <div class="figure-panel">
+            <iframe src="./wiki-v-alpha-0.html" title="Wiki versus book alpha zero slice"></iframe>
+          </div>
+          <p class="caption">
+            Middle evidence layer: broad WikiText background against the ten
+            books, with 2-gram and 3-gram rows.
+          </p>
+        </div>
+
+        <div class="callout">
+          Humans diamond undecided. Leave this as a live choice: use only if it
+          adds a different baseline than wiki-v-book, not as a decorative third diamond.
+        </div>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <div class="table-card">
+          <h3>Book v Book, 2-gram RHS Matrix Excerpt</h3>
+          <table class="matrix">
+            <thead>
+              <tr>
+                <th>RHS</th>
+                <th>Code</th>
+                <th>Sapiens</th>
+                <th>Ultra</th>
+                <th>Dawn</th>
+                <th>GGS</th>
+                <th>Hierarchy</th>
+                <th>Better</th>
+                <th>Story</th>
+                <th>Comp.</th>
+                <th>Fire</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Code</td><td></td><td>of code; advance of; the advance</td><td>of code; advance of; the advance</td><td>of code; advance of; the advance</td><td>of code; code economics; the economy</td><td>of code; advance of; the advance</td><td>of code; code economics; of work</td><td>of code; advance of; the advance</td><td>of code; advance of; the advance</td><td>of code; advance of; the advance</td></tr>
+              <tr><td>Sapiens</td><td>agricultural revolution; believe in</td><td></td><td>per cent; agricultural revolution</td><td>human species; cognitive revolution; believe in</td><td>agricultural revolution; per cent</td><td>agricultural revolution; per cent</td><td>agricultural revolution; per cent</td><td>agricultural revolution; per cent</td><td>homo sapiens; agricultural revolution</td><td>agricultural revolution; per cent</td></tr>
+              <tr><td>Ultra</td><td>cultural evolution; of war; cooperation</td><td>archaic states; small-scale societies</td><td></td><td>cultural evolution; cooperation; archaic states</td><td>cultural evolution; cooperation; archaic states</td><td>archaic states; cultural evolution</td><td>cultural evolution; archaic states; axial</td><td>cooperation; archaic states; enemy</td><td>cultural evolution; cooperation; archaic states</td><td>cultural evolution; of war; cultural</td></tr>
+              <tr><td>Dawn</td><td>northwest coast; a state; it seems</td><td>northwest coast; appear to; northwest</td><td>for instance; northwest coast</td><td></td><td>kind of; sort of; this was</td><td>the city; all this; human history</td><td>northwest coast; wendat</td><td>northwest coast; north america</td><td>northwest coast; one another</td><td>forms of; the city; sort of</td></tr>
+              <tr><td>GGS</td><td>new guinea; food production; fertile crescent</td><td>fertile crescent; food production</td><td>food production; wild plants</td><td>new guineans; eastern united</td><td></td><td>fertile crescent; food production</td><td>food production; new guineans</td><td>new guinea; food production</td><td>food production; the americas</td><td>fertile crescent; the americas</td></tr>
+              <tr><td>Hierarchy</td><td>hierarchy; forest; human nature</td><td>human nature; see also</td><td>see also; de waal</td><td>natural selection; de waal</td><td>human nature; hierarchy</td><td></td><td>hierarchy; egalitarian ethos</td><td>hierarchy; political</td><td>hierarchy; political</td><td>hierarchy; human nature</td></tr>
+              <tr><td>Better</td><td>war; violence; victim</td><td>20th century; percent of</td><td>rate of; great powers</td><td>20th century; percent of</td><td>violence; brain</td><td>violence; 20th century</td><td></td><td>20th century; since the</td><td>united states; 20th</td><td>violence; war; 20th</td></tr>
+              <tr><td>Story</td><td>story; fiction; a story</td><td>story is; fiction is</td><td>story; fiction</td><td>fiction; brain; story</td><td>story; fiction; brain</td><td>story; fiction; a story</td><td>story; fiction; dreams</td><td></td><td>story; fiction; fiction is</td><td>story; fiction; a story</td></tr>
+              <tr><td>Comp.</td><td>early humans; evidence; we feel</td><td>early humans; to care</td><td>to care; we feel</td><td>we feel; help but</td><td>early humans; sense of</td><td>early humans; we feel</td><td>early humans; palaeolithic</td><td>early humans; million years</td><td></td><td>we see; to care; we feel</td></tr>
+              <tr><td>Fire</td><td>cooked food; homo erectus</td><td>cooked food; cooking</td><td>cooked food; raw food</td><td>cooked food; homo erectus</td><td>cooked food; raw food</td><td>cooked food; raw food</td><td>cooked food; homo erectus</td><td>cooked food; million years</td><td>cooked food; raw food</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-card">
+          <h3>Wiki v Book, 2-gram RHS Signatures</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>n</th>
+                <th>Code</th>
+                <th>Sapiens</th>
+                <th>Ultra</th>
+                <th>Dawn</th>
+                <th>GGS</th>
+                <th>Hierarchy</th>
+                <th>Better</th>
+                <th>Story</th>
+                <th>Comp.</th>
+                <th>Fire</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>of code 617183⇋6</td><td>homo sapiens 388181⇋22</td><td>cultural evolution 617429⇋35</td><td>human history 388181⇋106.5</td><td>food production 630492⇋5</td><td>hierarchy in 388181⇋11</td><td>great powers 657157⇋222</td><td>fiction is 614080⇋61.5</td><td>early humans 618335⇋15.5</td><td>cooked food 613606⇋8</td></tr>
+              <tr><td>2</td><td>code economics 617183⇋31</td><td>agricultural revolution 627623⇋74.5</td><td>archaic states 617429⇋56</td><td>the wendat 635886⇋206.5</td><td>fertile crescent 630492⇋12</td><td>natural selection 623492⇋56</td><td>civilizing process 657157⇋232</td><td>our brains 614080⇋105.5</td><td>upper palaeolithic 618335⇋73.5</td><td>homo erectus 613606⇋15.5</td></tr>
+              <tr><td>3</td><td>human advantage 617183⇋51.5</td><td>human species 627623⇋199.5</td><td>small-scale societies 617429⇋102.5</td><td>societies of 635886⇋317.5</td><td>the fertile 388181⇋19</td><td>egalitarian ethos 623492⇋60</td><td>violence is 657157⇋241.5</td><td>the psychologist 614080⇋115</td><td>we feel 388181⇋61</td><td>raw food 613606⇋28.5</td></tr>
+              <tr><td>4</td><td>text box 617183⇋55.5</td><td>the cognitive 627623⇋223.5</td><td>human societies 617429⇋102.5</td><td>fertile crescent 635886⇋329</td><td>new guineans 630492⇋34.5</td><td>of egalitarian 623492⇋64</td><td>in figure 657157⇋241.5</td><td>air loom 614080⇋137.5</td><td>our ancestors 388181⇋64</td><td>that cooking 613606⇋53.5</td></tr>
+              <tr><td>5</td><td>peer to 617183⇋89</td><td>cognitive revolution 627623⇋223.5</td><td>social evolution 617429⇋170.5</td><td>poverty point 635886⇋346</td><td>wild plants 630492⇋59</td><td>egalitarian society 623492⇋64</td><td>long peace 657157⇋305</td><td>of story 133610⇋31.5</td><td>stone tools 618335⇋119.5</td><td>of cooked 613606⇋56</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-strip">
+          <div class="note"><strong>Code Economy:</strong> the book-side language condenses around code, economy, production, work, and the human advantage.</div>
+          <div class="note"><strong>Dawn:</strong> the contour vocabulary repeatedly returns to indigenous critique, farming, egalitarianism, foragers, cities, and domination.</div>
+          <div class="note"><strong>Across books:</strong> the 2-gram matrix makes the poster tractable; 3-grams are useful for exactness, but harder to fit visually.</div>
+        </div>
+      </section>
+    </main>
+  </article>
+</body>
+</html>

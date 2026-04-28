@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poster Decisions Scaffold</title>
+  <style>
+    :root {
+      --paper: #faf8f2;
+      --ink: #171512;
+      --muted: #6d665d;
+      --faint: #ddd5c8;
+      --rule: #a68f75;
+      --red: #9b3b2b;
+      --blue: #cceaf2;
+      --gold: #d9a744;
+      --green: #83996f;
+      --card: rgba(255, 253, 248, 0.76);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+
+    body {
+      padding: 18px;
+    }
+
+    .poster {
+      position: relative;
+      width: 36in;
+      height: 24in;
+      margin: 0 auto;
+      padding: 0.42in 0.48in;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(23, 21, 18, 0.035) 1px, transparent 1px) 0 0 / 0.5in 0.5in,
+        linear-gradient(0deg, rgba(23, 21, 18, 0.035) 1px, transparent 1px) 0 0 / 0.5in 0.5in,
+        var(--paper);
+    }
+
+    .flow-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-rows: 2.05in 13.8in 7.05in;
+      gap: 0.28in;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 20in 1fr;
+      gap: 0.5in;
+      align-items: end;
+      border-bottom: 3px solid var(--ink);
+      padding-bottom: 0.16in;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 0.68in;
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 0.14in 0 0;
+      max-width: 19in;
+      color: var(--muted);
+      font-size: 0.22in;
+      line-height: 1.24;
+    }
+
+    .legend {
+      justify-self: end;
+      display: grid;
+      gap: 0.08in;
+      width: 9.6in;
+      font-size: 0.145in;
+      line-height: 1.25;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .key {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.08in;
+    }
+
+    .pill {
+      border: 1px solid var(--rule);
+      border-radius: 99px;
+      padding: 0.05in 0.1in;
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .river {
+      position: relative;
+      display: grid;
+      grid-template-columns: 6.5in 5.5in 5.2in 5.3in 10.2in;
+      gap: 0.34in;
+      align-items: start;
+      padding-top: 0.28in;
+    }
+
+    .stage {
+      min-width: 0;
+    }
+
+    .stage-title {
+      margin: 0 0 0.14in;
+      font-size: 0.32in;
+      letter-spacing: -0.02em;
+    }
+
+    .card,
+    .decision,
+    .sidepath,
+    .result-card {
+      background: var(--card);
+      border: 1px solid rgba(166, 143, 117, 0.55);
+      border-radius: 0.08in;
+      box-shadow: 0 0.08in 0.22in rgba(74, 55, 33, 0.06);
+    }
+
+    .card {
+      padding: 0.16in;
+      margin-bottom: 0.16in;
+    }
+
+    .question {
+      font-size: 0.28in;
+      line-height: 1.18;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.135in;
+      line-height: 1.24;
+    }
+
+    .node {
+      position: relative;
+      min-height: 1.25in;
+      padding: 0.16in 0.16in 0.16in 0.2in;
+      border-left: 0.12in solid var(--ink);
+    }
+
+    .node strong {
+      display: block;
+      margin-bottom: 0.06in;
+      font-size: 0.2in;
+    }
+
+    .node p,
+    .decision p,
+    .sidepath p {
+      margin: 0;
+      font-size: 0.145in;
+      line-height: 1.24;
+      color: var(--muted);
+    }
+
+    .decision {
+      position: relative;
+      padding: 0.13in 0.15in;
+      margin-bottom: 0.14in;
+      border-color: rgba(155, 59, 43, 0.55);
+      background: rgba(255, 248, 241, 0.88);
+    }
+
+    .decision b {
+      display: block;
+      margin-bottom: 0.035in;
+      color: var(--red);
+      font-size: 0.15in;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .decision strong {
+      display: block;
+      margin-bottom: 0.04in;
+      font-size: 0.18in;
+      line-height: 1.1;
+    }
+
+    .criterion {
+      display: inline-block;
+      margin-bottom: 0.07in;
+      padding: 0.035in 0.075in;
+      border: 1px solid rgba(131, 153, 111, 0.72);
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.58);
+      color: #526246;
+      font-size: 0.105in;
+      line-height: 1;
+      letter-spacing: 0.035em;
+      text-transform: uppercase;
+    }
+
+    .decision:before {
+      content: "";
+      position: absolute;
+      left: -0.1in;
+      top: 0.18in;
+      width: 0.18in;
+      height: 0.18in;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 0 0.055in var(--paper);
+    }
+
+    .method-stack {
+      display: grid;
+      gap: 0.14in;
+    }
+
+    .method {
+      display: grid;
+      grid-template-columns: 1.05in 1fr;
+      gap: 0.14in;
+      align-items: center;
+    }
+
+    .diamond {
+      width: 0.82in;
+      height: 0.82in;
+      margin: 0 auto;
+      border: 0.065in solid var(--ink);
+      transform: rotate(45deg);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0 49%, rgba(204, 234, 242, 0.96) 50% 100%);
+    }
+
+    .method h3,
+    .result-card h3,
+    .sidepath h3 {
+      margin: 0 0 0.04in;
+      font-size: 0.18in;
+      line-height: 1.1;
+    }
+
+    .sidepath {
+      padding: 0.12in 0.14in;
+      background: rgba(255, 255, 255, 0.55);
+      border-style: dashed;
+    }
+
+    .sidepath[data-status="kept"] {
+      border-color: rgba(131, 153, 111, 0.78);
+    }
+
+    .sidepath[data-status="parked"] {
+      border-color: rgba(217, 167, 68, 0.8);
+    }
+
+    .sidepath[data-status="dropped"] {
+      border-color: rgba(155, 59, 43, 0.48);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.16in;
+    }
+
+    .result-card {
+      padding: 0.14in;
+      overflow: hidden;
+    }
+
+    .thumb {
+      height: 2.05in;
+      overflow: hidden;
+      margin-top: 0.08in;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid var(--faint);
+      border-radius: 0.04in;
+    }
+
+    .thumb iframe {
+      border: 0;
+      width: 5.4in;
+      height: 9in;
+      transform: scale(0.48);
+      transform-origin: 0 0;
+      pointer-events: none;
+      background: var(--paper);
+    }
+
+    .thumb.wide iframe {
+      width: 9in;
+      height: 5in;
+      transform: scale(0.42);
+    }
+
+    .note {
+      margin-top: 0.1in;
+      color: var(--muted);
+      font-size: 0.12in;
+      line-height: 1.22;
+    }
+
+    .paths-bottom {
+      display: grid;
+      grid-template-columns: 6.9in 6.9in 6.9in 6.9in 5.7in;
+      gap: 0.22in;
+      align-items: start;
+      border-top: 2px solid rgba(23, 21, 18, 0.18);
+      padding-top: 0.2in;
+    }
+
+    .paths-bottom h2 {
+      grid-column: 1 / -1;
+      margin: 0 0 -0.08in;
+      font-size: 0.25in;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .mini-list {
+      margin: 0.08in 0 0;
+      padding-left: 0.18in;
+      color: var(--muted);
+      font-size: 0.125in;
+      line-height: 1.2;
+    }
+
+    .mini-list li {
+      margin-bottom: 0.04in;
+    }
+
+    .bracket-note {
+      border-left: 0.05in solid var(--blue);
+      padding: 0.12in 0.14in;
+      background: rgba(255, 255, 255, 0.42);
+      color: #506771;
+      font-size: 0.14in;
+      line-height: 1.22;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    @media print {
+      @page {
+        size: 36in 24in landscape;
+        margin: 0;
+      }
+
+      body {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <article class="poster">
+    <svg class="flow-svg" viewBox="0 0 3600 2400" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <marker id="arrow-main" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" fill="#171512"></path>
+        </marker>
+        <marker id="arrow-side" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#9b3b2b"></path>
+        </marker>
+      </defs>
+      <path d="M 220 815 C 720 770, 1010 790, 1350 820 S 2040 865, 2500 820 S 3190 780, 3420 845"
+            fill="none" stroke="#171512" stroke-width="12" stroke-linecap="round" opacity="0.28" marker-end="url(#arrow-main)"></path>
+    </svg>
+
+    <div class="content">
+      <header>
+        <div>
+          <h1>How the analysis path narrowed into the poster</h1>
+          <p class="subtitle">
+            Scaffold for showing decisions, paths tried, and the final route from a broad human-story question
+            toward allotaxonomic evidence: book-v-book, wiki-v-book, and compact phrase matrices.
+          </p>
+        </div>
+        <div class="legend">
+          <div class="key">
+            <span class="pill">bold path = route taken</span>
+            <span class="pill">dashed arrows = paths tried</span>
+            <span class="pill">decision boxes = why this route</span>
+            <span class="pill">36 x 24 in scaffold</span>
+          </div>
+          <p>
+            Use as a GoodNotes underlay: draw over the river, move result cutouts, and hand-label the
+            abandoned branches without making them look like mistakes.
+          </p>
+        </div>
+      </header>
+
+      <main class="river">
+        <section class="stage">
+          <h2 class="stage-title">Question</h2>
+          <span class="criterion">Research framing</span>
+          <div class="card question">
+            What is the story told among these human stories?
+          </div>
+          <div class="card node">
+            <strong>Can we find a familiar or fundamental human story?</strong>
+            <p>Is there some kernel of truth to piece together from many modern books about humans and big history, including stories that may be incomplete or untrue?</p>
+          </div>
+          <div class="decision">
+            <b>Path Taken</b>
+            <strong>From commonality to comparison.</strong>
+            <p>The motivation first looks like finding what is common, but finding what is common necessitates comparison. The tool should discover change between two stories so we can see what stands out as making a story human.</p>
+          </div>
+        </section>
+
+        <section class="stage">
+          <h2 class="stage-title">Data</h2>
+          <span class="criterion">Data origin and quality</span>
+          <div class="card node">
+            <strong>Data wrangling: 1-, 2-, and 3-grams.</strong>
+            <p>Use modern books in the sub-discipline of humans / big history, plus WikiText as a broad cultural baseline. Compare texts through n-gram counts rather than reading every book in full.</p>
+          </div>
+          <div class="decision">
+            <b>Path Taken</b>
+            <strong>Use WikiText as the cultural background.</strong>
+            <p>Given limitations of Google Books, such as missing popularity, use Wikipedia/WikiText without pageviews. The featured-list filter gives a tractable popular-cultural baseline, while obscure material is partly filtered out.</p>
+          </div>
+          <div class="card small">
+            Sub-decision: books were selected for human history, anthropology, and cultural visibility, enough to plausibly sit on a bookshelf. Limitation: some books are anthropology more than big history.
+          </div>
+        </section>
+
+        <section class="stage">
+          <h2 class="stage-title">Method</h2>
+          <span class="criterion">Why this method</span>
+          <div class="card method-stack">
+            <div class="method">
+              <div class="diamond"></div>
+              <div>
+                <h3>Book v Book</h3>
+                <p class="small">What remains distinctive when the reference is another human-history book?</p>
+              </div>
+            </div>
+            <div class="method">
+              <div class="diamond"></div>
+              <div>
+                <h3>Wiki v Book</h3>
+                <p class="small">Which book-side phrases rise above broad background language?</p>
+              </div>
+            </div>
+            <div class="method">
+              <div class="diamond"></div>
+              <div>
+                <h3>Wiki v Humans</h3>
+                <p class="small">Useful baseline, but only kept if it says something different from wiki-v-book.</p>
+              </div>
+            </div>
+          </div>
+          <div class="decision">
+            <b>Path Taken</b>
+            <strong>Why allotax?</strong>
+            <p>From a big-picture view, allotax makes it immediate which words are comparatively important to each story. It is an instrument of importance: types and ranks, not sentiment, causality, or narrative time.</p>
+          </div>
+          <div class="card small">
+            Quantifiable argument: each word or phrase has a rank in each system and an RTD contribution toward the difference between systems. The diamond, contour lines, word list, and matrices are different views of the same measured comparison.
+          </div>
+        </section>
+
+        <section class="stage">
+          <h2 class="stage-title">Why to How</h2>
+          <span class="criterion">Method answers question</span>
+          <div class="card node">
+            <strong>How can a story be pulled out without time?</strong>
+            <p>It may seem impossible to pull a story out without narrative time, but it is like pulling the logline out of a plot: what stayed core, what became turbulent, and what characters of the story keep resurfacing?</p>
+          </div>
+          <div class="decision">
+            <b>Path Taken</b>
+            <strong>Contrast is where the story appears.</strong>
+            <p>Schismogenesis suggests humans define stories by contrast. A neutral ground may not display much; where the stories decide to differ may reveal where the important human story is.</p>
+          </div>
+          <div class="sidepath" data-status="parked">
+            <h3>Sub-decision: why rank?</h3>
+            <p>In each system there is an ordering of what is most important. The claim is not "these words felt important"; it is "these words repeatedly contributed most to the measured difference between systems."</p>
+          </div>
+        </section>
+
+        <section class="stage">
+          <h2 class="stage-title">Findings</h2>
+          <span class="criterion">Interpretation and progress</span>
+          <div class="result-grid">
+            <div class="result-card">
+              <h3>Book v Book matrix</h3>
+              <p class="small">Pairwise distinctiveness across books.</p>
+              <div class="thumb"><iframe src="./book-v-book-3gram-rhs-top5-paper-table.html" title="Book v book top5 table"></iframe></div>
+            </div>
+            <div class="result-card">
+              <h3>Wiki v Book top 40</h3>
+              <p class="small">Repeated book-side signatures against background.</p>
+              <div class="thumb"><iframe src="./wiki-v-book-3gram-rhs-top40-paper-table.html" title="Wiki v book top40 table"></iframe></div>
+            </div>
+            <div class="result-card">
+              <h3>Diamond candidates</h3>
+              <p class="small">Use one diamond to teach RTD visually.</p>
+              <div class="thumb wide"><iframe src="./poster-diamond-candidates.alpha-0.html" title="Diamond candidates"></iframe></div>
+            </div>
+            <div class="result-card">
+              <h3>Interpretive claim</h3>
+              <p class="small">The books do not tell one human story. They make different "human" stories visible: code and production, revolutions and species, cooperation and war, equality and hierarchy, violence, cooking, compassion, and divinity.</p>
+              <div class="bracket-note">
+                Hand layer idea: bracket the recurring terms and draw short arrows back to the method that produced them.
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <section class="paths-bottom">
+        <h2>Paths Tried, Parked, or Used as Limitations</h2>
+
+        <div class="sidepath" data-status="dropped">
+          <h3>Story arc / narrative time</h3>
+          <p>Tempting because the question says "story", but word importance gave a clearer first instrument.</p>
+          <ul class="mini-list">
+            <li>park chronology for discussion</li>
+            <li>not enough time to read every book narratively</li>
+            <li>characters of the story, not plot order</li>
+          </ul>
+        </div>
+
+        <div class="sidepath" data-status="parked">
+          <h3>Google Books / popularity</h3>
+          <p>Useful idea, but not clean enough for this pass.</p>
+          <ul class="mini-list">
+            <li>popularity signal unclear</li>
+            <li>Wikipedia featured list is tractable</li>
+            <li>cultural baseline remains imperfect</li>
+          </ul>
+        </div>
+
+        <div class="sidepath" data-status="dropped">
+          <h3>Sentiment / temporal instrument</h3>
+          <p>Not the question being answered here.</p>
+          <ul class="mini-list">
+            <li>RTD is importance, not feeling</li>
+            <li>no causality claim</li>
+            <li>no narrative time axis</li>
+          </ul>
+        </div>
+
+        <div class="sidepath" data-status="kept">
+          <h3>Alpha sweeps</h3>
+          <p>Kept as verification and browsing layer; poster foregrounds alpha = 0.</p>
+          <ul class="mini-list">
+            <li>alpha = 0 for contours</li>
+            <li>alpha = 1/3 as stability check</li>
+            <li>Pages links preserve the full HTMLs</li>
+          </ul>
+        </div>
+
+        <div class="bracket-note">
+          Composition move: the bottom is not a junk drawer. It is the visible audit trail. The bold path says
+          "what we chose"; the side branches say "why this was a choice."
+        </div>
+
+        <div class="sidepath" data-status="kept">
+          <h3>Two whys structure</h3>
+          <p>Keep these as separate poster cards so the method justification does not blur.</p>
+          <ul class="mini-list">
+            <li><strong>Why allotax:</strong> why this tool rather than sentiment, story arc, or a new Zipf comparison.</li>
+            <li><strong>Why to how:</strong> how comparative importance becomes evidence for a human story.</li>
+            <li><strong>Why rank:</strong> ranks encode what is important to each system before comparing systems.</li>
+            <li><strong>Weaknesses:</strong> no narrative time, no causality, imperfect baseline, mixed book genres.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </article>
+</body>
+</html>

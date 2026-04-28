@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poster Diamond Candidates, alpha = 0</title>
+  <style>
+    :root {
+      --bg: #faf8f2;
+      --ink: #16130f;
+      --muted: #70685d;
+      --line: #d8cab5;
+      --card: #faf8f2;
+      --accent: #9b3d2f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    main {
+      width: 36in;
+      min-height: 24in;
+      margin: 0 auto;
+      padding: 0.35in;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 0.25in;
+      margin-bottom: 0.25in;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.13in;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 0.42in;
+      line-height: 1;
+      letter-spacing: -0.025em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.16in;
+      line-height: 1.3;
+    }
+
+    h2 {
+      margin: 0 0 0.12in;
+      font-size: 0.24in;
+    }
+
+    .section {
+      margin-bottom: 0.28in;
+    }
+
+    .grid {
+      display: grid;
+      gap: 0.16in;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .panel {
+      overflow: hidden;
+      min-height: 5.4in;
+      border: 0;
+      border-radius: 0;
+      background: var(--card);
+      box-shadow: none;
+      position: relative;
+    }
+
+    .panel h3 {
+      position: absolute;
+      z-index: 2;
+      top: 0.08in;
+      left: 0.1in;
+      margin: 0;
+      padding: 0.04in 0.07in;
+      background: rgba(255, 253, 248, 0.88);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 0.16in;
+      line-height: 1;
+    }
+
+    iframe {
+      width: 15.2in;
+      height: 12.6in;
+      border: 0;
+      transform: scale(0.68);
+      transform-origin: 0 0;
+      pointer-events: none;
+      background: transparent;
+    }
+
+    .three iframe {
+      width: 15.6in;
+      height: 12.8in;
+      transform: scale(0.54);
+    }
+
+    .note {
+      margin-top: 0.1in;
+      color: var(--muted);
+      font-size: 0.14in;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    @media print {
+      @page {
+        size: 36in 24in landscape;
+        margin: 0;
+      }
+
+      body {
+        background: var(--bg);
+      }
+
+      main {
+        padding: 0.3in;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Poster diamond candidates, alpha = 0</h1>
+        <p>Use this page to choose the few diamonds that earn poster space. PDF export can wait.</p>
+      </div>
+      <p>3-gram views, full native allotax HTML embedded as scaled panels.</p>
+    </header>
+
+    <section class="section">
+      <h2>Wiki v Book diamond candidates</h2>
+      <div class="grid two">
+        <article class="panel">
+          <h3>WikiText 3g v Sapiens 3g</h3>
+          <iframe src="./3grams/wiki-v/v-book/wikitext-2-raw-v1-3grams-v-sapiens.alpha-0.html" title="WikiText 3grams versus Sapiens 3grams"></iframe>
+        </article>
+        <article class="panel">
+          <h3>WikiText 3g v Ultrasociety 3g</h3>
+          <iframe src="./3grams/wiki-v/v-book/wikitext-2-raw-v1-3grams-v-ultrasociety.alpha-0.html" title="WikiText 3grams versus Ultrasociety 3grams"></iframe>
+        </article>
+      </div>
+      <p class="note">These are the preferred wiki-v examples for the poster method lane.</p>
+    </section>
+
+    <section class="section">
+      <h2>Book v Book diamond candidates</h2>
+      <div class="grid three">
+        <article class="panel">
+          <h3>Sapiens v Dawn</h3>
+          <iframe src="./3grams/v-book/sapiens-v-dawn-of-everything.alpha-0.html" title="Sapiens versus Dawn of Everything 3grams"></iframe>
+        </article>
+        <article class="panel">
+          <h3>Dawn v Ultrasociety</h3>
+          <iframe src="./3grams/v-book/dawn-of-everything-v-ultrasociety.alpha-0.html" title="Dawn of Everything versus Ultrasociety 3grams"></iframe>
+        </article>
+        <article class="panel">
+          <h3>Code Economy v Sapiens</h3>
+          <iframe src="./3grams/v-book/code-economy-v-sapiens.alpha-0.html" title="Code Economy versus Sapiens 3grams"></iframe>
+        </article>
+        <article class="panel">
+          <h3>Better Angels v Ultrasociety</h3>
+          <iframe src="./3grams/v-book/better-angels-v-ultrasociety.alpha-0.html" title="Better Angels versus Ultrasociety 3grams"></iframe>
+        </article>
+        <article class="panel">
+          <h3>Case for God v Compassion</h3>
+          <iframe src="./3grams/v-book/case-for-god-v-how-compassion-made-us-human.alpha-0.html" title="Case for God versus How Compassion Made Us Human 3grams"></iframe>
+        </article>
+      </div>
+      <p class="note">If none of these read cleanly as the poster's book-v-book method example, generate the next candidate pair rather than exporting the poster.</p>
+    </section>
+  </main>
+</body>
+</html>
