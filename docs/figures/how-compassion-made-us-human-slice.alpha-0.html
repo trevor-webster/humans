@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Compassion Made Us Human Book-v-Book Slice, Alpha 0</title>
+  <style>
+:root {
+  --page-bg: #f8f4ec;
+  --ink: #2d2721;
+  --muted: #766f67;
+  --line: #d8cfc1;
+  --panel-bg: transparent;
+  --columns: 5;
+  --tile-w: 760px;
+  --tile-h: 980px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--page-bg); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; }
+body { width: 100%; overflow-x: auto; }
+header { position: sticky; top: 0; z-index: 5; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.55rem 0.75rem; background: rgba(248, 244, 236, 0.96); border-bottom: 1px solid var(--line); }
+h1 { margin: 0; font-size: 1.05rem; font-weight: 700; }
+.note { margin: 0.15rem 0 0; color: var(--muted); font-size: 0.82rem; }
+.actions { display: flex; gap: 0.35rem; white-space: nowrap; font-size: 0.82rem; }
+.actions button { border: 1px solid var(--line); background: rgba(255,255,255,0.55); color: var(--ink); padding: 0.25rem 0.5rem; font-family: inherit; cursor: pointer; }
+main { padding: 0.75rem; min-width: calc(var(--columns) * var(--tile-w)); }
+section { margin-bottom: 1.1rem; }
+h2 { margin: 0 0 0.5rem; font-size: 1rem; font-weight: 700; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(var(--columns), var(--tile-w)); gap: 0.7rem; align-items: start; }
+.panel { background: var(--panel-bg); overflow: hidden; }
+.panel-title { margin: 0 0 0.25rem; text-align: center; font-size: 0.86rem; color: var(--muted); }
+.frame-shell { width: var(--tile-w); height: var(--tile-h); overflow: hidden; background: transparent; }
+iframe { width: 1200px; height: 1500px; border: 0; background: transparent; transform: scale(0.633333); transform-origin: 0 0; display: block; overflow: hidden; }
+@media print {
+  @page { size: 36in 24in landscape; margin: 0.25in; }
+  header { position: static; }
+  .actions { display: none; }
+  main { padding: 0.25rem; }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>How Compassion Made Us Human Book-v-Book Slice</h1>
+      <p class="note">Book-v-book only. The focus book stays on the RHS in every panel. Rows show 2-gram and 3-gram dashboards at alpha = 0.</p>
+    </div>
+    <div class="actions">
+      <button type="button" onclick="document.documentElement.style.setProperty('--columns','5')">5 across</button>
+      <button type="button" onclick="document.documentElement.style.setProperty('--columns','3')">3 across</button>
+      <button type="button" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>2-gram, alpha = 0</h2>
+      <div class="grid">
+      <article class="panel">
+        <h3 class="panel-title">Code Economy v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./2grams/v-book/code-economy-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Sapiens v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./2grams/v-book/sapiens-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Ultrasociety v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./2grams/v-book/ultrasociety-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Dawn of Everything v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./2grams/v-book/dawn-of-everything-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Guns, Germs, and Steel v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./2grams/v-book/guns-germs-and-steel-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Hierarchy in the Forest v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./2grams/v-book/hierarchy-in-the-forest-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Better Angels v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./2grams/v-book/better-angels-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Catching Fire v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./2grams/v-book/catching-fire-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Case for God v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./2grams/v-book/case-for-god-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      </div>
+    </section>
+    <section>
+      <h2>3-gram, alpha = 0</h2>
+      <div class="grid">
+      <article class="panel">
+        <h3 class="panel-title">Code Economy v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./3grams/v-book/code-economy-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Sapiens v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./3grams/v-book/sapiens-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Ultrasociety v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./3grams/v-book/ultrasociety-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Dawn of Everything v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./3grams/v-book/dawn-of-everything-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Guns, Germs, and Steel v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./3grams/v-book/guns-germs-and-steel-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Hierarchy in the Forest v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./3grams/v-book/hierarchy-in-the-forest-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Better Angels v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./3grams/v-book/better-angels-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Catching Fire v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./3grams/v-book/catching-fire-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      <article class="panel">
+        <h3 class="panel-title">Case for God v How Compassion Made Us Human</h3>
+        <div class="frame-shell"><iframe src="./3grams/v-book/case-for-god-v-how-compassion-made-us-human.alpha-0.html" loading="lazy"></iframe></div>
+      </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
