@@ -11,10 +11,13 @@
       --muted: #6d665d;
       --line: rgba(23, 21, 18, 0.18);
       --rule: rgba(23, 21, 18, 0.42);
-      --card: rgba(255, 253, 248, 0.78);
+      --card: rgba(255, 253, 248, 0.82);
       --blue: rgba(203, 234, 242, 0.82);
       --gold: rgba(217, 167, 68, 0.34);
       --red: #9b3b2b;
+      --card-measure: 68ch;
+      --card-gap: 0.16in;
+      --page-pad: 0.24in;
     }
 
     * {
@@ -30,9 +33,9 @@
     }
 
     main {
-      width: 13.5in;
+      width: calc(var(--card-measure) + var(--card-measure) + var(--card-gap) + var(--page-pad) + var(--page-pad));
       margin: 0;
-      padding: 0.24in;
+      padding: var(--page-pad);
       background:
         linear-gradient(90deg, rgba(23, 21, 18, 0.035) 1px, transparent 1px) 0 0 / 0.5in 0.5in,
         linear-gradient(0deg, rgba(23, 21, 18, 0.035) 1px, transparent 1px) 0 0 / 0.5in 0.5in,
@@ -40,6 +43,8 @@
     }
 
     header {
+      width: var(--card-measure);
+      max-width: 100%;
       margin-bottom: 0.18in;
       padding-bottom: 0.12in;
       border-bottom: 2px solid var(--ink);
@@ -49,7 +54,7 @@
       margin: 0;
       font-size: 0.36in;
       line-height: 0.98;
-      letter-spacing: -0.025em;
+      letter-spacing: 0;
     }
 
     .subtitle {
@@ -61,15 +66,15 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.16in;
+      grid-template-columns: repeat(2, var(--card-measure));
+      gap: var(--card-gap);
       align-items: start;
     }
 
     .card {
-      grid-column: 1 / -1;
-      justify-self: start;
-      width: min(82ch, 52%);
+      width: var(--card-measure);
+      max-width: 100%;
+      min-width: 0;
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 0.06in;
@@ -77,34 +82,15 @@
       box-shadow: 0 0.06in 0.18in rgba(74, 55, 33, 0.055);
     }
 
-    .card.wide {
-      width: min(82ch, 52%);
-    }
-
     .card.full {
-      width: min(82ch, 52%);
-    }
-
-    .card.narrow {
-      width: min(58ch, 37%);
-    }
-
-    .card.left-half {
-      width: min(82ch, 52%);
+      grid-column: auto;
     }
 
     h2 {
       margin: 0 0 0.08in;
       font-size: 0.2in;
       line-height: 1.05;
-      letter-spacing: -0.015em;
-    }
-
-    h3 {
-      margin: 0.1in 0 0.045in;
-      font-size: 0.13in;
-      line-height: 1.1;
-      color: var(--ink);
+      letter-spacing: 0;
     }
 
     p {
@@ -129,6 +115,11 @@
     strong {
       color: var(--ink);
       font-weight: 700;
+    }
+
+    code {
+      font-family: "Aptos Mono", Consolas, monospace;
+      font-size: 0.092in;
     }
 
     .tag {
@@ -167,177 +158,168 @@
       padding-left: 0.1in;
     }
 
-    a {
-      color: inherit;
+    @media screen and (max-width: 12in) {
+      main {
+        width: calc(var(--card-measure) + var(--page-pad) + var(--page-pad));
+      }
+
+      .grid {
+        grid-template-columns: var(--card-measure);
+      }
     }
   </style>
 </head>
 <body>
   <main>
     <header>
-      <h1>Research Notes as Poster Cards</h1>
-      <p class="subtitle">Natural-background copy sheet. Wording stays close to <code>.docs/research.md</code>, with light polish for poster placement.</p>
+      <h1>Research cards</h1>
+      <p class="subtitle">Poster copy from <code>.docs/research.md</code>. Cards share
+      the measure of the popular-books sentence and use sentence-case headings.</p>
     </header>
 
     <section class="grid">
-      <article class="card wide">
+      <article class="card full">
         <span class="tag">Research question</span>
-        <h2>What is the story told among these human stories?</h2>
-        <p class="claim">Can we find a familiar or fundamental human story across modern books about humans and big history?</p>
+        <h2>Many stories on humans</h2>
+        <p class="claim">Is there a familiar or basic human plot? What are the
+        different stories getting told, basically?</p>
         <ul>
-          <li>To make sense of many stories: is there a kernel of truth to piece together?</li>
-          <li>There is not time to read or study all of them closely.</li>
-          <li>The books are modern stories in the sub-discipline of humans and big history, some of which may be incomplete or untrue.</li>
-          <li>The question is whether something stands out as making us human, or making the story human.</li>
+          <li>To make sense of all them, big picture.</li>
+          <li>Not the time to read them all.</li>
+          <li>The question asks what stands out as the human narrative.</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Comparison</span>
-        <h2>Common or different?</h2>
-        <p>From the outset, the motivation was comparison. The question may first look like commonality, but finding what is common necessitates comparison.</p>
+        <span class="tag">Path sketch</span>
+        <h2>How the project moves</h2>
         <ul>
-          <li>Is there some idea that emerges for all human stories relative to a cultural baseline?</li>
-          <li>This lends itself to a tool that discovers change between two stories.</li>
+          <li>Progress through the project.</li>
+          <li>Follow the decisions made, what is left out, and the path taken forward.</li>
+          <li>Move to method and how it answers the question.</li>
+          <li>Show how the experiment was run using the chosen tool.</li>
+          <li>Then move to book v book, broad cultural background v book, and results.</li>
         </ul>
       </article>
 
-      <article class="card left-half">
+      <article class="card">
         <span class="tag">Method</span>
-        <h2>Why allotax?</h2>
-        <p>From a big-picture view, allotax makes it immediate which words are comparatively important to each story.</p>
+        <h2>Common or different?</h2>
+        <p>To find what stands out as the human narrative, the method has to ask
+        how to answer the question.</p>
         <ul>
-          <li>It can be seen readily with allotax.</li>
-          <li>It quantifies what is important to each story, resting on mathematical foundations: RTD, Zipf, and rank.</li>
-          <li>The method tells us where to compute, how the comparison is derived, and can output tables or matrices.</li>
-          <li>There was no advantage here to inventing a new Zipf comparison method from scratch.</li>
+          <li>Different: where do they differ, even with the same components?</li>
+          <li>Common: do the same ideas emerge for the humans stories?</li>
+          <li>Either way, finding what is common or different asks for comparison.</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Not this</span>
-        <h2>Not sentiment, not timeline.</h2>
-        <p>We were not looking for an overall measurement of sentiment or temporal narrative time.</p>
+        <span class="tag">Data</span>
+        <h2>Popular books</h2>
+        <p>Books were selected for human history or anthropology, popular enough
+        to sit on anyone's bookshelf. Sapiens is the clear bestseller example.</p>
+        <p class="note">Weakness: this is not an extensive sample, but the
+        justification is the Zipf, rich-get-richer argument that much of the
+        cultural influence in the human story can be found in popular-ish books.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">Data</span>
+        <h2>Broad cultural baseline corpus</h2>
         <ul>
-          <li>Importance in size, not sentiment.</li>
-          <li>Types and ranks, not feelings.</li>
-          <li>No causality claim.</li>
+          <li>WikiText dataset of verified Good and Featured articles.</li>
+          <li>Probably passes a filter for popularity.</li>
+          <li>Why not Google Books: not a good measure of cultural popularity.</li>
+          <li>Google Books also biases toward scientific literature.</li>
         </ul>
       </article>
 
-      <article class="card wide">
-        <span class="tag">Quantifiable argument</span>
-        <h2>Measured comparison, not selected examples.</h2>
+      <article class="card full">
+        <span class="tag">Why allotax</span>
+        <h2>A tool for comparison</h2>
+        <p class="claim">Allotax is the tool or method that answers how to
+        compare.</p>
         <ul>
-          <li>Each word or phrase has a rank in each system.</li>
-          <li>Each word or phrase has an RTD contribution toward the difference between systems.</li>
-          <li>The diamond, contour lines, and word list are different views of the same measured comparison.</li>
-          <li>Tables and matrices let the argument be checked across books, not just by selected examples.</li>
+          <li>It gives a big-picture view of how different two systems are.</li>
+          <li>It brings out which components are important to each story, relative to another.</li>
+          <li>It quantifies the comparison: what is important to a system, traceable to what component was measured.</li>
+          <li>Measurements can be used at scale for further conclusions.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag">Why not</span>
+        <h2>Not sentiment</h2>
+        <p>We were not looking for an overall measurement of sentiment.</p>
+        <p class="note">The method is about importance in size, not sentiment.
+        It asks what becomes important to the measured comparison.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag">Weaknesses</span>
+        <h2>No narrative time</h2>
+        <ul>
+          <li>No narrative, no time element considered.</li>
+          <li>Narrative time, or how the author ordered discussion, was not the focus.</li>
+          <li>It may still be possible to get a picture of story without time.</li>
+          <li>Maybe it is like pulling a logline out of a plot.</li>
+          <li>A chronological time method had not been worked out.</li>
         </ul>
       </article>
 
       <article class="card">
         <span class="tag">Weaknesses</span>
-        <h2>Limitations.</h2>
+        <h2>No causality</h2>
         <ul>
-          <li>No narrative or temporal instrument.</li>
-          <li>No causality.</li>
-          <li>Wikipedia featured articles are a popular-cultural baseline, not culture itself.</li>
-          <li>Some books are anthropology more than big history.</li>
-        </ul>
-      </article>
-
-      <article class="card wide">
-        <span class="tag">Data</span>
-        <h2>Books plus WikiText baseline.</h2>
-        <ul>
-          <li>Use an existing mostly sanitized dataset for WikiText.</li>
-          <li>WikiText-2 is about 2M training tokens and roughly 600 articles; WikiText-103 is roughly 50x larger in training data.</li>
-          <li>Google Books has scale, but scale is not a cultural baseline by itself.</li>
-          <li>A usable baseline would need to distinguish popular-cultural language from scientific/reference components.</li>
-          <li>The featured-list filter keeps closer to cultural popularity, while obscure science/literature pages are partly filtered out.</li>
-          <li>Books were selected for human history or anthropology, cultural visibility, and chronology.</li>
-        </ul>
-      </article>
-
-      <article class="card narrow">
-        <span class="tag">Data note</span>
-        <h2>Why not Google Books?</h2>
-        <p class="note">Google Books is attractive because of scale, but it mixes popular books with scientific and reference language. Before it can serve as a cultural baseline, those components need to be separated. WikiText is imperfect, but more tractable for this pass.</p>
-      </article>
-
-      <article class="card wide">
-        <span class="tag">Why to how</span>
-        <h2>Why to how</h2>
-        <p>It may seem impossible to pull a story out without narrative time, but it could be like pulling the logline out of a plot.</p>
-        <ul>
-          <li>What stayed core to the stories?</li>
-          <li>What became turbulent?</li>
-          <li>Example: <span class="blue">we</span>, <span class="blue">our</span>, <span class="blue">humans</span> are consistent; what turbulence gathers around them?</li>
-          <li>The characters of the story may say more about what the story is than how the author ordered the plot.</li>
+          <li>The method does not make a causal claim.</li>
+          <li>It does not verify authors' claims directly using other disciplines.</li>
+          <li>It is a method for comparative language, not proof that the books are right.</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Contrast</span>
-        <h2>Stories define themselves by contrast.</h2>
-        <p>Philosophically, humans tend to define their stories by contrast.</p>
+        <span class="tag">How concretely</span>
+        <h2>3-gram and alpha</h2>
         <ul>
-          <li>A neutral ground may not display much.</li>
-          <li>Where stories decide to differ may reveal where the important story is.</li>
+          <li>Use 3-gram for descriptive power, from inspection.</li>
+          <li>Use <code>alpha = 0</code> philosophically.</li>
+          <li>It did not seem helpful to emphasize function words.</li>
+          <li>Visually, there was no best alpha.</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Why rank?</span>
-        <h2>Each system has an ordering.</h2>
-        <p>In systems, there is an ordering of what is most important: who are the rich getting richer?</p>
+        <span class="tag">Results</span>
+        <h2>Book v book slice</h2>
         <ul>
-          <li>Not just whether a word was frequent.</li>
-          <li>Instead: how high is that word relative to another system?</li>
-          <li>Compare against a cultural baseline or against another system of the same kind.</li>
-        </ul>
-      </article>
-
-      <article class="card wide">
-        <span class="tag">How</span>
-        <h2>How method answers</h2>
-        <ul>
-          <li>Back to the why we answered.</li>
-          <li>Visual spacing and contour lines guide the eye to words most important to one story with respect to another.</li>
-          <li>RTD contribution lists show what is important toward each system and how important it is.</li>
-          <li>The method answers with a measured claim: not "these words felt important," but "these words repeatedly contributed most to the measured difference between systems."</li>
-          <li>Repeated high-RTD words and phrases across comparisons become evidence for stable story-elements.</li>
-          <li><code>rank1 -&gt; rank2</code> plus RTD contribution makes both direction and size of difference visible.</li>
+          <li>Across the book-v-book slice, bring forward the most important from each story.</li>
+          <li>The big picture is mostly not identical.</li>
+          <li>Down the column, we see LHS RTD to RHS.</li>
+          <li>Across the row, we see RHS RTD.</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Book v Book</span>
-        <h2>What makes a book distinct?</h2>
+        <span class="tag">Results</span>
+        <h2>WikiText v book slice</h2>
         <ul>
-          <li>Across a book-v-book slice, bring forward the most important language from each story.</li>
-          <li>The difference shows what makes a human story other than simply saying "human."</li>
-          <li>See where the books decide to differ.</li>
-          <li>Repeated resurfacing matters.</li>
-          <li>Down the column: LHS RTD to RHS. Across the row: RHS RTD.</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <span class="tag">Wiki v Book</span>
-        <h2>What repeats against background?</h2>
-        <ul>
-          <li>Compare each story against the same cultural background.</li>
-          <li>If the stories have commonality, it should show here.</li>
-          <li>What repeats as important across human stories?</li>
+          <li>Use the same cultural background versus books.</li>
+          <li>If the stories have commonality, it should show.</li>
+          <li>Ask what repeats as important across humans stories.</li>
         </ul>
       </article>
 
       <article class="card full">
-        <span class="tag">Poster claim draft</span>
-        <h2>From many human stories to measurable contrast.</h2>
-        <p class="claim">The poster does not claim to recover one timeless human story. It asks which words and phrases repeatedly become important when modern human-history books are compared against WikiText and against each other. The evidence is the repeated rank-turbulent vocabulary: the measured language each story uses to make "human" distinctive.</p>
+        <span class="tag">Long term</span>
+        <h2>What is left open</h2>
+        <ul>
+          <li>Capture storyline over time.</li>
+          <li>Ask how supported the stories are by citations.</li>
+          <li>Find some mechanical way to calculate proximity and arrive at commonalities.</li>
+          <li>Ask whether there is SVD.</li>
+          <li>Suggestions?</li>
+        </ul>
       </article>
     </section>
   </main>
