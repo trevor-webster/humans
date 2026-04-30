@@ -135,6 +135,12 @@
       font-weight: 700;
     }
 
+    .tex {
+      color: var(--ink);
+      font-style: italic;
+      white-space: nowrap;
+    }
+
     .tag {
       display: inline-block;
       margin-bottom: 0.07in;
@@ -196,7 +202,7 @@
         <span class="tag">Research question</span>
         <h2>Path sketch</h2>
         <ul>
-          <li>Progress through the project, follow the decisions made, what's left out, path taken forward.</li>
+          <li>Progress through the project, follow the decisions made, alt paths not taken, path taken forward.</li>
           <li>To method and how it answers question.</li>
           <li>How concretely the experiment was run using the chosen tool.
             <ul>
@@ -241,10 +247,15 @@
         <h2>Popular books</h2>
         <ul>
           <li>Selected 10 for human history or anthropology, popular enough to sit on anyone's bookshelf (Sapiens a bestseller).
-            <ul>
-              <li>Weakness: not extensive sample but justification by Zipf, rich-get-richer argument that most of influence to culture, human story, found in a sample of popular-ish books.</li>
-            </ul>
           </li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag">Method</span>
+        <h2>Weakness</h2>
+        <ul>
+          <li>Not extensive sample but justification by Zipf, rich-get-richer argument that most of influence to culture, human story, found in a sample of popular-ish books.</li>
         </ul>
       </article>
 
@@ -254,7 +265,14 @@
         <ul>
           <li>WikiText dataset of verified Good and Featured articles.</li>
           <li>Probably passes a filter for popularity.</li>
-          <li>Why not Google Books: not good measure of cultural popularity and biases scientific lit.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag">Method</span>
+        <h2>Why not Google Books</h2>
+        <ul>
+          <li>Not good measure of cultural popularity and biases scientific lit.</li>
         </ul>
       </article>
 
@@ -312,8 +330,7 @@
         <h2>How, concretely</h2>
         <ul>
           <li>3-gram for descriptive power, from inspection.</li>
-          <li>Alpha=0 philosophically didn't see it helpful to emphasize function words.</li>
-          <li>Visually, no best alpha.</li>
+          <li><span class="tex">\( \alpha = 0 \)</span> philosophically didn't see it helpful to emphasize function words.</li>
         </ul>
       </article>
 
