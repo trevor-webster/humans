@@ -15,7 +15,7 @@
       --blue: rgba(203, 234, 242, 0.82);
       --gold: rgba(217, 167, 68, 0.34);
       --red: #9b3b2b;
-      --card-measure: 68ch;
+      --card-measure: 60ch;
       --card-gap: 0.16in;
       --page-pad: 0.24in;
     }
@@ -173,59 +173,78 @@
   <main>
     <header>
       <h1>Research cards</h1>
-      <p class="subtitle">Poster copy from <code>.docs/research.md</code>. Cards share
-      the measure of the popular-books sentence and use sentence-case headings.</p>
+      <p class="subtitle">Poster copy from <code>.docs/research.md</code>. Cards stay close
+      to the note wording and use sentence-case headings.</p>
     </header>
 
     <section class="grid">
-      <article class="card full">
+      <article class="card">
         <span class="tag">Research question</span>
-        <h2>Many stories on humans</h2>
-        <p class="claim">Is there a familiar or basic human plot? What are the
-        different stories getting told, basically?</p>
         <ul>
-          <li>To make sense of all them, big picture.</li>
-          <li>Not the time to read them all.</li>
-          <li>The question asks what stands out as the human narrative.</li>
+          <li>Many stories on humans.</li>
+          <li>Is there a familiar or basic human plot?</li>
+          <li>What are the different stories getting told, basically?</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Path sketch</span>
-        <h2>How the project moves</h2>
+        <span class="tag">Research question</span>
+        <h2>Why</h2>
         <ul>
-          <li>Progress through the project.</li>
-          <li>Follow the decisions made, what is left out, and the path taken forward.</li>
-          <li>Move to method and how it answers the question.</li>
-          <li>Show how the experiment was run using the chosen tool.</li>
-          <li>Then move to book v book, broad cultural background v book, and results.</li>
+          <li>To make sense of all them, big picture.</li>
+          <li>Not the time to read them all.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag">Research question</span>
+        <h2>Path sketch</h2>
+        <ul>
+          <li>Progress through the project, follow the decisions made.</li>
+          <li>What is left out, path taken forward.</li>
+          <li>To method and how it answers question.</li>
+          <li>How concretely the experiment was run using the chosen tool.</li>
+          <li>Book v book.</li>
+          <li>Broad cultural background v book.</li>
+          <li>Results.</li>
         </ul>
       </article>
 
       <article class="card">
         <span class="tag">Method</span>
         <h2>Common or different?</h2>
-        <p>To find what stands out as the human narrative, the method has to ask
-        how to answer the question.</p>
         <ul>
-          <li>Different: where do they differ, even with the same components?</li>
+          <li>How do we answer the question?</li>
+          <li>To find what stands out as the human narrative.</li>
+          <li>Different: where do they differ, e.g. same components?</li>
           <li>Common: do the same ideas emerge for the humans stories?</li>
           <li>Either way, finding what is common or different asks for comparison.</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Data</span>
-        <h2>Popular books</h2>
-        <p>Books were selected for human history or anthropology, popular enough
-        to sit on anyone's bookshelf. Sapiens is the clear bestseller example.</p>
-        <p class="note">Weakness: this is not an extensive sample, but the
-        justification is the Zipf, rich-get-richer argument that much of the
-        cultural influence in the human story can be found in popular-ish books.</p>
+        <span class="tag">Method</span>
+        <h2>Data</h2>
+        <ul>
+          <li>Concretely, what to compare, datasets.</li>
+        </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Data</span>
+        <span class="tag">Method</span>
+        <h2>Popular books</h2>
+        <ul>
+          <li>Selected for human history or anthropology.</li>
+          <li>Popular enough to sit on anyone's bookshelf.</li>
+          <li>Sapiens a bestseller.</li>
+          <li>Weakness: not extensive sample.</li>
+          <li>Justification by Zipf, rich-get-richer argument.</li>
+          <li>Most influence to culture, human story, found in popular-ish books.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag">Method</span>
         <h2>Broad cultural baseline corpus</h2>
         <ul>
           <li>WikiText dataset of verified Good and Featured articles.</li>
@@ -235,55 +254,56 @@
         </ul>
       </article>
 
-      <article class="card full">
-        <span class="tag">Why allotax</span>
-        <h2>A tool for comparison</h2>
-        <p class="claim">Allotax is the tool or method that answers how to
-        compare.</p>
+      <article class="card">
+        <span class="tag">Method</span>
+        <h2>Why allotax</h2>
         <ul>
-          <li>It gives a big-picture view of how different two systems are.</li>
-          <li>It brings out which components are important to each story, relative to another.</li>
-          <li>It quantifies the comparison: what is important to a system, traceable to what component was measured.</li>
+          <li>Tool or method that answers how to compare.</li>
+          <li>Bring up figure.</li>
+          <li>Big-picture view of how different two systems are.</li>
+          <li>Brings out which components are important to each story, relative to another.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag">Method</span>
+        <h2>How it answers</h2>
+        <ul>
+          <li>Visually.</li>
+          <li>Quantifies the comparison.</li>
+          <li>What is important to system, traceable to what component was measured.</li>
           <li>Measurements can be used at scale for further conclusions.</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Why not</span>
-        <h2>Not sentiment</h2>
-        <p>We were not looking for an overall measurement of sentiment.</p>
-        <p class="note">The method is about importance in size, not sentiment.
-        It asks what becomes important to the measured comparison.</p>
+        <span class="tag">Method</span>
+        <h2>Why not</h2>
+        <ul>
+          <li>Not looking for an overall measurement of sentiment.</li>
+          <li>Importance in size, not sentiment.</li>
+        </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Weaknesses</span>
-        <h2>No narrative time</h2>
+        <span class="tag">Method</span>
+        <h2>Weaknesses</h2>
         <ul>
           <li>No narrative, no time element considered.</li>
-          <li>Narrative time, or how the author ordered discussion, was not the focus.</li>
-          <li>It may still be possible to get a picture of story without time.</li>
-          <li>Maybe it is like pulling a logline out of a plot.</li>
-          <li>A chronological time method had not been worked out.</li>
+          <li>Narrative time, how the author ordered discussion, was not the focus.</li>
+          <li>Can get a picture of story without time; maybe like a logline out of a plot.</li>
+          <li>Hadn't worked out a chronological time method.</li>
+          <li>No causality.</li>
+          <li>Doesn't verify authors' claims directly using other disciplines.</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="tag">Weaknesses</span>
-        <h2>No causality</h2>
+        <span class="tag">Method</span>
+        <h2>How, concretely</h2>
         <ul>
-          <li>The method does not make a causal claim.</li>
-          <li>It does not verify authors' claims directly using other disciplines.</li>
-          <li>It is a method for comparative language, not proof that the books are right.</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <span class="tag">How concretely</span>
-        <h2>3-gram and alpha</h2>
-        <ul>
-          <li>Use 3-gram for descriptive power, from inspection.</li>
-          <li>Use <code>alpha = 0</code> philosophically.</li>
+          <li>3-gram for descriptive power, from inspection.</li>
+          <li><code>alpha = 0</code> philosophically.</li>
           <li>It did not seem helpful to emphasize function words.</li>
           <li>Visually, there was no best alpha.</li>
         </ul>
@@ -302,22 +322,21 @@
 
       <article class="card">
         <span class="tag">Results</span>
-        <h2>WikiText v book slice</h2>
+        <h2>Wikitext v slice</h2>
         <ul>
-          <li>Use the same cultural background versus books.</li>
+          <li>The same cultural background vs books.</li>
           <li>If the stories have commonality, it should show.</li>
-          <li>Ask what repeats as important across humans stories.</li>
+          <li>What repeats as important across humans stories.</li>
         </ul>
       </article>
 
-      <article class="card full">
+      <article class="card">
         <span class="tag">Long term</span>
-        <h2>What is left open</h2>
         <ul>
-          <li>Capture storyline over time.</li>
-          <li>Ask how supported the stories are by citations.</li>
-          <li>Find some mechanical way to calculate proximity and arrive at commonalities.</li>
-          <li>Ask whether there is SVD.</li>
+          <li>Capturing storyline over time.</li>
+          <li>Stories not verified: how supported are stories by citations?</li>
+          <li>Find a way to mechanically calculate proximity to arrive at commonalities.</li>
+          <li>Is there SVD?</li>
           <li>Suggestions?</li>
         </ul>
       </article>
