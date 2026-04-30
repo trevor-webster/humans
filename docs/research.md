@@ -46,12 +46,11 @@
 
 ## why allotax
   - tool or method that answers How to compare
-  - (bring up figure)
   - big picture view of how different two systems are, it brings out which components are important to each story, relative to another
 
 ### how it answers
   - visually and 
-  - quatnifies the the comparison,  what's important to system, traceable to what component was measured; 
+  - quatnifies the  comparison,  what's important to system, traceable to what component was measured; 
   - measurements can be used at scale for further conclusions
 
 
