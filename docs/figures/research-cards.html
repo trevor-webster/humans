@@ -14,7 +14,7 @@
       --card: rgba(255, 253, 248, 0.82);
       --gold: rgba(217, 167, 68, 0.34);
       --red: #9b3b2b;
-      --card-measure: 70ch;
+      --card-measure: 58ch;
       --card-gap: 0.16in;
       --page-pad: 0.24in;
     }
@@ -83,40 +83,50 @@
 
     h2 {
       margin: 0 0 0.075in;
-      font-size: 0.185in;
+      font-size: 0.255in;
       line-height: 1.08;
       letter-spacing: 0;
     }
 
     .lead-title {
       margin: 0 0 0.11in;
-      font-size: 0.31in;
+      font-size: 0.36in;
       line-height: 1.02;
     }
 
     p {
       margin: 0 0 0.07in;
       color: var(--muted);
-      font-size: 0.118in;
+      font-size: 0.16in;
       line-height: 1.32;
     }
 
     ul {
       margin: 0;
-      padding-left: 0.17in;
+      padding-left: 0;
       color: var(--muted);
-      font-size: 0.112in;
+      font-size: 0.145in;
       line-height: 1.32;
+      list-style: none;
     }
 
     li {
       margin-bottom: 0.035in;
+      position: relative;
+      padding-left: 0.17in;
+    }
+
+    li::before {
+      content: "-";
+      position: absolute;
+      left: 0;
+      color: var(--muted);
     }
 
     li ul {
       margin-top: 0.025in;
       padding-left: 0.18in;
-      font-size: 0.104in;
+      font-size: 0.132in;
       line-height: 1.28;
     }
 
@@ -144,7 +154,7 @@
       border-left: 0.06in solid var(--red);
       background: rgba(255, 248, 241, 0.74);
       color: var(--ink);
-      font-size: 0.15in;
+      font-size: 0.18in;
       line-height: 1.28;
     }
 
@@ -176,8 +186,7 @@
       <article class="card">
         <span class="tag">Research question</span>
         <h2 class="lead-title">Many stories on humans</h2>
-        <p class="claim">Is there a familiar or basic human plot? What are the
-        different stories getting told, basically?</p>
+        <p class="claim">Is there a familiar or basic human plot?<br>What are the different stories, getting told, basically?</p>
         <ul>
           <li><strong>Why:</strong> to make sense of all them, big picture, not the time to read them all.</li>
         </ul>
@@ -231,12 +240,11 @@
         <span class="tag">Method</span>
         <h2>Popular books</h2>
         <ul>
-          <li>Selected 10 for human history or anthropology, popular enough to sit on anyone's bookshelf.
+          <li>Selected 10 for human history or anthropology, popular enough to sit on anyone's bookshelf (Sapiens a bestseller).
             <ul>
-              <li>Sapiens a bestseller.</li>
+              <li>Weakness: not extensive sample but justification by Zipf, rich-get-richer argument that most of influence to culture, human story, found in a sample of popular-ish books.</li>
             </ul>
           </li>
-          <li>Weakness: not extensive sample but justification by Zipf, rich-get-richer argument that most of influence to culture, human story, found in a sample of popular-ish books.</li>
         </ul>
       </article>
 
