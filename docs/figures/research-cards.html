@@ -7,15 +7,14 @@
   <style>
     :root {
       --paper: #faf8f2;
-      --ink: #171512;
-      --muted: #6d665d;
-      --line: rgba(23, 21, 18, 0.18);
-      --rule: rgba(23, 21, 18, 0.42);
+      --ink: #15130f;
+      --muted: #635f58;
+      --line: rgba(21, 19, 15, 0.18);
+      --rule: rgba(21, 19, 15, 0.42);
       --card: rgba(255, 253, 248, 0.82);
-      --blue: rgba(203, 234, 242, 0.82);
       --gold: rgba(217, 167, 68, 0.34);
       --red: #9b3b2b;
-      --card-measure: 60ch;
+      --card-measure: 70ch;
       --card-gap: 0.16in;
       --page-pad: 0.24in;
     }
@@ -28,7 +27,7 @@
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      font-family: Georgia, "Times New Roman", serif;
       display: inline-block;
     }
 
@@ -37,8 +36,8 @@
       margin: 0;
       padding: var(--page-pad);
       background:
-        linear-gradient(90deg, rgba(23, 21, 18, 0.035) 1px, transparent 1px) 0 0 / 0.5in 0.5in,
-        linear-gradient(0deg, rgba(23, 21, 18, 0.035) 1px, transparent 1px) 0 0 / 0.5in 0.5in,
+        linear-gradient(90deg, rgba(21, 19, 15, 0.035) 1px, transparent 1px) 0 0 / 0.5in 0.5in,
+        linear-gradient(0deg, rgba(21, 19, 15, 0.035) 1px, transparent 1px) 0 0 / 0.5in 0.5in,
         var(--paper);
     }
 
@@ -52,8 +51,8 @@
 
     h1 {
       margin: 0;
-      font-size: 0.36in;
-      line-height: 0.98;
+      font-size: 0.34in;
+      line-height: 1;
       letter-spacing: 0;
     }
 
@@ -61,7 +60,7 @@
       margin: 0.07in 0 0;
       color: var(--muted);
       font-size: 0.12in;
-      line-height: 1.28;
+      line-height: 1.3;
     }
 
     .grid {
@@ -82,44 +81,48 @@
       box-shadow: 0 0.06in 0.18in rgba(74, 55, 33, 0.055);
     }
 
-    .card.full {
-      grid-column: auto;
+    h2 {
+      margin: 0 0 0.075in;
+      font-size: 0.185in;
+      line-height: 1.08;
+      letter-spacing: 0;
     }
 
-    h2 {
-      margin: 0 0 0.08in;
-      font-size: 0.2in;
-      line-height: 1.05;
-      letter-spacing: 0;
+    .lead-title {
+      margin: 0 0 0.11in;
+      font-size: 0.31in;
+      line-height: 1.02;
     }
 
     p {
       margin: 0 0 0.07in;
-      font-size: 0.108in;
-      line-height: 1.26;
       color: var(--muted);
+      font-size: 0.118in;
+      line-height: 1.32;
     }
 
     ul {
       margin: 0;
       padding-left: 0.17in;
       color: var(--muted);
-      font-size: 0.103in;
-      line-height: 1.24;
+      font-size: 0.112in;
+      line-height: 1.32;
     }
 
     li {
       margin-bottom: 0.035in;
     }
 
+    li ul {
+      margin-top: 0.025in;
+      padding-left: 0.18in;
+      font-size: 0.104in;
+      line-height: 1.28;
+    }
+
     strong {
       color: var(--ink);
       font-weight: 700;
-    }
-
-    code {
-      font-family: "Aptos Mono", Consolas, monospace;
-      font-size: 0.092in;
     }
 
     .tag {
@@ -141,16 +144,8 @@
       border-left: 0.06in solid var(--red);
       background: rgba(255, 248, 241, 0.74);
       color: var(--ink);
-      font-size: 0.122in;
-      line-height: 1.24;
-    }
-
-    .blue {
-      background: var(--blue);
-      padding: 0 0.035in 0.006in;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-      color: #2f4f59;
+      font-size: 0.15in;
+      line-height: 1.28;
     }
 
     .note {
@@ -158,7 +153,7 @@
       padding-left: 0.1in;
     }
 
-    @media screen and (max-width: 12in) {
+    @media screen and (max-width: 14in) {
       main {
         width: calc(var(--card-measure) + var(--page-pad) + var(--page-pad));
       }
@@ -173,26 +168,18 @@
   <main>
     <header>
       <h1>Research cards</h1>
-      <p class="subtitle">Poster copy from <code>.docs/research.md</code>. Cards stay close
-      to the note wording and use sentence-case headings.</p>
+      <p class="subtitle">Poster copy from <code>.docs/research.md</code>. Nested bullets
+      preserve the note structure; headings use the note's section headings.</p>
     </header>
 
     <section class="grid">
       <article class="card">
         <span class="tag">Research question</span>
+        <h2 class="lead-title">Many stories on humans</h2>
+        <p class="claim">Is there a familiar or basic human plot? What are the
+        different stories getting told, basically?</p>
         <ul>
-          <li>Many stories on humans.</li>
-          <li>Is there a familiar or basic human plot?</li>
-          <li>What are the different stories getting told, basically?</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <span class="tag">Research question</span>
-        <h2>Why</h2>
-        <ul>
-          <li>To make sense of all them, big picture.</li>
-          <li>Not the time to read them all.</li>
+          <li><strong>Why:</strong> to make sense of all them, big picture, not the time to read them all.</li>
         </ul>
       </article>
 
@@ -200,12 +187,14 @@
         <span class="tag">Research question</span>
         <h2>Path sketch</h2>
         <ul>
-          <li>Progress through the project, follow the decisions made.</li>
-          <li>What is left out, path taken forward.</li>
+          <li>Progress through the project, follow the decisions made, what's left out, path taken forward.</li>
           <li>To method and how it answers question.</li>
-          <li>How concretely the experiment was run using the chosen tool.</li>
-          <li>Book v book.</li>
-          <li>Broad cultural background v book.</li>
+          <li>How concretely the experiment was run using the chosen tool.
+            <ul>
+              <li>Book v book.</li>
+              <li>Broad cultural background v book.</li>
+            </ul>
+          </li>
           <li>Results.</li>
         </ul>
       </article>
@@ -216,9 +205,17 @@
         <ul>
           <li>How do we answer the question?</li>
           <li>To find what stands out as the human narrative.</li>
-          <li>Different: where do they differ, e.g. same components?</li>
-          <li>Common: do the same ideas emerge for the humans stories?</li>
-          <li>Either way, finding what is common or different asks for comparison.</li>
+          <li>Common.
+            <ul>
+              <li>Do same ideas emerge for the humans stories?</li>
+            </ul>
+          </li>
+          <li>Different.
+            <ul>
+              <li>Where do they differ, e.g. same components?</li>
+            </ul>
+          </li>
+          <li>Either way, finding what's common or different asks for comparison.</li>
         </ul>
       </article>
 
@@ -234,12 +231,12 @@
         <span class="tag">Method</span>
         <h2>Popular books</h2>
         <ul>
-          <li>Selected for human history or anthropology.</li>
-          <li>Popular enough to sit on anyone's bookshelf.</li>
-          <li>Sapiens a bestseller.</li>
-          <li>Weakness: not extensive sample.</li>
-          <li>Justification by Zipf, rich-get-richer argument.</li>
-          <li>Most influence to culture, human story, found in popular-ish books.</li>
+          <li>Selected 10 for human history or anthropology, popular enough to sit on anyone's bookshelf.
+            <ul>
+              <li>Sapiens a bestseller.</li>
+            </ul>
+          </li>
+          <li>Weakness: not extensive sample but justification by Zipf, rich-get-richer argument that most of influence to culture, human story, found in a sample of popular-ish books.</li>
         </ul>
       </article>
 
@@ -249,8 +246,7 @@
         <ul>
           <li>WikiText dataset of verified Good and Featured articles.</li>
           <li>Probably passes a filter for popularity.</li>
-          <li>Why not Google Books: not a good measure of cultural popularity.</li>
-          <li>Google Books also biases toward scientific literature.</li>
+          <li>Why not Google Books: not good measure of cultural popularity and biases scientific lit.</li>
         </ul>
       </article>
 
@@ -258,10 +254,9 @@
         <span class="tag">Method</span>
         <h2>Why allotax</h2>
         <ul>
-          <li>Tool or method that answers how to compare.</li>
+          <li>Tool or method that answers How to compare.</li>
           <li>Bring up figure.</li>
-          <li>Big-picture view of how different two systems are.</li>
-          <li>Brings out which components are important to each story, relative to another.</li>
+          <li>Big picture view of how different two systems are, it brings out which components are important to each story, relative to another.</li>
         </ul>
       </article>
 
@@ -269,9 +264,8 @@
         <span class="tag">Method</span>
         <h2>How it answers</h2>
         <ul>
-          <li>Visually.</li>
-          <li>Quantifies the comparison.</li>
-          <li>What is important to system, traceable to what component was measured.</li>
+          <li>Visually and.</li>
+          <li>Quantifies the comparison, what's important to system, traceable to what component was measured.</li>
           <li>Measurements can be used at scale for further conclusions.</li>
         </ul>
       </article>
@@ -280,8 +274,11 @@
         <span class="tag">Method</span>
         <h2>Why not</h2>
         <ul>
-          <li>Not looking for an overall measurement of sentiment.</li>
-          <li>Importance in size, not sentiment.</li>
+          <li>Not looking for an overall measurement of sentiment.
+            <ul>
+              <li>Importance in size not sentiment.</li>
+            </ul>
+          </li>
         </ul>
       </article>
 
@@ -289,10 +286,14 @@
         <span class="tag">Method</span>
         <h2>Weaknesses</h2>
         <ul>
-          <li>No narrative, no time element considered.</li>
-          <li>Narrative time, how the author ordered discussion, was not the focus.</li>
-          <li>Can get a picture of story without time; maybe like a logline out of a plot.</li>
-          <li>Hadn't worked out a chronological time method.</li>
+          <li>No narrative, no time element considered.
+            <ul>
+              <li>Justification:</li>
+              <li>Narrative time, how the author ordered discussion, wasn't the focus.</li>
+              <li>Can get a picture of story without time; maybe like a logline out of a plot.</li>
+              <li>Hadn't worked out a <strong>chronological</strong> time method.</li>
+            </ul>
+          </li>
           <li>No causality.</li>
           <li>Doesn't verify authors' claims directly using other disciplines.</li>
         </ul>
@@ -303,9 +304,8 @@
         <h2>How, concretely</h2>
         <ul>
           <li>3-gram for descriptive power, from inspection.</li>
-          <li><code>alpha = 0</code> philosophically.</li>
-          <li>It did not seem helpful to emphasize function words.</li>
-          <li>Visually, there was no best alpha.</li>
+          <li>Alpha=0 philosophically didn't see it helpful to emphasize function words.</li>
+          <li>Visually, no best alpha.</li>
         </ul>
       </article>
 
@@ -313,10 +313,10 @@
         <span class="tag">Results</span>
         <h2>Book v book slice</h2>
         <ul>
-          <li>Across the book-v-book slice, bring forward the most important from each story.</li>
-          <li>The big picture is mostly not identical.</li>
-          <li>Down the column, we see LHS RTD to RHS.</li>
-          <li>Across the row, we see RHS RTD.</li>
+          <li>Across v book slice we bring forward the most important from each story.</li>
+          <li>Big picture mostly not identical.</li>
+          <li>Down the col we see LHS RTD to RHS.</li>
+          <li>Across row is RHS RTD.</li>
         </ul>
       </article>
 
@@ -325,7 +325,7 @@
         <h2>Wikitext v slice</h2>
         <ul>
           <li>The same cultural background vs books.</li>
-          <li>If the stories have commonality, it should show.</li>
+          <li>If the stories have commonality it should show.</li>
           <li>What repeats as important across humans stories.</li>
         </ul>
       </article>
@@ -334,8 +334,8 @@
         <span class="tag">Long term</span>
         <ul>
           <li>Capturing storyline over time.</li>
-          <li>Stories not verified: how supported are stories by citations?</li>
-          <li>Find a way to mechanically calculate proximity to arrive at commonalities.</li>
+          <li>Stories not verified - how supported are stories by citations.</li>
+          <li>Find some way to mechanically calculate the proximity to try to arrive at the commonalities.</li>
           <li>Is there SVD?</li>
           <li>Suggestions?</li>
         </ul>
