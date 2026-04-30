@@ -5,117 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Figures</title>
   <style>
-    :root {
-      --bg: #f7f4ec;
-      --ink: #191919;
-      --muted: #5a574f;
-      --line: #ddd3c2;
-      --accent: #7b2f1a;
-      --card: #fffdf9;
-    }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-    }
-    main {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 36px 24px 60px;
-    }
-    h1, h2 {
-      margin: 0 0 12px;
-    }
-    p {
-      line-height: 1.6;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .card {
-      border: 1px solid var(--line);
-      background: var(--card);
-      padding: 18px 20px;
-      text-decoration: none;
-      color: inherit;
-    }
-    .card:hover {
-      border-color: var(--accent);
-    }
-    .meta {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    :root { --bg: #f7f4ec; --ink: #191919; --muted: #5a574f; --line: #ddd3c2; --accent: #7b2f1a; --card: #fffdf9; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
+    main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 64px; }
+    h1, h2 { margin: 0 0 10px; line-height: 1.12; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+    .lead { margin-top: 10px; max-width: 780px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin-top: 28px; }
+    .card { display: block; border: 1px solid var(--line); background: var(--card); padding: 16px 18px; color: inherit; text-decoration: none; }
+    .card:hover { border-color: var(--accent); }
+    .eyebrow { color: var(--accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
   </style>
 </head>
 <body>
   <main>
     <h1>Figures</h1>
-    <p>
-      Hosted HTML outputs for the humans allotax comparisons. Use the family
-      pages below to browse alpha sweeps grouped by comparison set.
-    </p>
-    <div class="grid">
-      <a class="card" href="./dawn-of-everything-slice.alpha-0.html">
-        <h2>Dawn Of Everything Slice</h2>
-        <p class="meta">
-          Curated slice page with Dawn of Everything fixed on the right-hand side
-          at alpha = 0.
-        </p>
+    <p class="lead">Hosted HTML outputs for the humans allotax comparisons.</p>
+    <section class="grid">
+      <a class="card" href="./slices.index.html">
+        <div class="eyebrow">Slices</div>
+        <h2>Book Slice Pages</h2>
+        <p>Book-centered 2g and 3g book-v-book slice pages.</p>
       </a>
-      <a class="card" href="./wiki-background-slice.alpha-1-3.html">
-        <h2>Wiki Background Slice</h2>
-        <p class="meta">
-          Combined 1-gram and 2-gram wiki-versus-book slice at alpha = 1/3.
-        </p>
+      <a class="card" href="./3grams/v-book/">
+        <div class="eyebrow">3g Book v Book</div>
+        <h2>3g Book-v-Book Alpha 0</h2>
+        <p>Directed 3-gram book-v-book dashboards at alpha = 0.</p>
       </a>
-      <a class="card" href="./poster-assignment16.html">
-        <h2>Poster Draft</h2>
-        <p class="meta">
-          36 x 24 inch poster underlay with method lanes, slice previews, and
-          compact table excerpts for GoodNotes annotation.
-        </p>
-      </a>
-      <a class="card" href="./poster-decisions-scaffold.html">
-        <h2>Poster Decisions Scaffold</h2>
-        <p class="meta">
-          Decision-river mockup showing the bold path taken, side paths tried,
-          and places to drop result cutouts.
-        </p>
-      </a>
-      <a class="card" href="./research-cards.html">
-        <h2>Research Cards</h2>
-        <p class="meta">
-          Natural-background card sheet adapted from research.md for copying
-          question, data, method, and limitation text into the poster.
-        </p>
-      </a>
-      <a class="card" href="./poster-diamond-candidates.alpha-0.html">
-        <h2>Poster Diamond Candidates</h2>
-        <p class="meta">
-          Alpha = 0 3-gram candidates for the wiki-v and book-v-book method
-          diamonds before PDF export.
-        </p>
+      <a class="card" href="./3grams/wiki-v/v-book/">
+        <div class="eyebrow">3g Wiki v Book</div>
+        <h2>3g Wiki-v-Book Alpha 0</h2>
+        <p>WikiText reference against individual books at alpha = 0.</p>
       </a>
       <a class="card" href="./poster-cut-sheet.html">
+        <div class="eyebrow">Poster</div>
         <h2>Poster Cut Sheet</h2>
-        <p class="meta">
-          Clean-background HTML cutouts for candidate diamonds and tight tables.
-        </p>
+        <p>Clean-background HTML cutouts for candidate diamonds and tables.</p>
       </a>
-      <a class="card" href="./1grams/">
-        <h2>1-grams</h2>
-        <p class="meta">Alpha sweep pages for 1-gram comparisons and book pairs.</p>
+      <a class="card" href="./research-cards.html">
+        <div class="eyebrow">Poster</div>
+        <h2>Research Cards</h2>
+        <p>Research note cards for the poster workflow.</p>
       </a>
-      <a class="card" href="./2grams/">
-        <h2>2-grams</h2>
-        <p class="meta">Alpha sweep pages for 2-gram comparisons and book pairs.</p>
-      </a>
-    </div>
+    </section>
   </main>
 </body>
 </html>
