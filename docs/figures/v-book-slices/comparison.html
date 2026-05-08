@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V-Book Comparison</title>
+  <style>
+    :root { --bg: #f7f4ec; --ink: #191919; --muted: #5a574f; --line: #ddd3c2; --accent: #7b2f1a; --card: #fffdf9; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
+    main { max-width: 1700px; margin: 0 auto; padding: 32px 20px 56px; }
+    h1 { margin: 0 0 10px; line-height: 1.12; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+    .back { margin-bottom: 16px; }
+    .lead { margin-top: 10px; max-width: 980px; }
+    .matrix { display: grid; grid-template-columns: repeat(3, minmax(300px, 1fr)); gap: 12px; margin-top: 28px; align-items: start; }
+    .cell { border: 1px solid var(--line); background: var(--card); padding: 10px; }
+    .cell h2 { margin: 0 0 10px; font-size: 1.05rem; text-align: center; }
+    .frame-wrap { position: relative; width: 100%; overflow: hidden; background: white; min-height: 260px; }
+    .frame-wrap iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; background: white; }
+    .missing { min-height: 320px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--muted); padding: 18px; background: #fffaf2; }
+    @media (max-width: 980px) { .matrix { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="back" id="back"></p>
+    <h1 id="title">V-Book Comparison</h1>
+    <p class="lead">Alpha is fixed at <code>1/3</code>. The panels show <code>1g</code>, <code>2g</code>, and <code>3g</code> side by side when source HTMLs are available.</p>
+    <section class="matrix" id="matrix"></section>
+  </main>
+  <script>
+    const alpha = "1-3";
+    const books = {
+      "better-angels": "Better Angels",
+      "catching-fire": "Catching Fire",
+      "code-economy": "Code Economy",
+      "dawn-of-everything": "Dawn of Everything",
+      "guns-germs-and-steel": "Guns, Germs, and Steel",
+      "hierarchy-in-the-forest": "Hierarchy in the Forest",
+      "how-compassion-made-us-human": "How Compassion Made Us Human",
+      "case-for-god": "Case for God",
+      "sapiens": "Sapiens",
+      "storytelling-animal": "Storytelling Animal",
+      "ultrasociety": "Ultrasociety"
+    };
+    const available = new Set([
+      "wiki|sapiens|1g", "wiki|sapiens|2g", "wiki|sapiens|3g",
+      "guns-germs-and-steel|sapiens|1g", "guns-germs-and-steel|sapiens|2g", "guns-germs-and-steel|sapiens|3g",
+      "ultrasociety|sapiens|1g", "ultrasociety|sapiens|2g", "ultrasociety|sapiens|3g",
+      "wiki|ultrasociety|1g", "wiki|ultrasociety|2g", "wiki|ultrasociety|3g",
+      "sapiens|ultrasociety|1g", "sapiens|ultrasociety|2g", "sapiens|ultrasociety|3g"
+    ]);
+    const params = new URLSearchParams(window.location.search);
+    const focus = params.get("focus") || "sapiens";
+    const lhs = params.get("lhs") || "wiki";
+    const focusLabel = books[focus] || focus;
+    const lhsLabel = lhs === "wiki" ? "Wiki" : (books[lhs] || lhs);
+    const fallbackWidth = 760;
+    const fallbackHeight = 1500;
+
+    document.title = `${lhsLabel} v ${focusLabel}`;
+    document.getElementById("title").textContent = `${lhsLabel} v ${focusLabel}`;
+    document.getElementById("back").innerHTML = `<a href="./v-${focus}/index.html">Back to v ${focusLabel.toLowerCase()}</a>`;
+
+    function sourcePath(gram) {
+      if (lhs === "wiki") {
+        if (gram === "1g") return `../1grams/wiki-v/v-book/wikitext103-v-${focus}.alpha-${alpha}.html`;
+        if (gram === "2g") return `../2grams/wiki-v/v-book/wikitext103-2grams-v-${focus}.alpha-${alpha}.html`;
+        return `../3grams/wiki-v/v-book/wikitext-2-raw-v1-3grams-v-${focus}.alpha-${alpha}.html`;
+      }
+      const dir = gram === "1g" ? "1grams" : gram === "2g" ? "2grams" : "3grams";
+      return `../${dir}/v-book/${lhs}-v-${focus}.alpha-${alpha}.html`;
+    }
+
+    function fitCell(wrapper) {
+      const iframe = wrapper.querySelector("iframe");
+      if (!iframe) return;
+      const intrinsicWidth = Number(iframe.dataset.intrinsicWidth || fallbackWidth);
+      const intrinsicHeight = Number(iframe.dataset.intrinsicHeight || fallbackHeight);
+      const scale = wrapper.clientWidth / intrinsicWidth;
+      iframe.style.width = `${intrinsicWidth}px`;
+      iframe.style.height = `${intrinsicHeight}px`;
+      iframe.style.transform = `scale(${scale})`;
+      wrapper.style.height = `${intrinsicHeight * scale}px`;
+    }
+
+    function prepareFrame(iframe) {
+      try {
+        const doc = iframe.contentDocument;
+        if (!doc) return;
+        const body = doc.body;
+        const dashboard = doc.getElementById("allotaxonometer-dashboard");
+        if (!body || !dashboard) return;
+        body.style.margin = "0";
+        body.style.padding = "0";
+        body.style.background = "transparent";
+        body.style.overflow = "hidden";
+        doc.documentElement.style.background = "transparent";
+        doc.documentElement.style.overflow = "hidden";
+        iframe.dataset.intrinsicWidth = String(Math.max(doc.documentElement.scrollWidth || 0, body.scrollWidth || 0, dashboard.scrollWidth || 0, fallbackWidth));
+        iframe.dataset.intrinsicHeight = String(Math.max(doc.documentElement.scrollHeight || 0, body.scrollHeight || 0, dashboard.scrollHeight || 0, fallbackHeight));
+      } catch (error) {
+        console.warn("Could not prepare iframe", error);
+      }
+      fitCell(iframe.parentElement);
+    }
+
+    const matrix = document.getElementById("matrix");
+    for (const gram of ["1g", "2g", "3g"]) {
+      const cell = document.createElement("article");
+      cell.className = "cell";
+      cell.innerHTML = `<h2>${gram}</h2>`;
+      if (!available.has(`${lhs}|${focus}|${gram}`)) {
+        cell.innerHTML += `<div class="missing">Pending source HTML<br>${lhsLabel} v ${focusLabel}, ${gram}, alpha = 1/3</div>`;
+        matrix.appendChild(cell);
+        continue;
+      }
+      const wrap = document.createElement("div");
+      wrap.className = "frame-wrap";
+      const iframe = document.createElement("iframe");
+      iframe.loading = "lazy";
+      iframe.scrolling = "no";
+      iframe.src = sourcePath(gram);
+      iframe.title = `${lhsLabel} v ${focusLabel} ${gram}`;
+      iframe.addEventListener("load", () => prepareFrame(iframe));
+      wrap.appendChild(iframe);
+      cell.appendChild(wrap);
+      matrix.appendChild(cell);
+    }
+
+    window.addEventListener("resize", () => document.querySelectorAll(".frame-wrap").forEach(fitCell));
+  </script>
+</body>
+</html>

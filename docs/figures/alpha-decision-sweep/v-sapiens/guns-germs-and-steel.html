@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guns, Germs, and Steel v Sapiens</title>
+  <style>
+    :root { --bg: #f7f4ec; --ink: #191919; --muted: #5a574f; --line: #ddd3c2; --accent: #7b2f1a; --card: #fffdf9; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
+    main { max-width: 1650px; margin: 0 auto; padding: 32px 20px 56px; }
+    h1 { margin: 0 0 10px; line-height: 1.12; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+    .back { margin-bottom: 16px; }
+    .lead { margin-top: 10px; max-width: 980px; }
+    .matrix { display: grid; grid-template-columns: 170px repeat(3, 1fr); gap: 12px; margin-top: 28px; align-items: start; }
+    .head, .row-head, .cell { border: 1px solid var(--line); background: var(--card); }
+    .head, .row-head { padding: 12px 14px; }
+    .head { text-align: center; }
+    .row-head { font-weight: 700; color: var(--accent); }
+    .cell { padding: 10px; }
+    .frame-wrap { position: relative; width: 100%; overflow: hidden; background: white; min-height: 220px; }
+    .frame-wrap iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; background: white; }
+    .missing { min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--muted); padding: 18px; background: #fffaf2; }
+    .meta { margin-top: 8px; font-size: 0.86rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="back"><a href="./index.html">Back to v sapiens</a></p>
+    <h1>Guns, Germs, and Steel v Sapiens</h1>
+    <p class="lead">Each row is one alpha value; within the row, <code>1g</code>, <code>2g</code>, and <code>3g</code> are shown side by side. Missing entries reflect absent mirrored source HTMLs.</p>
+    <div class="matrix" id="matrix"></div>
+  </main>
+  <script>
+    const cols = [
+      { label: "1g", path: (alpha) => `../../1grams/v-book/guns-germs-and-steel-v-sapiens.alpha-${alpha}.html` },
+      { label: "2g", path: (alpha) => `../../2grams/v-book/guns-germs-and-steel-v-sapiens.alpha-${alpha}.html` },
+      { label: "3g", path: (alpha) => `../../3grams/v-book/guns-germs-and-steel-v-sapiens.alpha-${alpha}.html` }
+    ];
+    const rows = [
+      { key: "0", label: "alpha = 0" },
+      { key: "1-12", label: "alpha = 1/12" },
+      { key: "1-6", label: "alpha = 1/6" },
+      { key: "1-3", label: "alpha = 1/3" },
+      { key: "1", label: "alpha = 1" }
+    ];
+    const existing = new Set(["0:1g","0:2g","0:3g","1-12:1g","1-12:2g","1-12:3g","1-6:1g","1-6:2g","1-6:3g","1-3:1g","1-3:2g","1-3:3g","1:1g","1:2g","1:3g"]);
+    const fallbackWidth = 760;
+    const fallbackHeight = 1500;
+
+    function fitCell(wrapper) {
+      const iframe = wrapper.querySelector("iframe");
+      if (!iframe) return;
+      const intrinsicWidth = Number(iframe.dataset.intrinsicWidth || fallbackWidth);
+      const intrinsicHeight = Number(iframe.dataset.intrinsicHeight || fallbackHeight);
+      const scale = wrapper.clientWidth / intrinsicWidth;
+      iframe.style.width = `${intrinsicWidth}px`;
+      iframe.style.height = `${intrinsicHeight}px`;
+      iframe.style.transform = `scale(${scale})`;
+      wrapper.style.height = `${intrinsicHeight * scale}px`;
+    }
+
+    function prepareFrame(iframe) {
+      try {
+        const doc = iframe.contentDocument;
+        if (!doc) return;
+        const body = doc.body;
+        const dashboard = doc.getElementById("allotaxonometer-dashboard");
+        if (!body || !dashboard) return;
+        body.style.margin = "0";
+        body.style.padding = "0";
+        body.style.background = "transparent";
+        body.style.overflow = "hidden";
+        doc.documentElement.style.background = "transparent";
+        doc.documentElement.style.overflow = "hidden";
+        iframe.dataset.intrinsicWidth = String(Math.max(doc.documentElement.scrollWidth || 0, body.scrollWidth || 0, dashboard.scrollWidth || 0, fallbackWidth));
+        iframe.dataset.intrinsicHeight = String(Math.max(doc.documentElement.scrollHeight || 0, body.scrollHeight || 0, dashboard.scrollHeight || 0, fallbackHeight));
+      } catch (error) {
+        console.warn("Could not prepare iframe", error);
+      }
+      fitCell(iframe.parentElement);
+    }
+
+    const matrix = document.getElementById("matrix");
+    const corner = document.createElement("div");
+    corner.className = "head";
+    corner.innerHTML = "<strong>alpha \\ n-gram</strong>";
+    matrix.appendChild(corner);
+    for (const col of cols) {
+      const head = document.createElement("div");
+      head.className = "head";
+      head.innerHTML = `<strong>${col.label}</strong>`;
+      matrix.appendChild(head);
+    }
+
+    for (const row of rows) {
+      const rowHead = document.createElement("div");
+      rowHead.className = "row-head";
+      rowHead.id = `alpha-${row.key}`;
+      rowHead.textContent = row.label;
+      matrix.appendChild(rowHead);
+      for (const col of cols) {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        const key = `${row.key}:${col.label}`;
+        if (!existing.has(key)) {
+          cell.innerHTML = `<div class="missing">Missing mirrored HTML<br><span class="meta">${row.label}, ${col.label}</span></div>`;
+          matrix.appendChild(cell);
+          continue;
+        }
+        const wrap = document.createElement("div");
+        wrap.className = "frame-wrap";
+        const iframe = document.createElement("iframe");
+        iframe.loading = "lazy";
+        iframe.scrolling = "no";
+        iframe.src = col.path(row.key);
+        iframe.title = `Guns, Germs, and Steel v Sapiens ${row.label} ${col.label}`;
+        iframe.addEventListener("load", () => prepareFrame(iframe));
+        wrap.appendChild(iframe);
+        cell.appendChild(wrap);
+        matrix.appendChild(cell);
+      }
+    }
+
+    function scrollToAlphaHash() {
+      const rawHash = decodeURIComponent(window.location.hash.slice(1));
+      const aliases = {
+        "alpha=0": "alpha-0",
+        "alphta=0": "alpha-0",
+        "alpha=1/12": "alpha-1-12",
+        "alpha=1/6": "alpha-1-6",
+        "alpha=1/3": "alpha-1-3",
+        "alphta=1/3": "alpha-1-3",
+        "alpha=1": "alpha-1"
+      };
+      const target = document.getElementById(aliases[rawHash] || rawHash);
+      if (target) target.scrollIntoView();
+    }
+
+    scrollToAlphaHash();
+    window.addEventListener("hashchange", scrollToAlphaHash);
+    window.addEventListener("resize", () => document.querySelectorAll(".frame-wrap").forEach(fitCell));
+  </script>
+</body>
+</html>
+
